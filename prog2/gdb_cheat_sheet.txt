@@ -1,0 +1,12 @@
+target remote :<port>	connect to port running qemu
+
+s			step into next instr
+si			step into next asm instr
+n			step over (prevent going into function)
+
+layout src		split screen with source code
+layout asm		split screen with asm code
+Ctrl x a		close split screen view
+
+break <function name>	set breakpoint at <function name>
+clear <function name> 	delete breakpoint at <function name>
