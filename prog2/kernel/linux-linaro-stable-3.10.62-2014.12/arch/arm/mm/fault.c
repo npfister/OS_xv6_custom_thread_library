@@ -266,7 +266,7 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	pgd_t *pgd;
 	pud_t *pud;
 	pmd_t *pmd;
-	pte_t *pte, *pte_l, *pte_arm;
+	pte_t *ptep, pte, *pte_hw_p, pte_hw;
 	unsigned int lowerTwo;
 	unsigned int current_cnt;
 
@@ -342,34 +342,21 @@ retry:
 	if (pmd_none(*pmd) || pmd_bad(*pmd))
 		goto callDoPgFault;
 
-	pte = pte_offset_map (pmd, addr);
+	ptep = pte_offset_map (pmd, addr);
+	pte = *ptep;
+	pte_hw_p = ptep + (long long) 512;
+	pte_hw = *pte_hw_p;
+
 
 	// check if pte is Linux or ARM
-	//if ( pmd_val(*pmd) >=0 && pmd_val(*pmd) < 2048) {
-		pte_l = pte;
-		//pte_arm = pte_l + 2048;
-		pte_arm = (pte_t*) (pte_val(pte_l[PTE_HWTABLE_PTRS]) + 2048);
-	//}else {
-	//	pte_arm = pte;
-	//	pte_l = pte_arm - 2048;
-	//}
 
-	lowerTwo = pte_val(*pte_arm) & 0x03; //get lower two bits (00 = invalid)
-
-	//printk ("*********** *PPTE = %08llx, *PTE = %08llx ****\n",
-	//		(long long)pte_val(pte[PTE_HWTABLE_PTRS]) , (long long)pte_val(*pte));
-
-	//printk ("***** LINUX *PPTE = %08llx, *PTE = %08llx ****\n",
-	//		(long long)pte_val(pte_l[PTE_HWTABLE_PTRS]) , (long long)pte_val(*pte_l));
-
-	//printk ("******* ARM *PPTE = %08llx, *PTE = %08llx ****\n\n",
-	//		(long long)pte_val(pte_arm[PTE_HWTABLE_PTRS]) , (long long)pte_val(*pte_arm));
-
+	lowerTwo = pte_val(pte_hw) & 0x03; //get lower two bits (00 = invalid)
 
 	// If arm pte = invalid, but Linux pte = valid (and not swapped out),
 	// then increment reference count
 	// todo: check counter. use young bit for 0th or 9th reference?
-	//if (lowerTwo == 0 && pte_present(*pte_l) == 1)  {
+
+	if (lowerTwo == 0 && pte_present(pte) && pte_young(pte))  {
 		/*
 		current_cnt = pte_num_count(*pte_l);
 		current_cnt ++;
@@ -382,14 +369,14 @@ retry:
 
 		//return to offending instr
 		*/
-		//printk (KERN_NOTICE "&pmd = %p, pmd = %08llx, pmd = %08llx\n", &pmd , (long long) pmd, (long long) pte_val(*pte));
 
-		//printk (KERN_NOTICE "ppte = %p, pte = %08llx\n", &pte ,(long long) pte_val(*pte));
-		//printk (KERN_NOTICE "ppte_l = %p, pte_l = %08llx\n", &pte_l ,(long long) pte_val(*pte_l));
+		printk (KERN_NOTICE "ptep = %08llx, pte  = %08llx\n", (long long)pte_val(ptep), (long long)pte_val(pte));
+		printk (KERN_NOTICE "pteH = %08llx, pteH = %08llx\n", (long long)pte_val(pte_hw_p), (long long)pte_val(pte_hw));
+		pte_val(pte_hw) = pte_val(pte_hw) | 0x00000001;//set pte_hw back to valid
 
 		//printk(KERN_NOTICE "***** ERROR Got in ****************\n"); //error only for testing page walk
-		//return 0;
-	 //}
+		return 0;
+	 }
 
 callDoPgFault:
 	fault = __do_page_fault(mm, addr, fsr, flags, tsk);
@@ -522,8 +509,8 @@ do_translation_fault(unsigned long addr, unsigned int fsr,
 	pgd = cpu_get_pgd() + index;
 	pgd_k = init_mm.pgd + index;
 
-	printk ("******** mz  pdg: %08llx ******\n", pgd_val(*pgd));
-	printk ("****** mz  pdg_k: %08llx ******\n", pgd_val(*pgd_k));
+	//printk ("******** mz  pdg: %08llx ******\n", pgd_val(*pgd));
+	//printk ("****** mz  pdg_k: %08llx ******\n", pgd_val(*pgd_k));
 
 	if (pgd_none(*pgd_k))
 		goto bad_area;

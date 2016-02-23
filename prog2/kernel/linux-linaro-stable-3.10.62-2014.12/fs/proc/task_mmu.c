@@ -370,12 +370,10 @@ done:
 		}
 
 		if (pgd_none(*pgd) || pgd_bad(*pgd)) { goto notPresent; }
-		printk ("mz done pgd\n");
 
 		pud = pud_offset(pgd, vAddr);
 		//pud_k = pud_offset(pgd_k, vAddr);
 		if (pud_none(*pud) || pud_bad(*pud)) { goto notPresent; }
-		printk ("mz done pud\n");
 
 		pmd = pmd_offset(pud, vAddr);
 		//pmd_k = pmd_offset(pud_k, vAddr);
@@ -385,12 +383,9 @@ done:
 		ind = (vAddr >> SECTION_SHIFT) & 1;
 #endif
 		if (pmd_none(*pmd) || pmd_bad(*pmd)) { goto notPresent; }
-		printk ("mz done pmd\n");
 
 		pte = pte_offset_map(pmd, vAddr);
 		if (pte_none(*pte) || !pte_present(*pte)) { goto notPresent;}
-
-		printk ("mz done pte\n");
 
 		goto present;
 
@@ -398,6 +393,10 @@ done:
 present:
 		if (pte_young(*pte)) seq_printf(m, "1");
 		else  seq_printf(m, "0");
+
+		//make ARM pte invalid to cause fault next access
+		pte_arm = pte + (long long) 512;
+		//pte_val(*pte_arm) = pte_val(*pte_arm) & 0xFFFFFFFC;
 
 		/*
 		// check if pte is Linux or ARM
@@ -412,7 +411,7 @@ present:
 		current_cnt = pte_num_count(*pte_l);
 		seq_printf(m, "%d", current_cnt);
 
-		//make ARM pte invalid to cause fault next access
+
 		//pte_val(*pte_arm) = pte_val(*pte_arm) & 0xFFFFFFFC;
 
 		printk(KERN_NOTICE "pteval before init = %08llx, cnt = %d\n", (long long) pte_val(*pte_l), (unsigned int) pte_num_count(*pte_l));
