@@ -8,7 +8,7 @@
 
 # Running compiled zImage with myinitrd
 if [[ $1 == 'run' ]]; then
-    cd ~/ECE695_OS/OS_repo/prog2/vexpress
+    cd ~/ECE695_OS/OS_repo_bb/prog2/vexpress
     qemu-system-arm \
 	-kernel ../kernel/linux-linaro-stable-3.10.62-2014.12/arch/arm/boot/zImage \
 	-M vexpress-a9 \
@@ -22,7 +22,7 @@ if [[ $1 == 'run' ]]; then
 
 
 elif [[ $1 == 'rungdb' ]]; then
-    cd ~/ECE695_OS/OS_repo/prog2/vexpress
+    cd ~/ECE695_OS/OS_repo_bb/prog2/vexpress
     qemu-system-arm -S \
 	-gdb tcp::1236 \
 	-kernel ../kernel/linux-linaro-stable-3.10.62-2014.12/arch/arm/boot/zImage \
@@ -37,7 +37,7 @@ elif [[ $1 == 'rungdb' ]]; then
 
 
 elif [[ $1 == 'compile' ]]; then
-    cd ~/ECE695_OS/OS_repo/prog2/kernel/linux-linaro-stable-3.10.62-2014.12
+    cd ~/ECE695_OS/OS_repo_bb/prog2/kernel/linux-linaro-stable-3.10.62-2014.12
     export ARCH=arm
     export CROSS_COMPILE=arm-linux-gnueabi-
     make -j`getconf _NPROCESSORS_ONLN`

@@ -347,13 +347,23 @@ retry:
 	// check if pte is Linux or ARM
 	//if ( pmd_val(*pmd) >=0 && pmd_val(*pmd) < 2048) {
 		pte_l = pte;
-		pte_arm = pte_l + 2048;
+		//pte_arm = pte_l + 2048;
+		pte_arm = (pte_t*) (pte_val(pte_l[PTE_HWTABLE_PTRS]) + 2048);
 	//}else {
 	//	pte_arm = pte;
 	//	pte_l = pte_arm - 2048;
 	//}
 
 	lowerTwo = pte_val(*pte_arm) & 0x03; //get lower two bits (00 = invalid)
+
+	//printk ("*********** *PPTE = %08llx, *PTE = %08llx ****\n",
+	//		(long long)pte_val(pte[PTE_HWTABLE_PTRS]) , (long long)pte_val(*pte));
+
+	//printk ("***** LINUX *PPTE = %08llx, *PTE = %08llx ****\n",
+	//		(long long)pte_val(pte_l[PTE_HWTABLE_PTRS]) , (long long)pte_val(*pte_l));
+
+	//printk ("******* ARM *PPTE = %08llx, *PTE = %08llx ****\n\n",
+	//		(long long)pte_val(pte_arm[PTE_HWTABLE_PTRS]) , (long long)pte_val(*pte_arm));
 
 
 	// If arm pte = invalid, but Linux pte = valid (and not swapped out),
@@ -511,6 +521,9 @@ do_translation_fault(unsigned long addr, unsigned int fsr,
 
 	pgd = cpu_get_pgd() + index;
 	pgd_k = init_mm.pgd + index;
+
+	printk ("******** mz  pdg: %08llx ******\n", pgd_val(*pgd));
+	printk ("****** mz  pdg_k: %08llx ******\n", pgd_val(*pgd_k));
 
 	if (pgd_none(*pgd_k))
 		goto bad_area;

@@ -357,30 +357,48 @@ done:
 
 	// Print number of accesses to each page in vma region
 	for (vAddr=start; vAddr<end; vAddr += PAGE_SIZE) {
-		ind = pgd_index(vAddr);
-		pgd = cpu_get_pgd() + ind;
-		pgd_k = init_mm.pgd + ind;
-		if (pgd_none(*pgd_k)) { goto notPresent; }
+		//ind = pgd_index(vAddr);
+		//pgd = cpu_get_pgd() + ind;
+		//pgd_k = init_mm.pgd + ind;
+
+		if (vAddr >= TASK_SIZE) {
+			printk ("mz: kernel space\n");
+			pgd = pgd_offset_k (vAddr);
+		}
+		else {
+			pgd = pgd_offset (mm, vAddr);
+		}
+
+		if (pgd_none(*pgd) || pgd_bad(*pgd)) { goto notPresent; }
+		printk ("mz done pgd\n");
 
 		pud = pud_offset(pgd, vAddr);
-		pud_k = pud_offset(pgd_k, vAddr);
-		if (pud_none(*pud_k)) { goto notPresent; }
+		//pud_k = pud_offset(pgd_k, vAddr);
+		if (pud_none(*pud) || pud_bad(*pud)) { goto notPresent; }
+		printk ("mz done pud\n");
 
 		pmd = pmd_offset(pud, vAddr);
-		pmd_k = pmd_offset(pud_k, vAddr);
+		//pmd_k = pmd_offset(pud_k, vAddr);
 #ifdef CONFIG_ARM_LPAE
 		ind = 0;
 #else
 		ind = (vAddr >> SECTION_SHIFT) & 1;
 #endif
-		if (pmd_none(*pmd)) { goto notPresent; }
+		if (pmd_none(*pmd) || pmd_bad(*pmd)) { goto notPresent; }
+		printk ("mz done pmd\n");
+
 		pte = pte_offset_map(pmd, vAddr);
-		if (pte_none(*pte) && !pte_present(*pte)) { goto notPresent;}
+		if (pte_none(*pte) || !pte_present(*pte)) { goto notPresent;}
+
+		printk ("mz done pte\n");
+
 		goto present;
 
 
 present:
-		seq_printf(m, "x");
+		if (pte_young(*pte)) seq_printf(m, "1");
+		else  seq_printf(m, "0");
+
 		/*
 		// check if pte is Linux or ARM
 		if (((int)pte) >=0 && ((int)pte) < 2048) {
