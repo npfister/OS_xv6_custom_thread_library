@@ -396,7 +396,7 @@ present:
 
 		//make ARM pte invalid to cause fault next access
 		pte_arm = pte + (long long) 512;
-		//pte_val(*pte_arm) = pte_val(*pte_arm) & 0xFFFFFFFC;
+		pte_val(*pte_arm) = pte_val(*pte_arm) & 0xFFFFFFFC;
 
 		/*
 		// check if pte is Linux or ARM

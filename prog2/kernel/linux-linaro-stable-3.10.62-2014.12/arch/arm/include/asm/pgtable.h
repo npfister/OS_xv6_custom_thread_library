@@ -8,6 +8,7 @@
  * published by the Free Software Foundation.
  */
 #ifndef _ASMARM_PGTABLE_H
+
 #define _ASMARM_PGTABLE_H
 
 #include <linux/const.h>

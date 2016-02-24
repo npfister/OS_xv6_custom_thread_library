@@ -348,14 +348,18 @@ retry:
 	pte_hw = *pte_hw_p;
 
 
-	// check if pte is Linux or ARM
+	// If page is accessed for the first time (young = 0, but present=1),
+	// set HW PTE to invalid
+	if (pte_present(pte) && !pte_young(pte)) {
+		pte_hw = pte_hw & 0xFFFFFFFC;
+		printk (KERN_NOTICE "first page access: pteH set to invalid: %08llx\n", (long long) pte_val(pte_hw));
+	}
 
-	lowerTwo = pte_val(pte_hw) & 0x03; //get lower two bits (00 = invalid)
 
 	// If arm pte = invalid, but Linux pte = valid (and not swapped out),
 	// then increment reference count
-	// todo: check counter. use young bit for 0th or 9th reference?
 
+	lowerTwo = pte_val(pte_hw) & 0x03; //get lower two bits (00 = invalid)
 	if (lowerTwo == 0 && pte_present(pte) && pte_young(pte))  {
 		/*
 		current_cnt = pte_num_count(*pte_l);
@@ -372,7 +376,7 @@ retry:
 
 		printk (KERN_NOTICE "ptep = %08llx, pte  = %08llx\n", (long long)pte_val(ptep), (long long)pte_val(pte));
 		printk (KERN_NOTICE "pteH = %08llx, pteH = %08llx\n", (long long)pte_val(pte_hw_p), (long long)pte_val(pte_hw));
-		pte_val(pte_hw) = pte_val(pte_hw) | 0x00000001;//set pte_hw back to valid
+		//pte_val(pte_hw) = pte_val(pte_hw) | 0x00000001;//set pte_hw back to valid
 
 		//printk(KERN_NOTICE "***** ERROR Got in ****************\n"); //error only for testing page walk
 		return 0;
@@ -499,6 +503,7 @@ do_translation_fault(unsigned long addr, unsigned int fsr,
 	pmd_t *pmd, *pmd_k;
 
 	if (addr < TASK_SIZE)
+
 		return do_page_fault(addr, fsr, regs);
 
 	if (user_mode(regs))
