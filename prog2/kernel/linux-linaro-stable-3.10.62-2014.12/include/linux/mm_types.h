@@ -226,9 +226,11 @@ struct vm_region {
  * library, the executable area etc).
  */
 struct vm_area_struct {
+	int first_read;				/* Flag indicating first read of /proc/PID/maps */
+
+
 	/* The first cache line has the info for VMA tree walking. */
 
-	int first_read;				/* Flag indicating first read of /proc/PID/maps */
 	unsigned long vm_start;		/* Our start address within vm_mm. */
 	unsigned long vm_end;		/* The first byte after our end address
 					   within vm_mm. */

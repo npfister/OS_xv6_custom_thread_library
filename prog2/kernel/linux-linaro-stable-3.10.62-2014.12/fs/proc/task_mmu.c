@@ -277,7 +277,7 @@ show_map_vma(struct seq_file *m, struct vm_area_struct *vma, int is_pid)
 	pud_t *pud;
 	pmd_t *pmd;
 	pte_t *ptep, *ptep_arm, pte, pte_arm;
-	unsigned int current_cnt = 0;
+	unsigned int current_cnt = 5;
 
 	if (file) {
 		struct inode *inode = file_inode(vma->vm_file);
@@ -355,6 +355,13 @@ done:
 	}
 	seq_putc(m, '\n');
 
+	// if doing cat for this proc's mem map for the first time,
+	// set first_read to 1.
+	if (vma->first_read != 1 && vma->first_read != 2) {
+		vma->first_read = 1;
+		printk ("vma first_read set to 1: %d (in if condition for != 1 and != 2) \n", vma->first_read);
+	}
+
 	// Print number of accesses to each page in vma region
 	for (vAddr=start; vAddr<end; vAddr += PAGE_SIZE) {
 		//ind = pgd_index(vAddr);
@@ -392,19 +399,18 @@ done:
 present:
 
 		// if doing cat for this proc's mem map for the first time,
-		// initialize count to 0
+		// first_read should already be 1, hence initialize count to 0
 
-		if (vma->first_read != 1) {
-			vma->first_read == 1;
+		if (vma->first_read == 1) {
+			//pte_val(pte) = pte_val(pte) & 0xFFFF0FFF;
 			pte_val(pte) = pte_val(pte) & 0xFFFF8FFF;
-			printk(KERN_NOTICE "Ref cnt initialized to 0 for pte=%08llx\n, cnt = %d", (long long) pte_val(pte), (unsigned int) pte_num_count(pte));
+			printk(KERN_NOTICE "Ref cnt initialized to cnt=%d for pte=%08llx\n", (unsigned int) pte_num_count(pte), (long long) pte_val(pte));
 		}
 
 		//if (pte_young(pte)) seq_printf(m, "1");
 		//else  seq_printf(m, "0");
 
-		current_cnt = pte_num_count(pte);
-		seq_printf(m, "%d", current_cnt);
+		seq_printf(m, "%d", pte_num_count(pte));
 
 		// Set hw pte invalid
 		//pte_val(*pte_hw_p) = pte_val(*pte_hw_p) & 0xFFFFFFFC;
@@ -429,6 +435,13 @@ cont:
 		}
 	}
 	seq_printf (m, "\n");
+
+
+	// Once all PTE's reference counts initialized to 0, set first_read to 2.
+	if (vma->first_read == 1) {
+		vma->first_read = 2;
+		printk ("vma first_read set to 2: %d (in if ==1) \n", vma->first_read);
+	}
 }
 
 static int show_map(struct seq_file *m, void *v, int is_pid)

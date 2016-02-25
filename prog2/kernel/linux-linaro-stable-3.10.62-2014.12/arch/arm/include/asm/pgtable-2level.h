@@ -124,6 +124,7 @@
 #define L_PTE_CT_0		(_AT(pteval_t, 1) << 12)
 #define L_PTE_CT_1		(_AT(pteval_t, 1) << 13)
 #define L_PTE_CT_2		(_AT(pteval_t, 1) << 14)
+#define L_PTE_CT_3		(_AT(pteval_t, 1) << 15)
 
 #define L_PTE_DIRTY		(_AT(pteval_t, 1) << 6)
 #define L_PTE_RDONLY		(_AT(pteval_t, 1) << 7)

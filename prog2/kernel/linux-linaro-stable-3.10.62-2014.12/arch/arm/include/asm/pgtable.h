@@ -221,7 +221,7 @@ static inline pte_t *pmd_page_vaddr(pmd_t pmd)
 #define pte_dirty(pte)		(pte_val(pte) & L_PTE_DIRTY)
 #define pte_young(pte)		(pte_val(pte) & L_PTE_YOUNG)
 #define pte_exec(pte)		(!(pte_val(pte) & L_PTE_XN))
-#define pte_num_count(pte)  ((pte_val(pte) & (L_PTE_CT_0 | L_PTE_CT_1 | L_PTE_CT_2)) >> 12)
+#define pte_num_count(pte)  ((pte_val(pte) & (L_PTE_CT_0 | L_PTE_CT_1 | L_PTE_CT_2 | L_PTE_CT_3)) >> 12)
 #define pte_special(pte)	(0)
 //#define a pte_count() //returns num of accesses
 
