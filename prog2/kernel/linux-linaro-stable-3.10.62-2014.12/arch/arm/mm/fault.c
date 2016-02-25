@@ -26,6 +26,11 @@
 #include <asm/system_info.h>
 #include <asm/tlbflush.h>
 
+
+//#include "../kernel/kprobes.h"
+//#include "../kernel/kprobes.c"
+//#include "../include/asm/kprobes.h"
+
 #include "fault.h"
 
 #ifdef CONFIG_MMU
@@ -255,6 +260,26 @@ out:
 	return fault;
 }
 
+void set_pte_invalid (struct kprobe *p, struct pt_regs *regs, unsigned long flags)
+{
+	printk (KERN_NOTICE "In kprobe post handler.\n");
+	//set HW pte back to invalid to trigger exception on the next access
+	//pte_arm = pte + (long long) 512;
+	//pte_val(*pte_arm) = pte_val(*pte_arm) & 0xFFFFFFFC;
+}
+
+int my_pre_handler (struct kprobe *p, struct pt_regs *regs)
+{
+	printk (KERN_NOTICE "In kprobe pre handler.\n");
+	return 0;
+}
+
+int my_fault_handler (struct kprobe *p, struct pt_regs *regs, int trapnr)
+{
+	printk (KERN_NOTICE "In kprobe fault handler.\n");
+	return 0;
+}
+
 static int __kprobes
 do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 {
@@ -267,8 +292,9 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	pud_t *pud;
 	pmd_t *pmd;
 	pte_t *ptep, pte, *pte_hw_p, pte_hw;
-	unsigned int lowerTwo;
+	unsigned int hw_valid_bits;
 	unsigned int current_cnt;
+	struct kprobe *p = NULL;
 
 
 	if (notify_page_fault(regs, fsr))
@@ -317,19 +343,7 @@ retry:
 #endif
 	}
 
-	/*
-	//if exception due to pg fault in kernel space, proceed
-	// as normal.
-	if (addr > 0xB2D05E00) {
-		printk ("********* pg fault from kernel space ***** \n");
-		goto callDoPgFault;
-	}
-
-
-	printk ("********* pg fault from user space: %ld ***** \n", addr);
-	*/
-
-	//intercept exception
+	//page walk
 	pgd = pgd_offset(mm, addr);
 	if (pgd_none(*pgd) || pgd_bad(*pgd))
 		goto callDoPgFault;
@@ -352,33 +366,60 @@ retry:
 	// set HW PTE to invalid
 	if (pte_present(pte) && !pte_young(pte)) {
 		pte_hw = pte_hw & 0xFFFFFFFC;
-		printk (KERN_NOTICE "first page access: pteH set to invalid: %08llx\n", (long long) pte_val(pte_hw));
+		printk (KERN_NOTICE "First access to this page (addr: %08lx). pteH set to invalid: %08llx\n", addr, (long long) pte_val(pte_hw));
 	}
 
 
+	//printk (KERN_NOTICE "current addr: %08lx, current PC: %08lx\n", addr, regs->ARM_pc);
+
+
+	//p->pre_handler = my_pre_handler;
+	//p->post_handler = set_pte_invalid;
+	//p->fault_handler = my_fault_handler;
+	//p->addr = (kprobe_opcode_t *) regs->ARM_pc - 4; //addr of current instr
+
+	//__kprobes register_kprobe(p);
+	//__kprobes arch_prepare_kprobe(p);
+	//printk (KERN_NOTICE "Got opcode: %s", (char *) p->opcode);
+	//__kprobes singlestep (p, regs, NULL);
+	//__kprobes unregister_kprobe(p);
+
 	// If arm pte = invalid, but Linux pte = valid (and not swapped out),
 	// then increment reference count
+	hw_valid_bits = pte_val(pte_hw) & 0x03; //get lower two bits (00 = invalid)
+	if (hw_valid_bits == 0 && pte_present(pte) && pte_young(pte))  {
 
-	lowerTwo = pte_val(pte_hw) & 0x03; //get lower two bits (00 = invalid)
-	if (lowerTwo == 0 && pte_present(pte) && pte_young(pte))  {
 		/*
 		current_cnt = pte_num_count(*pte_l);
 		current_cnt ++;
 		current_cnt = current_cnt << 0x03;
 		pte_val(*pte_l) = pte_val(*pte_l) & 0xFFFFFFC7;   //zero the count. mask = 11111....11000111
 		pte_val(*pte_l) = pte_val(*pte_l) | current_cnt;  //add current count
-
-		//make page valid
-		*pte_arm = *pte_arm | 0x01; //revert to original lower two bits (00...01)
-
-		//return to offending instr
 		*/
 
-		printk (KERN_NOTICE "ptep = %08llx, pte  = %08llx\n", (long long)pte_val(ptep), (long long)pte_val(pte));
-		printk (KERN_NOTICE "pteH = %08llx, pteH = %08llx\n", (long long)pte_val(pte_hw_p), (long long)pte_val(pte_hw));
+		// Use kprobes to emulate instr. (pass regs and kprobe/opcode to it)
+		// When done, modify regs->ARM_pc to pc + 4, and return
+
+		//kprobe *p = NULL;
+		//p->pre_handler = NULL;
+		//p->post_handler = set_pte_invalid;
+		//p->fault_handler = NULL;
+		//p->addr = (kprobe_opcode_t *) addr;
+
+		//arch_prepare_kprobe (p);
+		//__kprobes register_kprobe(p);
+		//printk (KERN_NOTICE "Got opcode: %s", (char *) p->opcode);
+		// call emulate_ldr/str to emulate instruction?
+		//if (p->opcode == str)
+		// 	call emulate_str(p, regs);
+		//__kprobes unregister_kprobe(p);
+
+
+		//printk (KERN_NOTICE "ptep = %08llx, pte  = %08llx\n", (long long)pte_val(ptep), (long long)pte_val(pte));
+		//printk (KERN_NOTICE "pteH = %08llx, pteH = %08llx\n", (long long)pte_val(pte_hw_p), (long long)pte_val(pte_hw));
 		//pte_val(pte_hw) = pte_val(pte_hw) | 0x00000001;//set pte_hw back to valid
 
-		//printk(KERN_NOTICE "***** ERROR Got in ****************\n"); //error only for testing page walk
+		printk(KERN_NOTICE "***** ERROR Got in ****************\n"); //error only for testing page walk
 		return 0;
 	 }
 

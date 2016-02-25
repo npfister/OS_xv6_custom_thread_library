@@ -273,11 +273,11 @@ show_map_vma(struct seq_file *m, struct vm_area_struct *vma, int is_pid)
 	int len;
 	const char *name = NULL;
 
-	pgd_t *pgd, *pgd_k;
-	pud_t *pud, *pud_k;
-	pmd_t *pmd, *pmd_k;
-	pte_t *pte, *pte_arm, *pte_l;
-	unsigned int current_cnt;
+	pgd_t *pgd;
+	pud_t *pud;
+	pmd_t *pmd;
+	pte_t *ptep, *ptep_arm, pte, pte_arm;
+	unsigned int current_cnt = 0;
 
 	if (file) {
 		struct inode *inode = file_inode(vma->vm_file);
@@ -368,15 +368,13 @@ done:
 		else {
 			pgd = pgd_offset (mm, vAddr);
 		}
-
 		if (pgd_none(*pgd) || pgd_bad(*pgd)) { goto notPresent; }
 
 		pud = pud_offset(pgd, vAddr);
-		//pud_k = pud_offset(pgd_k, vAddr);
 		if (pud_none(*pud) || pud_bad(*pud)) { goto notPresent; }
 
 		pmd = pmd_offset(pud, vAddr);
-		//pmd_k = pmd_offset(pud_k, vAddr);
+
 #ifdef CONFIG_ARM_LPAE
 		ind = 0;
 #else
@@ -384,43 +382,33 @@ done:
 #endif
 		if (pmd_none(*pmd) || pmd_bad(*pmd)) { goto notPresent; }
 
-		pte = pte_offset_map(pmd, vAddr);
-		if (pte_none(*pte) || !pte_present(*pte)) { goto notPresent;}
+		ptep = pte_offset_map(pmd, vAddr);
+		pte = *ptep;
+		if (pte_none(pte) || !pte_present(pte)) { goto notPresent;}
 
 		goto present;
 
 
 present:
-		if (pte_young(*pte)) seq_printf(m, "1");
-		else  seq_printf(m, "0");
 
-		//make ARM pte invalid to cause fault next access
-		pte_arm = pte + (long long) 512;
-		pte_val(*pte_arm) = pte_val(*pte_arm) & 0xFFFFFFFC;
+		// if doing cat for this proc's mem map for the first time,
+		// initialize count to 0
 
-		/*
-		// check if pte is Linux or ARM
-		if (((int)pte) >=0 && ((int)pte) < 2048) {
-			pte_l = pte;
-			pte_arm = pte_l + 2048;
-		}else {
-			pte_arm = pte;
-			pte_l = pte_arm - 2048;
+		if (vma->first_read != 1) {
+			vma->first_read == 1;
+			pte_val(pte) = pte_val(pte) & 0xFFFF8FFF;
+			printk(KERN_NOTICE "Ref cnt initialized to 0 for pte=%08llx\n, cnt = %d", (long long) pte_val(pte), (unsigned int) pte_num_count(pte));
 		}
 
-		current_cnt = pte_num_count(*pte_l);
+		//if (pte_young(pte)) seq_printf(m, "1");
+		//else  seq_printf(m, "0");
+
+		current_cnt = pte_num_count(pte);
 		seq_printf(m, "%d", current_cnt);
 
+		// Set hw pte invalid
+		//pte_val(*pte_hw_p) = pte_val(*pte_hw_p) & 0xFFFFFFFC;
 
-		//pte_val(*pte_arm) = pte_val(*pte_arm) & 0xFFFFFFFC;
-
-		printk(KERN_NOTICE "pteval before init = %08llx, cnt = %d\n", (long long) pte_val(*pte_l), (unsigned int) pte_num_count(*pte_l));
-		printk(KERN_NOTICE "**** INITIALIZED CNT TO 0 ****\n");
-		// initialize count to 0
-		//pte_val(*pte_l) = pte_val(*pte_l) & 0xFFFFFFC7;
-		pte_val(*pte_l) = pte_val(*pte_l) & 0xFFFFFFEF;
-		printk(KERN_NOTICE "pteval after init = %08llx\n, cnt = %d", (long long) pte_val(*pte_l), (unsigned int) pte_num_count(*pte_l));
-		*/
 		goto cont;
 
 notPresent:
