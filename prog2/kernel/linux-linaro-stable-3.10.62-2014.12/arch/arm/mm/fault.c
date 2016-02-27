@@ -364,9 +364,10 @@ retry:
 
 	// If page is accessed for the first time (young = 0, but present=1),
 	// set HW PTE to invalid
+	// Try to do this in show-map_vma, or after handleMMfault
 	if (pte_present(pte) && !pte_young(pte)) {
 		pte_hw = pte_hw & 0xFFFFFFFC;
-		printk (KERN_NOTICE "First access to this page (addr: %08lx). pteH set to invalid: %08llx\n", addr, (long long) pte_val(pte_hw));
+		//printk (KERN_NOTICE "First access to this page (addr: %08lx). pteH set to invalid: %08llx\n", addr, (long long) pte_val(pte_hw));
 	}
 
 

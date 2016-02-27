@@ -397,23 +397,31 @@ done:
 
 
 present:
+		ptep_arm = ptep + (long long) 512;
+		pte_arm = *ptep_arm;
 
 		// if doing cat for this proc's mem map for the first time,
 		// first_read should already be 1, hence initialize count to 0
 
 		if (vma->first_read == 1) {
-			//pte_val(pte) = pte_val(pte) & 0xFFFF0FFF;
-			pte_val(pte) = pte_val(pte) & 0xFFFF8FFF;
-			printk(KERN_NOTICE "Ref cnt initialized to cnt=%d for pte=%08llx\n", (unsigned int) pte_num_count(pte), (long long) pte_val(pte));
+			pte_clear_count (ptep_arm, pte_arm);
+			pte_arm = pte_arm & 0xFFFFFE1F;
+			set_pte_ext (ptep_arm, pte_arm, 0);
+			printk(KERN_NOTICE "Ref cnt initialized to cnt=%d for pte=%08llx\n",
+					(unsigned int) pte_get_count(pte_arm), (long long) pte_val(pte_arm));
 		}
+
+		seq_printf(m, "%d", pte_get_count(pte_arm));
+
+		//increment count - just for testing
+		current_cnt = pte_get_count(pte_arm);
+		pte_set_count (ptep_arm, pte_arm, current_cnt+1);
+		printk (KERN_NOTICE "Ref cnt incremented to curr_cnt=%d (num_cnt=%d) for pte=%08llx\n",
+						current_cnt, (unsigned int) pte_get_count(pte_arm), (long long) pte_val(pte_arm));
+
 
 		//if (pte_young(pte)) seq_printf(m, "1");
 		//else  seq_printf(m, "0");
-
-		seq_printf(m, "%d", pte_num_count(pte));
-
-		// Set hw pte invalid
-		//pte_val(*pte_hw_p) = pte_val(*pte_hw_p) & 0xFFFFFFFC;
 
 		goto cont;
 

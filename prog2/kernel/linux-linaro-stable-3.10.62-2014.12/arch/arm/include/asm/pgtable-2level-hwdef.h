@@ -74,6 +74,13 @@
 #define PTE_EXT_AP_URO_SRW	(PTE_EXT_AP1)
 #define PTE_EXT_AP_URW_SRW	(PTE_EXT_AP1|PTE_EXT_AP0)
 #define PTE_EXT_TEX(x)		(_AT(pteval_t, (x)) << 6)	/* v5 */
+
+//define 3 bits for storing the page reference count
+#define HW_PTE_CT_0		(_AT(pteval_t, 1) << 5) // AP[1]
+#define HW_PTE_CT_1		(_AT(pteval_t, 1) << 6) // TEX[0]
+#define HW_PTE_CT_2		(_AT(pteval_t, 1) << 7) // TEX[1]
+#define HW_PTE_CT_3		(_AT(pteval_t, 1) << 8) // TEX[2]
+
 #define PTE_EXT_APX		(_AT(pteval_t, 1) << 9)		/* v6 */
 #define PTE_EXT_COHERENT	(_AT(pteval_t, 1) << 9)		/* XScale3 */
 #define PTE_EXT_SHARED		(_AT(pteval_t, 1) << 10)	/* v6 */
