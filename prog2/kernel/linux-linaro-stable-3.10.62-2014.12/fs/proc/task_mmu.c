@@ -277,7 +277,7 @@ show_map_vma(struct seq_file *m, struct vm_area_struct *vma, int is_pid)
 	pud_t *pud;
 	pmd_t *pmd;
 	pte_t *ptep, *ptep_arm, pte, pte_arm;
-	unsigned int current_cnt = 5;
+	unsigned int current_cnt;
 
 	if (file) {
 		struct inode *inode = file_inode(vma->vm_file);
@@ -370,7 +370,8 @@ done:
 
 		if (vAddr >= TASK_SIZE) {
 			printk ("mz: kernel space\n");
-			pgd = pgd_offset_k (vAddr);
+			//pgd = pgd_offset_k (vAddr);
+			goto notPresent;
 		}
 		else {
 			pgd = pgd_offset (mm, vAddr);
@@ -404,24 +405,37 @@ present:
 		// first_read should already be 1, hence initialize count to 0
 
 		if (vma->first_read == 1) {
-			pte_clear_count (ptep_arm, pte_arm);
-			pte_arm = pte_arm & 0xFFFFFE1F;
+			pte_arm = pte_arm & 0xFFFFFE1F; //clear counter
+
+			//clear valid bit, if small page
+			if ((pte_arm & 0x03) == 2) {
+				pte_arm = pte_arm & 0xFFFFFFFC;
+				printk (KERN_NOTICE "Valid bit cleared"); }
+
 			set_pte_ext (ptep_arm, pte_arm, 0);
+			if (!pte_val(ptep_arm)) {
+				printk(KERN_NOTICE "pte val null");
+				printk(KERN_NOTICE "Ref cnt initialized to cnt=%d for pte=%08llx\n",
+							(unsigned int) pte_get_count(pte_arm), (long long) pte_val(pte_arm));
+
+			}
+			else {
 			printk(KERN_NOTICE "Ref cnt initialized to cnt=%d for pte=%08llx\n",
-					(unsigned int) pte_get_count(pte_arm), (long long) pte_val(pte_arm));
+					(unsigned int) pte_get_count(*ptep_arm), (long long) pte_val(*ptep_arm));
+			}
+
 		}
 
-		seq_printf(m, "%d", pte_get_count(pte_arm));
+		if (pte_get_count(*ptep_arm) > 9) 	seq_printf(m, "x");
+		else 	seq_printf(m, "%d", pte_get_count(*ptep_arm));
 
+		/*
 		//increment count - just for testing
 		current_cnt = pte_get_count(pte_arm);
 		pte_set_count (ptep_arm, pte_arm, current_cnt+1);
 		printk (KERN_NOTICE "Ref cnt incremented to curr_cnt=%d (num_cnt=%d) for pte=%08llx\n",
 						current_cnt, (unsigned int) pte_get_count(pte_arm), (long long) pte_val(pte_arm));
-
-
-		//if (pte_young(pte)) seq_printf(m, "1");
-		//else  seq_printf(m, "0");
+		*/
 
 		goto cont;
 

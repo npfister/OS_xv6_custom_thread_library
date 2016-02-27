@@ -225,11 +225,13 @@ static inline pte_t *pmd_page_vaddr(pmd_t pmd)
 #define pte_get_count(pte)  	((pte_val(pte) & (HW_PTE_CT_3 | HW_PTE_CT_2 | HW_PTE_CT_1 | HW_PTE_CT_0)) >> 5)
 
 // Uses ARM hw PTEs in input arguments
+/*  DOESN"T WORK
 static inline void pte_clear_count (pte_t *ptep, pte_t pte)
 {
 	pte = pte & 0xFFFFFE1F;				// zero the cnt
 	set_pte_ext (ptep, pte, 0); 		// store in pte
 }
+*/
 
 // Uses ARM hw PTEs in input arguments
 static inline void pte_set_count (pte_t *ptep, pte_t pte, int count)
