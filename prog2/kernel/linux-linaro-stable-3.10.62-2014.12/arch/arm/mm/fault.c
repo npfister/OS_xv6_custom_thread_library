@@ -290,15 +290,6 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	int fault, sig, code;
 	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE;
 
-
-	pgd_t *pgd;
-	pud_t *pud;
-	pmd_t *pmd;
-	pte_t *ptep, pte, *pte_hw_p, pte_hw;
-	struct kprobe *kp = NULL;
-	int count;
-
-
 	if (notify_page_fault(regs, fsr))
 		return 0;
 
@@ -344,85 +335,16 @@ retry:
 			goto no_context;
 #endif
 	}
-
-	//page walk
-	pgd = pgd_offset(mm, addr);
-	if (pgd_none(*pgd) || pgd_bad(*pgd))
-		goto callDoPgFault;
-
-	pud = pud_offset(pgd, addr);
-	if (pud_none(*pud) || pud_bad(*pud))
-		goto callDoPgFault;
-
-	pmd = pmd_offset(pud, addr);
-	if (pmd_none(*pmd) || pmd_bad(*pmd))
-		goto callDoPgFault;
-
-	ptep = pte_offset_map (pmd, addr);
-	pte = *ptep;
-	pte_hw_p = ptep + (long long) 512;
-	pte_hw = *pte_hw_p;
-
-
+/*
 	// If page is accessed for the first time (young = 0, but present=1),
 	// set HW PTE to invalid
 	// Try to do this in show-map_vma, or after handleMMfault
-/*	if (pte_present(pte) && !pte_young(pte)) {
+	if (pte_present(pte) && !pte_young(pte)) {
 		pte_hw = pte_hw & 0xFFFFFFFC;
 		//printk (KERN_NOTICE "First access to this page (addr: %08lx). pteH set to invalid: %08llx\n", addr, (long long) pte_val(pte_hw));
 	}
 */
 
-	//printk (KERN_NOTICE "current addr: %08lx, current PC: %08lx\n", addr, regs->ARM_pc);
-
-	kp = kmalloc (sizeof(struct kprobe), GFP_KERNEL);
-	//p->pre_handler = my_pre_handler;
-	//p->post_handler = set_pte_invalid;
-	//p->fault_handler = my_fault_handler;
-	//kp->addr = (kprobe_opcode_t *) regs->ARM_pc; //addr of faulty instr
-
-	//register_kprobe(kp);
-	//__kprobes arch_prepare_kprobe(p);
-	//printk (KERN_NOTICE "Got opcode: %s", (char *) p->opcode);
-	//__kprobes singlestep (p, regs, NULL);
-	//unregister_kprobe(kp);
-
-
-	// If arm pte = invalid, but Linux pte = valid (and not swapped out),
-	// then increment reference count
-	if (pte_arm_valid_bits(pte_hw) == 0 && pte_present(pte) && pte_young(pte))  {
-
-		printk(KERN_NOTICE "***** Got in - Linux valid but HW invalid. *******\n");
-
-		/*
-		 * increment the count here
-		 */
-		count = pte_get_count(pte_hw); count++;
-		pte_hw = pte_set_count(pte_hw_p, pte_hw, count);
-
-		/*
-		 * set valid bit for hw pte here
-		 */
-		pte_hw = pte_mkHWvalid(pte_hw_p, pte_hw);
-
-		printk (KERN_NOTICE "Ref cnt incremented to curr_cnt=%d (num_cnt=%d), and valid set for pte=%08llx\n",
-								count, (unsigned int) pte_get_count(*pte_hw_p), (long long) pte_val(*pte_hw_p));
-
-		/*
-		 *  Use kprobes to emulate instr
-		 */
-
-		/*
-		 * clear valid bit for hw pte, so that fault occurs on next access
-		 */
-
-		//printk (KERN_NOTICE "ptep = %08llx, pte  = %08llx\n", (long long)pte_val(ptep), (long long)pte_val(pte));
-		//printk (KERN_NOTICE "pteH = %08llx, pteH = %08llx\n", (long long)pte_val(pte_hw_p), (long long)pte_val(pte_hw));
-
-		//return 0;
-	 }
-
-callDoPgFault:
 	fault = __do_page_fault(mm, addr, fsr, flags, tsk);
 
 	/* If we need to retry but a fatal signal is pending, handle the

@@ -3701,13 +3701,13 @@ int handle_pte_fault(struct mm_struct *mm,
 		     struct vm_area_struct *vma, unsigned long address,
 		     pte_t *pte, pmd_t *pmd, unsigned int flags)
 {
-	pte_t *ptep_arm;
+	unsigned int count;
+	pte_t *ptep_arm, pte_arm;
 	pte_t entry;
 	spinlock_t *ptl;
-	unsigned int hw_valid_bits;
 
 	ptep_arm = pte + (long long) 512;
-	hw_valid_bits = pte_val(*ptep_arm) & 0x03; //get lower two bits (00 = invalid)
+	pte_arm = *ptep_arm;
 	entry = *pte;
 
 	if (!pte_present(entry)) {
@@ -3726,34 +3726,44 @@ int handle_pte_fault(struct mm_struct *mm,
 		return do_swap_page(mm, vma, address,
 					pte, pmd, flags, entry);
 	}
-/*
+
 	// If arm pte = invalid, but Linux pte = valid (and not swapped out),
 	// then increment reference count
-	if (hw_valid_bits == 0 && pte_present(entry) && pte_young(entry))  {
+	if (pte_arm_valid_bits(pte_arm) == 0 && pte_present(entry) && pte_young(entry))  {
+		printk(KERN_NOTICE "***** Got in - Linux valid but HW invalid\n");
 
 		//increment count
-		printk(KERN_NOTICE "***** Got in - Linux valid but HW invalid\n");
-		count = pte_get_count(*ptep_arm); count++;
-		pte_set_count(ptep_arm, *ptep_arm, count);
+		count = pte_get_count(pte_arm); count++;
+		pte_arm = pte_set_count(ptep_arm, pte_arm, count);
 
 		//set valid bit for hw pte
-		(*ptep_arm) = (*pte_arm) | 0x02;
-		set_pte_ext (ptep_arm, *ptep_arm, 0);
-		printk (KERN_NOTICE "Ref cnt incremented to curr_cnt=%d (num_cnt=%d), \"
-				"and valid set for pte=%08llx\n", count,
+		pte_arm = pte_mkHWvalid (ptep_arm, pte_arm);
+		printk (KERN_NOTICE "Ref cnt incremented to curr_cnt=%d (num_cnt=%d), and valid set for pte=%08llx\n", count,
 				(unsigned int) pte_get_count(*ptep_arm),
 				(long long) pte_val(*ptep_arm));
-*/
+
 		/*
 		 * Use kprobes to emulate instr here
 		 */
+
+		//kp = kmalloc (sizeof(struct kprobe), GFP_KERNEL);
+		//p->pre_handler = my_pre_handler;
+		//p->post_handler = set_pte_invalid;
+		//p->fault_handler = my_fault_handler;
+		//kp->addr = (kprobe_opcode_t *) regs->ARM_pc; //addr of faulty instr
+
+		//register_kprobe(kp);
+		//__kprobes arch_prepare_kprobe(p);
+		//printk (KERN_NOTICE "Got opcode: %s", (char *) p->opcode);
+		//__kprobes singlestep (p, regs, NULL);
+		//unregister_kprobe(kp);
 
 		/*
 		 * Clear valid bit of hw pte, so that fault occurs on next access
 		 */
 
-		//return 0;
-//	}
+		return 0;
+	}
 
 	if (pte_numa(entry))
 		return do_numa_page(mm, vma, address, entry, pte, pmd);

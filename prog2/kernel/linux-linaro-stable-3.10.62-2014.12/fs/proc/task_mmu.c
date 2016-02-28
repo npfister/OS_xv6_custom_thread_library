@@ -277,7 +277,7 @@ show_map_vma(struct seq_file *m, struct vm_area_struct *vma, int is_pid)
 	pud_t *pud;
 	pmd_t *pmd;
 	pte_t *ptep, *ptep_arm, pte, pte_arm;
-	unsigned int current_cnt;
+	//unsigned int current_cnt;
 
 	if (file) {
 		struct inode *inode = file_inode(vma->vm_file);
