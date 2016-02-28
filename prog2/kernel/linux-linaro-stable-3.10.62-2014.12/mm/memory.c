@@ -3701,10 +3701,15 @@ int handle_pte_fault(struct mm_struct *mm,
 		     struct vm_area_struct *vma, unsigned long address,
 		     pte_t *pte, pmd_t *pmd, unsigned int flags)
 {
+	pte_t *ptep_arm;
 	pte_t entry;
 	spinlock_t *ptl;
+	unsigned int hw_valid_bits;
 
+	ptep_arm = pte + (long long) 512;
+	hw_valid_bits = pte_val(*ptep_arm) & 0x03; //get lower two bits (00 = invalid)
 	entry = *pte;
+
 	if (!pte_present(entry)) {
 		if (pte_none(entry)) {
 			if (vma->vm_ops) {
@@ -3721,6 +3726,34 @@ int handle_pte_fault(struct mm_struct *mm,
 		return do_swap_page(mm, vma, address,
 					pte, pmd, flags, entry);
 	}
+/*
+	// If arm pte = invalid, but Linux pte = valid (and not swapped out),
+	// then increment reference count
+	if (hw_valid_bits == 0 && pte_present(entry) && pte_young(entry))  {
+
+		//increment count
+		printk(KERN_NOTICE "***** Got in - Linux valid but HW invalid\n");
+		count = pte_get_count(*ptep_arm); count++;
+		pte_set_count(ptep_arm, *ptep_arm, count);
+
+		//set valid bit for hw pte
+		(*ptep_arm) = (*pte_arm) | 0x02;
+		set_pte_ext (ptep_arm, *ptep_arm, 0);
+		printk (KERN_NOTICE "Ref cnt incremented to curr_cnt=%d (num_cnt=%d), \"
+				"and valid set for pte=%08llx\n", count,
+				(unsigned int) pte_get_count(*ptep_arm),
+				(long long) pte_val(*ptep_arm));
+*/
+		/*
+		 * Use kprobes to emulate instr here
+		 */
+
+		/*
+		 * Clear valid bit of hw pte, so that fault occurs on next access
+		 */
+
+		//return 0;
+//	}
 
 	if (pte_numa(entry))
 		return do_numa_page(mm, vma, address, entry, pte, pmd);

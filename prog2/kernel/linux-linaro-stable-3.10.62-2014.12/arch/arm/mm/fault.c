@@ -290,11 +290,11 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	int fault, sig, code;
 	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE;
 
+
 	pgd_t *pgd;
 	pud_t *pud;
 	pmd_t *pmd;
 	pte_t *ptep, pte, *pte_hw_p, pte_hw;
-	unsigned int hw_valid_bits;
 	struct kprobe *kp = NULL;
 	int count;
 
@@ -367,11 +367,11 @@ retry:
 	// If page is accessed for the first time (young = 0, but present=1),
 	// set HW PTE to invalid
 	// Try to do this in show-map_vma, or after handleMMfault
-	/*if (pte_present(pte) && !pte_young(pte)) {
+/*	if (pte_present(pte) && !pte_young(pte)) {
 		pte_hw = pte_hw & 0xFFFFFFFC;
 		//printk (KERN_NOTICE "First access to this page (addr: %08lx). pteH set to invalid: %08llx\n", addr, (long long) pte_val(pte_hw));
 	}
-	*/
+*/
 
 	//printk (KERN_NOTICE "current addr: %08lx, current PC: %08lx\n", addr, regs->ARM_pc);
 
@@ -379,7 +379,7 @@ retry:
 	//p->pre_handler = my_pre_handler;
 	//p->post_handler = set_pte_invalid;
 	//p->fault_handler = my_fault_handler;
-	kp->addr = (kprobe_opcode_t *) regs->ARM_pc; //addr of faulty instr
+	//kp->addr = (kprobe_opcode_t *) regs->ARM_pc; //addr of faulty instr
 
 	//register_kprobe(kp);
 	//__kprobes arch_prepare_kprobe(p);
@@ -387,10 +387,10 @@ retry:
 	//__kprobes singlestep (p, regs, NULL);
 	//unregister_kprobe(kp);
 
+
 	// If arm pte = invalid, but Linux pte = valid (and not swapped out),
 	// then increment reference count
-	hw_valid_bits = pte_val(pte_hw) & 0x03; //get lower two bits (00 = invalid)
-	if (hw_valid_bits == 0 && pte_present(pte) && pte_young(pte))  {
+	if (pte_arm_valid_bits(pte_hw) == 0 && pte_present(pte) && pte_young(pte))  {
 
 		printk(KERN_NOTICE "***** Got in - Linux valid but HW invalid. *******\n");
 
@@ -398,14 +398,12 @@ retry:
 		 * increment the count here
 		 */
 		count = pte_get_count(pte_hw); count++;
-		pte_set_count(pte_hw_p, pte_hw, count);
-		pte_hw = *pte_hw_p; //update pte_hw, since pte_hw_p changed
+		pte_hw = pte_set_count(pte_hw_p, pte_hw, count);
 
 		/*
 		 * set valid bit for hw pte here
 		 */
-		pte_hw = pte_hw | 0x02;  //set valid bit
-		set_pte_ext (pte_hw_p, pte_hw, 0);
+		pte_hw = pte_mkHWvalid(pte_hw_p, pte_hw);
 
 		printk (KERN_NOTICE "Ref cnt incremented to curr_cnt=%d (num_cnt=%d), and valid set for pte=%08llx\n",
 								count, (unsigned int) pte_get_count(*pte_hw_p), (long long) pte_val(*pte_hw_p));

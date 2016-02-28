@@ -364,9 +364,6 @@ done:
 
 	// Print number of accesses to each page in vma region
 	for (vAddr=start; vAddr<end; vAddr += PAGE_SIZE) {
-		//ind = pgd_index(vAddr);
-		//pgd = cpu_get_pgd() + ind;
-		//pgd_k = init_mm.pgd + ind;
 
 		if (vAddr >= TASK_SIZE) {
 			printk ("mz: kernel space\n");
@@ -405,14 +402,15 @@ present:
 		// first_read should already be 1, hence initialize count to 0
 
 		if (vma->first_read == 1) {
-			pte_arm = pte_arm & 0xFFFFFE1F; //clear counter
+			pte_arm = pte_clear_count (ptep_arm, pte_arm);
 
 			//clear valid bit, if small page
-			if ((pte_arm & 0x03) == 2) {
-				pte_arm = pte_arm & 0xFFFFFFFC;
-				printk (KERN_NOTICE "Valid bit cleared"); }
+			if (pte_arm_valid_bits(pte_arm) == 2) {
+				pte_arm = pte_mkHWinvalid(ptep_arm, pte_arm);
+				printk (KERN_NOTICE "Valid bit cleared");
+			}
 
-			set_pte_ext (ptep_arm, pte_arm, 0);
+			//set_pte_ext (ptep_arm, pte_arm, 0);
 			if (!pte_val(ptep_arm)) {
 				printk(KERN_NOTICE "pte val null");
 				printk(KERN_NOTICE "Ref cnt initialized to cnt=%d for pte=%08llx\n",
@@ -432,9 +430,10 @@ present:
 		/*
 		//increment count - just for testing
 		current_cnt = pte_get_count(pte_arm);
-		pte_set_count (ptep_arm, pte_arm, current_cnt+1);
+		pte_arm = pte_set_count (ptep_arm, pte_arm, current_cnt+1);
 		printk (KERN_NOTICE "Ref cnt incremented to curr_cnt=%d (num_cnt=%d) for pte=%08llx\n",
-						current_cnt, (unsigned int) pte_get_count(pte_arm), (long long) pte_val(pte_arm));
+						current_cnt, (unsigned int) pte_get_count(pte_arm),
+						(long long) pte_val(pte_arm));
 		*/
 
 		goto cont;

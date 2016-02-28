@@ -222,26 +222,43 @@ static inline pte_t *pmd_page_vaddr(pmd_t pmd)
 #define pte_young(pte)		(pte_val(pte) & L_PTE_YOUNG)
 #define pte_exec(pte)		(!(pte_val(pte) & L_PTE_XN))
 
-#define pte_get_count(pte)  	((pte_val(pte) & (HW_PTE_CT_3 | HW_PTE_CT_2 | HW_PTE_CT_1 | HW_PTE_CT_0)) >> 5)
+// Uses ARM hw PTEs in input arguments
+#define pte_arm_valid_bits(pte)		(pte_val(pte) & 0x03)
+#define pte_get_count(pte)  		((pte_val(pte) & (HW_PTE_CT_3 | HW_PTE_CT_2 | HW_PTE_CT_1 | HW_PTE_CT_0)) >> 5)
 
 // Uses ARM hw PTEs in input arguments
-/*  DOESN"T WORK
-static inline void pte_clear_count (pte_t *ptep, pte_t pte)
+static inline pte_t pte_clear_count (pte_t *ptep, pte_t val)
 {
-	pte = pte & 0xFFFFFE1F;				// zero the cnt
-	set_pte_ext (ptep, pte, 0); 		// store in pte
-}
-*/
-
-// Uses ARM hw PTEs in input arguments
-static inline void pte_set_count (pte_t *ptep, pte_t pte, int count)
-{
-	pte = pte & 0xFFFFFE1F;				// zero the cnt
-	pte = pte | (count << 5); 			// store new cnt
-	set_pte_ext (ptep, pte, 0); 		// store in pte
+	val = val & 0xFFFFFE1F;				// zero the cnt
+	set_pte_ext (ptep, val, 0); 		// store in pte
+	return (*ptep);
 }
 
 
+// Uses ARM hw PTEs in input arguments
+static inline pte_t pte_set_count(pte_t *ptep, pte_t val, int count)
+{
+	val = val & 0xFFFFFE1F;				// zero the cnt
+	val = val | (count << 5); 			// store new cnt
+	set_pte_ext (ptep, val, 0); 		// store in pte
+	return (*ptep);
+}
+
+// Uses ARM hw PTEs in input arguments
+static inline pte_t pte_mkHWinvalid (pte_t *ptep, pte_t val)
+{
+	val = val & 0xFFFFFFFC;				// set valid bits = 2'b00
+	set_pte_ext (ptep, val, 0); 		// store in pte
+	return (*ptep);
+}
+
+// Uses ARM hw PTEs in input arguments - Only for small page
+static inline pte_t pte_mkHWvalid (pte_t *ptep, pte_t val)
+{
+	val = val | 0x02;					// set valid bits = 2'b10
+	set_pte_ext (ptep, val, 0); 		// store in pte
+	return (*ptep);
+}
 
 #define pte_special(pte)	(0)
 #define pte_present_user(pte)  (pte_present(pte) && (pte_val(pte) & L_PTE_USER))
