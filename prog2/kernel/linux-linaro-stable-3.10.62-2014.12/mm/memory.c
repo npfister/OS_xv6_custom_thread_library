@@ -60,6 +60,11 @@
 #include <linux/migrate.h>
 #include <linux/string.h>
 
+#include <linux/slab.h>
+#include <linux/kprobes.h>
+#include <linux/kernel.h>
+#include <linux/module.h>
+
 #include <asm/io.h>
 #include <asm/pgalloc.h>
 #include <asm/uaccess.h>
@@ -67,6 +72,8 @@
 #include <asm/tlbflush.h>
 #include <asm/pgtable.h>
 
+//#include "../arch/arm/kernel/kprobes.h"
+//#include "../arch/arm/include/asm/kprobes.h"
 #include "internal.h"
 
 #ifdef LAST_NID_NOT_IN_PAGE_FLAGS
@@ -3701,10 +3708,15 @@ int handle_pte_fault(struct mm_struct *mm,
 		     struct vm_area_struct *vma, unsigned long address,
 		     pte_t *pte, pmd_t *pmd, unsigned int flags)
 {
+	struct task_struct *tsk = current;
+	struct pt_regs *regs = task_pt_regs(tsk);
+	struct kprobe *kp;
 	unsigned int count;
 	pte_t *ptep_arm, pte_arm;
 	pte_t entry;
 	spinlock_t *ptl;
+	unsigned long *faulty_instr_addr;
+
 
 	ptep_arm = pte + (long long) 512;
 	pte_arm = *ptep_arm;
@@ -3727,6 +3739,7 @@ int handle_pte_fault(struct mm_struct *mm,
 					pte, pmd, flags, entry);
 	}
 
+
 	// If arm pte = invalid, but Linux pte = valid (and not swapped out),
 	// then increment reference count
 	if (pte_arm_valid_bits(pte_arm) == 0 && pte_present(entry) && pte_young(entry))  {
@@ -3734,7 +3747,7 @@ int handle_pte_fault(struct mm_struct *mm,
 
 		//increment count
 		count = pte_get_count(pte_arm); count++;
-		pte_arm = pte_set_count(ptep_arm, pte_arm, count);
+		pte_arm = pte_set_count(ptep_arm, pte_arm, 12);
 
 		//set valid bit for hw pte
 		pte_arm = pte_mkHWvalid (ptep_arm, pte_arm);
@@ -3746,23 +3759,23 @@ int handle_pte_fault(struct mm_struct *mm,
 		 * Use kprobes to emulate instr here
 		 */
 
-		//kp = kmalloc (sizeof(struct kprobe), GFP_KERNEL);
-		//p->pre_handler = my_pre_handler;
-		//p->post_handler = set_pte_invalid;
-		//p->fault_handler = my_fault_handler;
-		//kp->addr = (kprobe_opcode_t *) regs->ARM_pc; //addr of faulty instr
+		kp = kmalloc (sizeof(struct kprobe), GFP_KERNEL);
+		get_user(regs->ARM_pc, faulty_instr_addr);
 
-		//register_kprobe(kp);
-		//__kprobes arch_prepare_kprobe(p);
-		//printk (KERN_NOTICE "Got opcode: %s", (char *) p->opcode);
-		//__kprobes singlestep (p, regs, NULL);
-		//unregister_kprobe(kp);
+		kp->addr = (kprobe_opcode_t *) &faulty_instr_addr;
+		printk (KERN_NOTICE "PC before singlestep: %08x", regs->ARM_pc);
+		register_kprobe(kp);
+		printk (KERN_NOTICE "Got opcode: %08x", (unsigned int) kp->opcode);
+		kp->ainsn.insn_singlestep(kp, regs);
+		printk (KERN_NOTICE "PC after singlestep: %08x", regs->ARM_pc);
+		unregister_kprobe(kp);
 
 		/*
 		 * Clear valid bit of hw pte, so that fault occurs on next access
 		 */
+		pte_arm = pte_mkHWinvalid (ptep_arm, pte_arm);
 
-		return 0;
+		return 0;//VM_FAULT_RETRY;
 	}
 
 	if (pte_numa(entry))
