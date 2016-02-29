@@ -3755,10 +3755,10 @@ int handle_pte_fault(struct mm_struct *mm,
 				(unsigned int) pte_get_count(*ptep_arm),
 				(long long) pte_val(*ptep_arm));
 
+
 		/*
 		 * Use kprobes to emulate instr here
 		 */
-
 		kp = kmalloc (sizeof(struct kprobe), GFP_KERNEL);
 		get_user(regs->ARM_pc, faulty_instr_addr);
 
@@ -3769,6 +3769,7 @@ int handle_pte_fault(struct mm_struct *mm,
 		kp->ainsn.insn_singlestep(kp, regs);
 		printk (KERN_NOTICE "PC after singlestep: %08x", regs->ARM_pc);
 		unregister_kprobe(kp);
+
 
 		/*
 		 * Clear valid bit of hw pte, so that fault occurs on next access
