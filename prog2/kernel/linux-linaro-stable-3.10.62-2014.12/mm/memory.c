@@ -3716,7 +3716,7 @@ int handle_pte_fault(struct mm_struct *mm,
 	pte_t entry;
 	spinlock_t *ptl;
 	unsigned long faulty_instr_addr;
-	unsigned long *armpc = &(regs->ARM_pc);
+	u32 __user *armpc = (u32 __user *) regs->ARM_pc;
 	int return_code;
 
 
@@ -3764,25 +3764,30 @@ int handle_pte_fault(struct mm_struct *mm,
 		/*
 		 * Use kprobes to emulate instr here
 		 */
-		/*kp = kmalloc (sizeof(struct kprobe), GFP_KERNEL);
-		return_code = get_user( faulty_instr_addr, (__user *)regs->ARM_pc);
+		kp = kmalloc (sizeof(struct kprobe), GFP_KERNEL);
+		return_code = get_user( faulty_instr_addr, armpc);
 		if (return_code) {
 			printk (KERN_NOTICE "Return code from get_user: %d\n", return_code);
 			pte_unmap_unlock(pte, ptl);
 			return -EFAULT;
 		}
 		printk (KERN_NOTICE "Return code from get_user: %d\n", return_code);
+
+
+		printk (KERN_NOTICE "PC before singlestep: %08lx\n", regs->ARM_pc);
+		printk (KERN_NOTICE "PC in faulty_instr_addr: %08lx\n", faulty_instr_addr);
+
+		printk (KERN_NOTICE "PC before singlestep instr: %p\n", (unsigned long*)(regs->ARM_pc));
+		printk (KERN_NOTICE "PC in faulty_instr_addr instr: %p\n", (unsigned long*)faulty_instr_addr);
+
+		/*
+		kp->addr = (kprobe_opcode_t *) faulty_instr_addr;
+		register_kprobe(kp);
+		printk (KERN_NOTICE "Got opcode: %08x", (unsigned int) kp->opcode);
+		kp->ainsn.insn_singlestep(kp, regs);
+		printk (KERN_NOTICE "PC after singlestep: %08lx", regs->ARM_pc);
+		unregister_kprobe(kp);
 		*/
-
-		//kp->addr = (kprobe_opcode_t *) *faulty_instr_addr;
-		//printk (KERN_NOTICE "PC before singlestep: %08lx, armpc: %08lx\n", regs->ARM_pc, *armpc);
-		//printk (KERN_NOTICE "PC in faulty_instr_addr: %08lx\n", *faulty_instr_addr);
-		//register_kprobe(kp);
-		//printk (KERN_NOTICE "Got opcode: %08x", (unsigned int) kp->opcode);
-		//kp->ainsn.insn_singlestep(kp, regs);
-		//printk (KERN_NOTICE "PC after singlestep: %08x", regs->ARM_pc);
-		//unregister_kprobe(kp);
-
 
 		/*
 		 * Clear valid bit of hw pte, so that fault occurs on next access
