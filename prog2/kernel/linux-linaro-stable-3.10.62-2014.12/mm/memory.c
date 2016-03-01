@@ -3709,13 +3709,15 @@ int handle_pte_fault(struct mm_struct *mm,
 		     pte_t *pte, pmd_t *pmd, unsigned int flags)
 {
 	struct task_struct *tsk = current;
-	struct pt_regs *regs = task_pt_regs(tsk);
+	struct pt_regs *regs = task_pt_regs(tsk); //verfied. this is correct.
 	struct kprobe *kp;
 	unsigned int count;
 	pte_t *ptep_arm, pte_arm;
 	pte_t entry;
 	spinlock_t *ptl;
-	unsigned long *faulty_instr_addr;
+	unsigned long faulty_instr_addr;
+	unsigned long *armpc = &(regs->ARM_pc);
+	int return_code;
 
 
 	ptep_arm = pte + (long long) 512;
@@ -3743,11 +3745,14 @@ int handle_pte_fault(struct mm_struct *mm,
 	// If arm pte = invalid, but Linux pte = valid (and not swapped out),
 	// then increment reference count
 	if (pte_arm_valid_bits(pte_arm) == 0 && pte_present(entry) && pte_young(entry))  {
+		ptl = pte_lockptr(mm, pmd);
+		spin_lock(ptl);
+
 		printk(KERN_NOTICE "***** Got in - Linux valid but HW invalid\n");
 
 		//increment count
 		count = pte_get_count(pte_arm); count++;
-		pte_arm = pte_set_count(ptep_arm, pte_arm, 12);
+		pte_arm = pte_set_count(ptep_arm, pte_arm, count);
 
 		//set valid bit for hw pte
 		pte_arm = pte_mkHWvalid (ptep_arm, pte_arm);
@@ -3759,23 +3764,32 @@ int handle_pte_fault(struct mm_struct *mm,
 		/*
 		 * Use kprobes to emulate instr here
 		 */
-		kp = kmalloc (sizeof(struct kprobe), GFP_KERNEL);
-		get_user(regs->ARM_pc, faulty_instr_addr);
+		/*kp = kmalloc (sizeof(struct kprobe), GFP_KERNEL);
+		return_code = get_user( faulty_instr_addr, (__user *)regs->ARM_pc);
+		if (return_code) {
+			printk (KERN_NOTICE "Return code from get_user: %d\n", return_code);
+			pte_unmap_unlock(pte, ptl);
+			return -EFAULT;
+		}
+		printk (KERN_NOTICE "Return code from get_user: %d\n", return_code);
+		*/
 
-		kp->addr = (kprobe_opcode_t *) &faulty_instr_addr;
-		printk (KERN_NOTICE "PC before singlestep: %08x", regs->ARM_pc);
-		register_kprobe(kp);
-		printk (KERN_NOTICE "Got opcode: %08x", (unsigned int) kp->opcode);
-		kp->ainsn.insn_singlestep(kp, regs);
-		printk (KERN_NOTICE "PC after singlestep: %08x", regs->ARM_pc);
-		unregister_kprobe(kp);
+		//kp->addr = (kprobe_opcode_t *) *faulty_instr_addr;
+		//printk (KERN_NOTICE "PC before singlestep: %08lx, armpc: %08lx\n", regs->ARM_pc, *armpc);
+		//printk (KERN_NOTICE "PC in faulty_instr_addr: %08lx\n", *faulty_instr_addr);
+		//register_kprobe(kp);
+		//printk (KERN_NOTICE "Got opcode: %08x", (unsigned int) kp->opcode);
+		//kp->ainsn.insn_singlestep(kp, regs);
+		//printk (KERN_NOTICE "PC after singlestep: %08x", regs->ARM_pc);
+		//unregister_kprobe(kp);
 
 
 		/*
 		 * Clear valid bit of hw pte, so that fault occurs on next access
 		 */
-		pte_arm = pte_mkHWinvalid (ptep_arm, pte_arm);
+		//pte_arm = pte_mkHWinvalid (ptep_arm, pte_arm);
 
+		pte_unmap_unlock(pte, ptl);
 		return 0;//VM_FAULT_RETRY;
 	}
 
