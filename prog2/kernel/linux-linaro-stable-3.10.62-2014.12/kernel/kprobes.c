@@ -1495,23 +1495,26 @@ int __kprobes register_kprobe(struct kprobe *p)
 
 	/* Adjust probe address from symbol */
 	addr = kprobe_addr(p);
-	if (IS_ERR(addr))
-		return PTR_ERR(addr);
+	if (IS_ERR(addr)) {
+		printk (KERN_NOTICE "addr was an err\n");
+		return PTR_ERR(addr); }
 	p->addr = addr;
 
 	ret = check_kprobe_rereg(p);
-	if (ret)
+	if (ret) {
+		printk (KERN_NOTICE "check kprobe rereg failed\n");
 		return ret;
-
+	}
 	/* User can pass only KPROBE_FLAG_DISABLED to register_kprobe */
 	p->flags &= KPROBE_FLAG_DISABLED;
 	p->nmissed = 0;
 	INIT_LIST_HEAD(&p->list);
 
 	ret = check_kprobe_address_safe(p, &probed_mod);
-	if (ret)
+	if (ret) {
+		printk (KERN_NOTICE "check kprobe addr safe failed\n");
 		return ret;
-
+	}
 	mutex_lock(&kprobe_mutex);
 
 	old_p = get_kprobe(p->addr);

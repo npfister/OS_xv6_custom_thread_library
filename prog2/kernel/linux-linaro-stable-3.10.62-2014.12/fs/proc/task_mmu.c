@@ -272,6 +272,7 @@ show_map_vma(struct seq_file *m, struct vm_area_struct *vma, int is_pid)
 	dev_t dev = 0;
 	int len;
 	const char *name = NULL;
+	int current_cnt;
 
 	pgd_t *pgd;
 	pud_t *pud;
@@ -406,7 +407,7 @@ present:
 
 			//clear valid bit, if small page
 			if (pte_arm_valid_bits(pte_arm) == 2) {
-				pte_arm = pte_mkHWinvalid(ptep_arm, pte_arm);
+				//pte_arm = pte_mkHWinvalid(ptep_arm, pte_arm);
 				printk (KERN_NOTICE "Valid bit cleared");
 			}
 
@@ -427,14 +428,14 @@ present:
 		if (pte_get_count(*ptep_arm) > 9) 	seq_printf(m, "x");
 		else 	seq_printf(m, "%d", pte_get_count(*ptep_arm));
 
-		/*
+
 		//increment count - just for testing
 		current_cnt = pte_get_count(pte_arm);
 		pte_arm = pte_set_count (ptep_arm, pte_arm, current_cnt+1);
 		printk (KERN_NOTICE "Ref cnt incremented to curr_cnt=%d (num_cnt=%d) for pte=%08llx\n",
 						current_cnt, (unsigned int) pte_get_count(pte_arm),
 						(long long) pte_val(pte_arm));
-		*/
+
 
 		goto cont;
 

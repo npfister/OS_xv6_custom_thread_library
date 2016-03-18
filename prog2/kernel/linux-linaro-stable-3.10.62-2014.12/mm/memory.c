@@ -3691,6 +3691,14 @@ static int do_pmd_numa_page(struct mm_struct *mm, struct vm_area_struct *vma,
 }
 #endif /* CONFIG_NUMA_BALANCING */
 
+
+void my_post_handler (struct kprobe *p, struct pt_regs *regs, unsigned long flags)
+{
+	printk (KERN_NOTICE "Inside kprobe posthandler\n");
+
+
+}
+
 /*
  * These routines also need to handle stuff like marking pages dirty
  * and/or accessed for architectures that don't do it in hardware (most
@@ -3709,15 +3717,17 @@ int handle_pte_fault(struct mm_struct *mm,
 		     pte_t *pte, pmd_t *pmd, unsigned int flags)
 {
 	struct task_struct *tsk = current;
-	struct pt_regs *regs = task_pt_regs(tsk); //verfied. this is correct.
+	struct pt_regs *regs = task_pt_regs(tsk); //verified. this is correct.
 	struct kprobe *kp;
 	unsigned int count;
 	pte_t *ptep_arm, pte_arm;
 	pte_t entry;
 	spinlock_t *ptl;
 	unsigned long faulty_instr_addr;
-	u32 __user *armpc = (u32 __user *) regs->ARM_pc;
+	u32 __user *armpc = ( u32 __user *) regs->ARM_pc;
 	int return_code;
+	int pteNone;
+	int kp_reg_retcode;
 
 
 	ptep_arm = pte + (long long) 512;
@@ -3744,59 +3754,74 @@ int handle_pte_fault(struct mm_struct *mm,
 
 	// If arm pte = invalid, but Linux pte = valid (and not swapped out),
 	// then increment reference count
-	if (pte_arm_valid_bits(pte_arm) == 0 && pte_present(entry) && pte_young(entry))  {
+	pteNone = entry & L_PTE_NONE;
+/*
+	if (pte_arm_valid_bits(pte_arm) == 0 && pte_present(entry)
+	&& pte_young(entry) && !pteNone && (entry & L_PTE_USER))  {
+
 		ptl = pte_lockptr(mm, pmd);
 		spin_lock(ptl);
 
 		printk(KERN_NOTICE "***** Got in - Linux valid but HW invalid\n");
-
+		*/
+/*
 		//increment count
-		count = pte_get_count(pte_arm); count++;
-		pte_arm = pte_set_count(ptep_arm, pte_arm, count);
+		count = pte_get_count(pte_arm);
+		pte_arm = pte_set_count(ptep_arm, pte_arm, count+1);
 
 		//set valid bit for hw pte
 		pte_arm = pte_mkHWvalid (ptep_arm, pte_arm);
 		printk (KERN_NOTICE "Ref cnt incremented to curr_cnt=%d (num_cnt=%d), and valid set for pte=%08llx\n", count,
 				(unsigned int) pte_get_count(*ptep_arm),
 				(long long) pte_val(*ptep_arm));
-
+*/
 
 		/*
 		 * Use kprobes to emulate instr here
 		 */
-		kp = kmalloc (sizeof(struct kprobe), GFP_KERNEL);
-		return_code = get_user( faulty_instr_addr, armpc);
+/*		kp = kmalloc (sizeof(struct kprobe), GFP_KERNEL);
+		return_code = get_user( faulty_instr_addr, &regs->ARM_pc );
 		if (return_code) {
 			printk (KERN_NOTICE "Return code from get_user: %d\n", return_code);
 			pte_unmap_unlock(pte, ptl);
 			return -EFAULT;
 		}
 		printk (KERN_NOTICE "Return code from get_user: %d\n", return_code);
+		printk (KERN_NOTICE "PC before singlestep: ARM_pc: %08lx, faulty_instr_addr: %08lx\n",
+				regs->ARM_pc, faulty_instr_addr);
+
+		//printk (KERN_NOTICE "PC before singlestep instr: %p\n", (unsigned long*)(regs->ARM_pc));
+		//printk (KERN_NOTICE "PC in faulty_instr_addr instr: %p\n", (unsigned long*)faulty_instr_addr);
 
 
-		printk (KERN_NOTICE "PC before singlestep: %08lx\n", regs->ARM_pc);
-		printk (KERN_NOTICE "PC in faulty_instr_addr: %08lx\n", faulty_instr_addr);
-
-		printk (KERN_NOTICE "PC before singlestep instr: %p\n", (unsigned long*)(regs->ARM_pc));
-		printk (KERN_NOTICE "PC in faulty_instr_addr instr: %p\n", (unsigned long*)faulty_instr_addr);
-
-		/*
 		kp->addr = (kprobe_opcode_t *) faulty_instr_addr;
-		register_kprobe(kp);
-		printk (KERN_NOTICE "Got opcode: %08x", (unsigned int) kp->opcode);
-		kp->ainsn.insn_singlestep(kp, regs);
-		printk (KERN_NOTICE "PC after singlestep: %08lx", regs->ARM_pc);
-		unregister_kprobe(kp);
-		*/
+		//kp->post_handler = (kprobe_post_handler_t) my_post_handler;
 
+		if (count==0) {
+			kp_reg_retcode = register_kprobe(kp);
+			printk (KERN_NOTICE "Kprobe register returned: %d\n", kp_reg_retcode);
+		}
+
+
+		printk (KERN_NOTICE "Got opcode: %08x", (unsigned int) kp->opcode);
+
+		//kp->ainsn.insn_singlestep(kp, regs);
+		printk (KERN_NOTICE "PC after singlestep: %08lx", regs->ARM_pc);
+
+		if (count == 9) {
+			unregister_kprobe(kp);
+			pte_arm = pte_mkHWvalid (ptep_arm, pte_arm);
+		}
+
+*/
 		/*
 		 * Clear valid bit of hw pte, so that fault occurs on next access
 		 */
 		//pte_arm = pte_mkHWinvalid (ptep_arm, pte_arm);
 
-		pte_unmap_unlock(pte, ptl);
-		return 0;//VM_FAULT_RETRY;
-	}
+		//pte_unmap_unlock(pte, ptl);
+		//return 0;//VM_FAULT_RETRY;
+//	}
 
 	if (pte_numa(entry))
 		return do_numa_page(mm, vma, address, entry, pte, pmd);
