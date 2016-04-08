@@ -6,6 +6,12 @@
 #include "mmu.h"
 #include "proc.h"
 
+int sys_kthread_create(void)
+{
+    kthread_create();
+    return 0;
+}
+
 int sys_fork(void)
 {
     return fork();
