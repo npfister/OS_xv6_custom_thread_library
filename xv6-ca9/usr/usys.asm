@@ -234,3 +234,14 @@ Disassembly of section .text:
  2e8:	ef000000 	svc	0x00000000
  2ec:	e49d4004 	pop	{r4}		; (ldr r4, [sp], #4)
  2f0:	e12fff1e 	bx	lr
+
+000002f4 <kthread_create>:
+ 2f4:	e52d4004 	push	{r4}		; (str r4, [sp, #-4]!)
+ 2f8:	e1a04003 	mov	r4, r3
+ 2fc:	e1a03002 	mov	r3, r2
+ 300:	e1a02001 	mov	r2, r1
+ 304:	e1a01000 	mov	r1, r0
+ 308:	e3a00016 	mov	r0, #22
+ 30c:	ef000000 	svc	0x00000000
+ 310:	e49d4004 	pop	{r4}		; (ldr r4, [sp], #4)
+ 314:	e12fff1e 	bx	lr

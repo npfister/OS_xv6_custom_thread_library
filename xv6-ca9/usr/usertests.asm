@@ -17,15 +17,15 @@ opentest(void)
     int fd;
 
     printf(stdout, "open test\n");
-       c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+       c:	e3063be0 	movw	r3, #27616	; 0x6be0
       10:	e3403000 	movt	r3, #0
       14:	e5933000 	ldr	r3, [r3]
       18:	e1a00003 	mov	r0, r3
-      1c:	e305138c 	movw	r1, #21388	; 0x538c
+      1c:	e30513b0 	movw	r1, #21424	; 0x53b0
       20:	e3401000 	movt	r1, #0
-      24:	eb00131b 	bl	4c98 <printf>
+      24:	eb001324 	bl	4cbc <printf>
     fd = open("echo", 0);
-      28:	e3050370 	movw	r0, #21360	; 0x5370
+      28:	e3050394 	movw	r0, #21396	; 0x5394
       2c:	e3400000 	movt	r0, #0
       30:	e3a01000 	mov	r1, #0
       34:	eb001247 	bl	4958 <open>
@@ -35,13 +35,13 @@ opentest(void)
       40:	e3530000 	cmp	r3, #0
       44:	aa000007 	bge	68 <opentest+0x68>
         printf(stdout, "open echo failed!\n");
-      48:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+      48:	e3063be0 	movw	r3, #27616	; 0x6be0
       4c:	e3403000 	movt	r3, #0
       50:	e5933000 	ldr	r3, [r3]
       54:	e1a00003 	mov	r0, r3
-      58:	e3051398 	movw	r1, #21400	; 0x5398
+      58:	e30513bc 	movw	r1, #21436	; 0x53bc
       5c:	e3401000 	movt	r1, #0
-      60:	eb00130c 	bl	4c98 <printf>
+      60:	eb001315 	bl	4cbc <printf>
         exit();
       64:	eb0011f3 	bl	4838 <exit>
     }
@@ -49,7 +49,7 @@ opentest(void)
       68:	e51b0008 	ldr	r0, [fp, #-8]
       6c:	eb00121e 	bl	48ec <close>
     fd = open("doesnotexist", 0);
-      70:	e30503ac 	movw	r0, #21420	; 0x53ac
+      70:	e30503d0 	movw	r0, #21456	; 0x53d0
       74:	e3400000 	movt	r0, #0
       78:	e3a01000 	mov	r1, #0
       7c:	eb001235 	bl	4958 <open>
@@ -59,24 +59,24 @@ opentest(void)
       88:	e3530000 	cmp	r3, #0
       8c:	ba000007 	blt	b0 <opentest+0xb0>
         printf(stdout, "open doesnotexist succeeded!\n");
-      90:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+      90:	e3063be0 	movw	r3, #27616	; 0x6be0
       94:	e3403000 	movt	r3, #0
       98:	e5933000 	ldr	r3, [r3]
       9c:	e1a00003 	mov	r0, r3
-      a0:	e30513bc 	movw	r1, #21436	; 0x53bc
+      a0:	e30513e0 	movw	r1, #21472	; 0x53e0
       a4:	e3401000 	movt	r1, #0
-      a8:	eb0012fa 	bl	4c98 <printf>
+      a8:	eb001303 	bl	4cbc <printf>
         exit();
       ac:	eb0011e1 	bl	4838 <exit>
     }
     printf(stdout, "open test ok\n");
-      b0:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+      b0:	e3063be0 	movw	r3, #27616	; 0x6be0
       b4:	e3403000 	movt	r3, #0
       b8:	e5933000 	ldr	r3, [r3]
       bc:	e1a00003 	mov	r0, r3
-      c0:	e30513dc 	movw	r1, #21468	; 0x53dc
+      c0:	e3051400 	movw	r1, #21504	; 0x5400
       c4:	e3401000 	movt	r1, #0
-      c8:	eb0012f2 	bl	4c98 <printf>
+      c8:	eb0012fb 	bl	4cbc <printf>
 }
       cc:	e24bd004 	sub	sp, fp, #4
       d0:	e8bd8800 	pop	{fp, pc}
@@ -93,15 +93,15 @@ writetest(void)
     int i;
 
     printf(stdout, "small file test\n");
-      e0:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+      e0:	e3063be0 	movw	r3, #27616	; 0x6be0
       e4:	e3403000 	movt	r3, #0
       e8:	e5933000 	ldr	r3, [r3]
       ec:	e1a00003 	mov	r0, r3
-      f0:	e30513ec 	movw	r1, #21484	; 0x53ec
+      f0:	e3051410 	movw	r1, #21520	; 0x5410
       f4:	e3401000 	movt	r1, #0
-      f8:	eb0012e6 	bl	4c98 <printf>
+      f8:	eb0012ef 	bl	4cbc <printf>
     fd = open("small", O_CREATE|O_RDWR);
-      fc:	e3050400 	movw	r0, #21504	; 0x5400
+      fc:	e3050424 	movw	r0, #21540	; 0x5424
      100:	e3400000 	movt	r0, #0
      104:	e3001202 	movw	r1, #514	; 0x202
      108:	eb001212 	bl	4958 <open>
@@ -111,13 +111,13 @@ writetest(void)
      114:	e3530000 	cmp	r3, #0
      118:	ba000009 	blt	144 <writetest+0x70>
         printf(stdout, "creat small succeeded; ok\n");
-     11c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     11c:	e3063be0 	movw	r3, #27616	; 0x6be0
      120:	e3403000 	movt	r3, #0
      124:	e5933000 	ldr	r3, [r3]
      128:	e1a00003 	mov	r0, r3
-     12c:	e3051408 	movw	r1, #21512	; 0x5408
+     12c:	e305142c 	movw	r1, #21548	; 0x542c
      130:	e3401000 	movt	r1, #0
-     134:	eb0012d7 	bl	4c98 <printf>
+     134:	eb0012e0 	bl	4cbc <printf>
     } else {
         printf(stdout, "error: creat small failed!\n");
         exit();
@@ -132,20 +132,20 @@ writetest(void)
         printf(stdout, "creat small succeeded; ok\n");
     } else {
         printf(stdout, "error: creat small failed!\n");
-     144:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     144:	e3063be0 	movw	r3, #27616	; 0x6be0
      148:	e3403000 	movt	r3, #0
      14c:	e5933000 	ldr	r3, [r3]
      150:	e1a00003 	mov	r0, r3
-     154:	e3051424 	movw	r1, #21540	; 0x5424
+     154:	e3051448 	movw	r1, #21576	; 0x5448
      158:	e3401000 	movt	r1, #0
-     15c:	eb0012cd 	bl	4c98 <printf>
+     15c:	eb0012d6 	bl	4cbc <printf>
         exit();
      160:	eb0011b4 	bl	4838 <exit>
     }
     for(i = 0; i < 100; i++){
         if(write(fd, "aaaaaaaaaa", 10) != 10){
      164:	e51b000c 	ldr	r0, [fp, #-12]
-     168:	e3051440 	movw	r1, #21568	; 0x5440
+     168:	e3051464 	movw	r1, #21604	; 0x5464
      16c:	e3401000 	movt	r1, #0
      170:	e3a0200a 	mov	r2, #10
      174:	eb0011d3 	bl	48c8 <write>
@@ -153,20 +153,20 @@ writetest(void)
      17c:	e353000a 	cmp	r3, #10
      180:	0a000008 	beq	1a8 <writetest+0xd4>
             printf(stdout, "error: write aa %d new file failed\n", i);
-     184:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     184:	e3063be0 	movw	r3, #27616	; 0x6be0
      188:	e3403000 	movt	r3, #0
      18c:	e5933000 	ldr	r3, [r3]
      190:	e1a00003 	mov	r0, r3
-     194:	e305144c 	movw	r1, #21580	; 0x544c
+     194:	e3051470 	movw	r1, #21616	; 0x5470
      198:	e3401000 	movt	r1, #0
      19c:	e51b2008 	ldr	r2, [fp, #-8]
-     1a0:	eb0012bc 	bl	4c98 <printf>
+     1a0:	eb0012c5 	bl	4cbc <printf>
             exit();
      1a4:	eb0011a3 	bl	4838 <exit>
         }
         if(write(fd, "bbbbbbbbbb", 10) != 10){
      1a8:	e51b000c 	ldr	r0, [fp, #-12]
-     1ac:	e3051470 	movw	r1, #21616	; 0x5470
+     1ac:	e3051494 	movw	r1, #21652	; 0x5494
      1b0:	e3401000 	movt	r1, #0
      1b4:	e3a0200a 	mov	r2, #10
      1b8:	eb0011c2 	bl	48c8 <write>
@@ -174,14 +174,14 @@ writetest(void)
      1c0:	e353000a 	cmp	r3, #10
      1c4:	0a000008 	beq	1ec <writetest+0x118>
             printf(stdout, "error: write bb %d new file failed\n", i);
-     1c8:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     1c8:	e3063be0 	movw	r3, #27616	; 0x6be0
      1cc:	e3403000 	movt	r3, #0
      1d0:	e5933000 	ldr	r3, [r3]
      1d4:	e1a00003 	mov	r0, r3
-     1d8:	e305147c 	movw	r1, #21628	; 0x547c
+     1d8:	e30514a0 	movw	r1, #21664	; 0x54a0
      1dc:	e3401000 	movt	r1, #0
      1e0:	e51b2008 	ldr	r2, [fp, #-8]
-     1e4:	eb0012ab 	bl	4c98 <printf>
+     1e4:	eb0012b4 	bl	4cbc <printf>
             exit();
      1e8:	eb001192 	bl	4838 <exit>
         printf(stdout, "creat small succeeded; ok\n");
@@ -202,18 +202,18 @@ writetest(void)
         }
     }
     printf(stdout, "writes ok\n");
-     204:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     204:	e3063be0 	movw	r3, #27616	; 0x6be0
      208:	e3403000 	movt	r3, #0
      20c:	e5933000 	ldr	r3, [r3]
      210:	e1a00003 	mov	r0, r3
-     214:	e30514a0 	movw	r1, #21664	; 0x54a0
+     214:	e30514c4 	movw	r1, #21700	; 0x54c4
      218:	e3401000 	movt	r1, #0
-     21c:	eb00129d 	bl	4c98 <printf>
+     21c:	eb0012a6 	bl	4cbc <printf>
     close(fd);
      220:	e51b000c 	ldr	r0, [fp, #-12]
      224:	eb0011b0 	bl	48ec <close>
     fd = open("small", O_RDONLY);
-     228:	e3050400 	movw	r0, #21504	; 0x5400
+     228:	e3050424 	movw	r0, #21540	; 0x5424
      22c:	e3400000 	movt	r0, #0
      230:	e3a01000 	mov	r1, #0
      234:	eb0011c7 	bl	4958 <open>
@@ -223,20 +223,20 @@ writetest(void)
      240:	e3530000 	cmp	r3, #0
      244:	ba000010 	blt	28c <writetest+0x1b8>
         printf(stdout, "open small succeeded ok\n");
-     248:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     248:	e3063be0 	movw	r3, #27616	; 0x6be0
      24c:	e3403000 	movt	r3, #0
      250:	e5933000 	ldr	r3, [r3]
      254:	e1a00003 	mov	r0, r3
-     258:	e30514ac 	movw	r1, #21676	; 0x54ac
+     258:	e30514d0 	movw	r1, #21712	; 0x54d0
      25c:	e3401000 	movt	r1, #0
-     260:	eb00128c 	bl	4c98 <printf>
+     260:	eb001295 	bl	4cbc <printf>
     } else {
         printf(stdout, "error: open small failed!\n");
         exit();
     }
     i = read(fd, buf, 2000);
      264:	e51b000c 	ldr	r0, [fp, #-12]
-     268:	e3091374 	movw	r1, #37748	; 0x9374
+     268:	e3091398 	movw	r1, #37784	; 0x9398
      26c:	e3401000 	movt	r1, #0
      270:	e3a02e7d 	mov	r2, #2000	; 0x7d0
      274:	eb00118a 	bl	48a4 <read>
@@ -252,26 +252,26 @@ writetest(void)
         printf(stdout, "open small succeeded ok\n");
     } else {
         printf(stdout, "error: open small failed!\n");
-     28c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     28c:	e3063be0 	movw	r3, #27616	; 0x6be0
      290:	e3403000 	movt	r3, #0
      294:	e5933000 	ldr	r3, [r3]
      298:	e1a00003 	mov	r0, r3
-     29c:	e30514c8 	movw	r1, #21704	; 0x54c8
+     29c:	e30514ec 	movw	r1, #21740	; 0x54ec
      2a0:	e3401000 	movt	r1, #0
-     2a4:	eb00127b 	bl	4c98 <printf>
+     2a4:	eb001284 	bl	4cbc <printf>
         exit();
      2a8:	eb001162 	bl	4838 <exit>
     }
     i = read(fd, buf, 2000);
     if(i == 2000){
         printf(stdout, "read succeeded ok\n");
-     2ac:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     2ac:	e3063be0 	movw	r3, #27616	; 0x6be0
      2b0:	e3403000 	movt	r3, #0
      2b4:	e5933000 	ldr	r3, [r3]
      2b8:	e1a00003 	mov	r0, r3
-     2bc:	e30514e4 	movw	r1, #21732	; 0x54e4
+     2bc:	e3051508 	movw	r1, #21768	; 0x5508
      2c0:	e3401000 	movt	r1, #0
-     2c4:	eb001273 	bl	4c98 <printf>
+     2c4:	eb00127c 	bl	4cbc <printf>
     } else {
         printf(stdout, "read failed\n");
         exit();
@@ -281,7 +281,7 @@ writetest(void)
      2cc:	eb001186 	bl	48ec <close>
 
     if(unlink("small") < 0){
-     2d0:	e3050400 	movw	r0, #21504	; 0x5400
+     2d0:	e3050424 	movw	r0, #21540	; 0x5424
      2d4:	e3400000 	movt	r0, #0
      2d8:	eb0011b0 	bl	49a0 <unlink>
      2dc:	e1a03000 	mov	r3, r0
@@ -294,13 +294,13 @@ writetest(void)
         printf(stdout, "read succeeded ok\n");
     } else {
         printf(stdout, "read failed\n");
-     2ec:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     2ec:	e3063be0 	movw	r3, #27616	; 0x6be0
      2f0:	e3403000 	movt	r3, #0
      2f4:	e5933000 	ldr	r3, [r3]
      2f8:	e1a00003 	mov	r0, r3
-     2fc:	e30514f8 	movw	r1, #21752	; 0x54f8
+     2fc:	e305151c 	movw	r1, #21788	; 0x551c
      300:	e3401000 	movt	r1, #0
-     304:	eb001263 	bl	4c98 <printf>
+     304:	eb00126c 	bl	4cbc <printf>
         exit();
      308:	eb00114a 	bl	4838 <exit>
     }
@@ -308,24 +308,24 @@ writetest(void)
 
     if(unlink("small") < 0){
         printf(stdout, "unlink small failed\n");
-     30c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     30c:	e3063be0 	movw	r3, #27616	; 0x6be0
      310:	e3403000 	movt	r3, #0
      314:	e5933000 	ldr	r3, [r3]
      318:	e1a00003 	mov	r0, r3
-     31c:	e3051508 	movw	r1, #21768	; 0x5508
+     31c:	e305152c 	movw	r1, #21804	; 0x552c
      320:	e3401000 	movt	r1, #0
-     324:	eb00125b 	bl	4c98 <printf>
+     324:	eb001264 	bl	4cbc <printf>
         exit();
      328:	eb001142 	bl	4838 <exit>
     }
     printf(stdout, "small file test ok\n");
-     32c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     32c:	e3063be0 	movw	r3, #27616	; 0x6be0
      330:	e3403000 	movt	r3, #0
      334:	e5933000 	ldr	r3, [r3]
      338:	e1a00003 	mov	r0, r3
-     33c:	e3051520 	movw	r1, #21792	; 0x5520
+     33c:	e3051544 	movw	r1, #21828	; 0x5544
      340:	e3401000 	movt	r1, #0
-     344:	eb001253 	bl	4c98 <printf>
+     344:	eb00125c 	bl	4cbc <printf>
 }
      348:	e24bd004 	sub	sp, fp, #4
      34c:	e8bd8800 	pop	{fp, pc}
@@ -341,16 +341,16 @@ writetest1(void)
     int i, fd, n;
 
     printf(stdout, "big files test\n");
-     35c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     35c:	e3063be0 	movw	r3, #27616	; 0x6be0
      360:	e3403000 	movt	r3, #0
      364:	e5933000 	ldr	r3, [r3]
      368:	e1a00003 	mov	r0, r3
-     36c:	e3051534 	movw	r1, #21812	; 0x5534
+     36c:	e3051558 	movw	r1, #21848	; 0x5558
      370:	e3401000 	movt	r1, #0
-     374:	eb001247 	bl	4c98 <printf>
+     374:	eb001250 	bl	4cbc <printf>
 
     fd = open("big", O_CREATE|O_RDWR);
-     378:	e3050544 	movw	r0, #21828	; 0x5544
+     378:	e3050568 	movw	r0, #21864	; 0x5568
      37c:	e3400000 	movt	r0, #0
      380:	e3001202 	movw	r1, #514	; 0x202
      384:	eb001173 	bl	4958 <open>
@@ -360,13 +360,13 @@ writetest1(void)
      390:	e3530000 	cmp	r3, #0
      394:	aa000007 	bge	3b8 <writetest1+0x68>
         printf(stdout, "error: creat big failed!\n");
-     398:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     398:	e3063be0 	movw	r3, #27616	; 0x6be0
      39c:	e3403000 	movt	r3, #0
      3a0:	e5933000 	ldr	r3, [r3]
      3a4:	e1a00003 	mov	r0, r3
-     3a8:	e3051548 	movw	r1, #21832	; 0x5548
+     3a8:	e305156c 	movw	r1, #21868	; 0x556c
      3ac:	e3401000 	movt	r1, #0
-     3b0:	eb001238 	bl	4c98 <printf>
+     3b0:	eb001241 	bl	4cbc <printf>
         exit();
      3b4:	eb00111f 	bl	4838 <exit>
     }
@@ -376,13 +376,13 @@ writetest1(void)
      3bc:	e50b3008 	str	r3, [fp, #-8]
      3c0:	ea000017 	b	424 <writetest1+0xd4>
         ((int*)buf)[0] = i;
-     3c4:	e3093374 	movw	r3, #37748	; 0x9374
+     3c4:	e3093398 	movw	r3, #37784	; 0x9398
      3c8:	e3403000 	movt	r3, #0
      3cc:	e51b2008 	ldr	r2, [fp, #-8]
      3d0:	e5832000 	str	r2, [r3]
         if(write(fd, buf, 512) != 512){
      3d4:	e51b0010 	ldr	r0, [fp, #-16]
-     3d8:	e3091374 	movw	r1, #37748	; 0x9374
+     3d8:	e3091398 	movw	r1, #37784	; 0x9398
      3dc:	e3401000 	movt	r1, #0
      3e0:	e3a02c02 	mov	r2, #512	; 0x200
      3e4:	eb001137 	bl	48c8 <write>
@@ -390,14 +390,14 @@ writetest1(void)
      3ec:	e3530c02 	cmp	r3, #512	; 0x200
      3f0:	0a000008 	beq	418 <writetest1+0xc8>
             printf(stdout, "error: write big file failed\n", i);
-     3f4:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     3f4:	e3063be0 	movw	r3, #27616	; 0x6be0
      3f8:	e3403000 	movt	r3, #0
      3fc:	e5933000 	ldr	r3, [r3]
      400:	e1a00003 	mov	r0, r3
-     404:	e3051564 	movw	r1, #21860	; 0x5564
+     404:	e3051588 	movw	r1, #21896	; 0x5588
      408:	e3401000 	movt	r1, #0
      40c:	e51b2008 	ldr	r2, [fp, #-8]
-     410:	eb001220 	bl	4c98 <printf>
+     410:	eb001229 	bl	4cbc <printf>
             exit();
      414:	eb001107 	bl	4838 <exit>
     if(fd < 0){
@@ -422,7 +422,7 @@ writetest1(void)
      434:	eb00112c 	bl	48ec <close>
 
     fd = open("big", O_RDONLY);
-     438:	e3050544 	movw	r0, #21828	; 0x5544
+     438:	e3050568 	movw	r0, #21864	; 0x5568
      43c:	e3400000 	movt	r0, #0
      440:	e3a01000 	mov	r1, #0
      444:	eb001143 	bl	4958 <open>
@@ -432,13 +432,13 @@ writetest1(void)
      450:	e3530000 	cmp	r3, #0
      454:	aa000007 	bge	478 <writetest1+0x128>
         printf(stdout, "error: open big failed!\n");
-     458:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     458:	e3063be0 	movw	r3, #27616	; 0x6be0
      45c:	e3403000 	movt	r3, #0
      460:	e5933000 	ldr	r3, [r3]
      464:	e1a00003 	mov	r0, r3
-     468:	e3051584 	movw	r1, #21892	; 0x5584
+     468:	e30515a8 	movw	r1, #21928	; 0x55a8
      46c:	e3401000 	movt	r1, #0
-     470:	eb001208 	bl	4c98 <printf>
+     470:	eb001211 	bl	4cbc <printf>
         exit();
      474:	eb0010ef 	bl	4838 <exit>
     }
@@ -449,7 +449,7 @@ writetest1(void)
     for(;;){
         i = read(fd, buf, 512);
      480:	e51b0010 	ldr	r0, [fp, #-16]
-     484:	e3091374 	movw	r1, #37748	; 0x9374
+     484:	e3091398 	movw	r1, #37784	; 0x9398
      488:	e3401000 	movt	r1, #0
      48c:	e3a02c02 	mov	r2, #512	; 0x200
      490:	eb001103 	bl	48a4 <read>
@@ -463,14 +463,14 @@ writetest1(void)
      4a8:	e353008b 	cmp	r3, #139	; 0x8b
      4ac:	1a00002a 	bne	55c <writetest1+0x20c>
                 printf(stdout, "read only %d blocks from big", n);
-     4b0:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     4b0:	e3063be0 	movw	r3, #27616	; 0x6be0
      4b4:	e3403000 	movt	r3, #0
      4b8:	e5933000 	ldr	r3, [r3]
      4bc:	e1a00003 	mov	r0, r3
-     4c0:	e30515a0 	movw	r1, #21920	; 0x55a0
+     4c0:	e30515c4 	movw	r1, #21956	; 0x55c4
      4c4:	e3401000 	movt	r1, #0
      4c8:	e51b200c 	ldr	r2, [fp, #-12]
-     4cc:	eb0011f1 	bl	4c98 <printf>
+     4cc:	eb0011fa 	bl	4cbc <printf>
                 exit();
      4d0:	eb0010d8 	bl	4838 <exit>
             }
@@ -480,30 +480,30 @@ writetest1(void)
      4d8:	e3530c02 	cmp	r3, #512	; 0x200
      4dc:	0a000008 	beq	504 <writetest1+0x1b4>
             printf(stdout, "read failed %d\n", i);
-     4e0:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     4e0:	e3063be0 	movw	r3, #27616	; 0x6be0
      4e4:	e3403000 	movt	r3, #0
      4e8:	e5933000 	ldr	r3, [r3]
      4ec:	e1a00003 	mov	r0, r3
-     4f0:	e30515c0 	movw	r1, #21952	; 0x55c0
+     4f0:	e30515e4 	movw	r1, #21988	; 0x55e4
      4f4:	e3401000 	movt	r1, #0
      4f8:	e51b2008 	ldr	r2, [fp, #-8]
-     4fc:	eb0011e5 	bl	4c98 <printf>
+     4fc:	eb0011ee 	bl	4cbc <printf>
             exit();
      500:	eb0010cc 	bl	4838 <exit>
         }
         if(((int*)buf)[0] != n){
-     504:	e3093374 	movw	r3, #37748	; 0x9374
+     504:	e3093398 	movw	r3, #37784	; 0x9398
      508:	e3403000 	movt	r3, #0
      50c:	e5932000 	ldr	r2, [r3]
      510:	e51b300c 	ldr	r3, [fp, #-12]
      514:	e1520003 	cmp	r2, r3
      518:	0a00000b 	beq	54c <writetest1+0x1fc>
             printf(stdout, "read content of block %d is %d\n",
-     51c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     51c:	e3063be0 	movw	r3, #27616	; 0x6be0
      520:	e3403000 	movt	r3, #0
      524:	e5932000 	ldr	r2, [r3]
                    n, ((int*)buf)[0]);
-     528:	e3093374 	movw	r3, #37748	; 0x9374
+     528:	e3093398 	movw	r3, #37784	; 0x9398
      52c:	e3403000 	movt	r3, #0
         } else if(i != 512){
             printf(stdout, "read failed %d\n", i);
@@ -513,10 +513,10 @@ writetest1(void)
             printf(stdout, "read content of block %d is %d\n",
      530:	e5933000 	ldr	r3, [r3]
      534:	e1a00002 	mov	r0, r2
-     538:	e30515d0 	movw	r1, #21968	; 0x55d0
+     538:	e30515f4 	movw	r1, #22004	; 0x55f4
      53c:	e3401000 	movt	r1, #0
      540:	e51b200c 	ldr	r2, [fp, #-12]
-     544:	eb0011d3 	bl	4c98 <printf>
+     544:	eb0011dc 	bl	4cbc <printf>
                    n, ((int*)buf)[0]);
             exit();
      548:	eb0010ba 	bl	4838 <exit>
@@ -543,31 +543,31 @@ writetest1(void)
      560:	e51b0010 	ldr	r0, [fp, #-16]
      564:	eb0010e0 	bl	48ec <close>
     if(unlink("big") < 0){
-     568:	e3050544 	movw	r0, #21828	; 0x5544
+     568:	e3050568 	movw	r0, #21864	; 0x5568
      56c:	e3400000 	movt	r0, #0
      570:	eb00110a 	bl	49a0 <unlink>
      574:	e1a03000 	mov	r3, r0
      578:	e3530000 	cmp	r3, #0
      57c:	aa000007 	bge	5a0 <writetest1+0x250>
         printf(stdout, "unlink big failed\n");
-     580:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     580:	e3063be0 	movw	r3, #27616	; 0x6be0
      584:	e3403000 	movt	r3, #0
      588:	e5933000 	ldr	r3, [r3]
      58c:	e1a00003 	mov	r0, r3
-     590:	e30515f0 	movw	r1, #22000	; 0x55f0
+     590:	e3051614 	movw	r1, #22036	; 0x5614
      594:	e3401000 	movt	r1, #0
-     598:	eb0011be 	bl	4c98 <printf>
+     598:	eb0011c7 	bl	4cbc <printf>
         exit();
      59c:	eb0010a5 	bl	4838 <exit>
     }
     printf(stdout, "big files ok\n");
-     5a0:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     5a0:	e3063be0 	movw	r3, #27616	; 0x6be0
      5a4:	e3403000 	movt	r3, #0
      5a8:	e5933000 	ldr	r3, [r3]
      5ac:	e1a00003 	mov	r0, r3
-     5b0:	e3051604 	movw	r1, #22020	; 0x5604
+     5b0:	e3051628 	movw	r1, #22056	; 0x5628
      5b4:	e3401000 	movt	r1, #0
-     5b8:	eb0011b6 	bl	4c98 <printf>
+     5b8:	eb0011bf 	bl	4cbc <printf>
 }
      5bc:	e24bd004 	sub	sp, fp, #4
      5c0:	e8bd8800 	pop	{fp, pc}
@@ -583,21 +583,21 @@ createtest(void)
     int i, fd;
 
     printf(stdout, "many creates, followed by unlink test\n");
-     5d0:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     5d0:	e3063be0 	movw	r3, #27616	; 0x6be0
      5d4:	e3403000 	movt	r3, #0
      5d8:	e5933000 	ldr	r3, [r3]
      5dc:	e1a00003 	mov	r0, r3
-     5e0:	e3051614 	movw	r1, #22036	; 0x5614
+     5e0:	e3051638 	movw	r1, #22072	; 0x5638
      5e4:	e3401000 	movt	r1, #0
-     5e8:	eb0011aa 	bl	4c98 <printf>
+     5e8:	eb0011b3 	bl	4cbc <printf>
 
     name[0] = 'a';
-     5ec:	e30b3374 	movw	r3, #45940	; 0xb374
+     5ec:	e30b3398 	movw	r3, #45976	; 0xb398
      5f0:	e3403000 	movt	r3, #0
      5f4:	e3a02061 	mov	r2, #97	; 0x61
      5f8:	e5c32000 	strb	r2, [r3]
     name[2] = '\0';
-     5fc:	e30b3374 	movw	r3, #45940	; 0xb374
+     5fc:	e30b3398 	movw	r3, #45976	; 0xb398
      600:	e3403000 	movt	r3, #0
      604:	e3a02000 	mov	r2, #0
      608:	e5c32002 	strb	r2, [r3, #2]
@@ -610,11 +610,11 @@ createtest(void)
      61c:	e6ef3073 	uxtb	r3, r3
      620:	e2833030 	add	r3, r3, #48	; 0x30
      624:	e6ef2073 	uxtb	r2, r3
-     628:	e30b3374 	movw	r3, #45940	; 0xb374
+     628:	e30b3398 	movw	r3, #45976	; 0xb398
      62c:	e3403000 	movt	r3, #0
      630:	e5c32001 	strb	r2, [r3, #1]
         fd = open(name, O_CREATE|O_RDWR);
-     634:	e30b0374 	movw	r0, #45940	; 0xb374
+     634:	e30b0398 	movw	r0, #45976	; 0xb398
      638:	e3400000 	movt	r0, #0
      63c:	e3001202 	movw	r1, #514	; 0x202
      640:	eb0010c4 	bl	4958 <open>
@@ -639,12 +639,12 @@ createtest(void)
         close(fd);
     }
     name[0] = 'a';
-     668:	e30b3374 	movw	r3, #45940	; 0xb374
+     668:	e30b3398 	movw	r3, #45976	; 0xb398
      66c:	e3403000 	movt	r3, #0
      670:	e3a02061 	mov	r2, #97	; 0x61
      674:	e5c32000 	strb	r2, [r3]
     name[2] = '\0';
-     678:	e30b3374 	movw	r3, #45940	; 0xb374
+     678:	e30b3398 	movw	r3, #45976	; 0xb398
      67c:	e3403000 	movt	r3, #0
      680:	e3a02000 	mov	r2, #0
      684:	e5c32002 	strb	r2, [r3, #2]
@@ -657,11 +657,11 @@ createtest(void)
      698:	e6ef3073 	uxtb	r3, r3
      69c:	e2833030 	add	r3, r3, #48	; 0x30
      6a0:	e6ef2073 	uxtb	r2, r3
-     6a4:	e30b3374 	movw	r3, #45940	; 0xb374
+     6a4:	e30b3398 	movw	r3, #45976	; 0xb398
      6a8:	e3403000 	movt	r3, #0
      6ac:	e5c32001 	strb	r2, [r3, #1]
         unlink(name);
-     6b0:	e30b0374 	movw	r0, #45940	; 0xb374
+     6b0:	e30b0398 	movw	r0, #45976	; 0xb398
      6b4:	e3400000 	movt	r0, #0
      6b8:	eb0010b8 	bl	49a0 <unlink>
         fd = open(name, O_CREATE|O_RDWR);
@@ -680,13 +680,13 @@ createtest(void)
         unlink(name);
     }
     printf(stdout, "many creates, followed by unlink; ok\n");
-     6d4:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     6d4:	e3063be0 	movw	r3, #27616	; 0x6be0
      6d8:	e3403000 	movt	r3, #0
      6dc:	e5933000 	ldr	r3, [r3]
      6e0:	e1a00003 	mov	r0, r3
-     6e4:	e305163c 	movw	r1, #22076	; 0x563c
+     6e4:	e3051660 	movw	r1, #22112	; 0x5660
      6e8:	e3401000 	movt	r1, #0
-     6ec:	eb001169 	bl	4c98 <printf>
+     6ec:	eb001172 	bl	4cbc <printf>
 }
      6f0:	e24bd004 	sub	sp, fp, #4
      6f4:	e8bd8800 	pop	{fp, pc}
@@ -698,97 +698,97 @@ void dirtest(void)
      6f8:	e92d4800 	push	{fp, lr}
      6fc:	e28db004 	add	fp, sp, #4
     printf(stdout, "mkdir test\n");
-     700:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     700:	e3063be0 	movw	r3, #27616	; 0x6be0
      704:	e3403000 	movt	r3, #0
      708:	e5933000 	ldr	r3, [r3]
      70c:	e1a00003 	mov	r0, r3
-     710:	e3051664 	movw	r1, #22116	; 0x5664
+     710:	e3051688 	movw	r1, #22152	; 0x5688
      714:	e3401000 	movt	r1, #0
-     718:	eb00115e 	bl	4c98 <printf>
+     718:	eb001167 	bl	4cbc <printf>
 
     if(mkdir("dir0") < 0){
-     71c:	e3050670 	movw	r0, #22128	; 0x5670
+     71c:	e3050694 	movw	r0, #22164	; 0x5694
      720:	e3400000 	movt	r0, #0
      724:	eb0010b8 	bl	4a0c <mkdir>
      728:	e1a03000 	mov	r3, r0
      72c:	e3530000 	cmp	r3, #0
      730:	aa000007 	bge	754 <dirtest+0x5c>
         printf(stdout, "mkdir failed\n");
-     734:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     734:	e3063be0 	movw	r3, #27616	; 0x6be0
      738:	e3403000 	movt	r3, #0
      73c:	e5933000 	ldr	r3, [r3]
      740:	e1a00003 	mov	r0, r3
-     744:	e3051678 	movw	r1, #22136	; 0x5678
+     744:	e305169c 	movw	r1, #22172	; 0x569c
      748:	e3401000 	movt	r1, #0
-     74c:	eb001151 	bl	4c98 <printf>
+     74c:	eb00115a 	bl	4cbc <printf>
         exit();
      750:	eb001038 	bl	4838 <exit>
     }
 
     if(chdir("dir0") < 0){
-     754:	e3050670 	movw	r0, #22128	; 0x5670
+     754:	e3050694 	movw	r0, #22164	; 0x5694
      758:	e3400000 	movt	r0, #0
      75c:	eb0010b3 	bl	4a30 <chdir>
      760:	e1a03000 	mov	r3, r0
      764:	e3530000 	cmp	r3, #0
      768:	aa000007 	bge	78c <dirtest+0x94>
         printf(stdout, "chdir dir0 failed\n");
-     76c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     76c:	e3063be0 	movw	r3, #27616	; 0x6be0
      770:	e3403000 	movt	r3, #0
      774:	e5933000 	ldr	r3, [r3]
      778:	e1a00003 	mov	r0, r3
-     77c:	e3051688 	movw	r1, #22152	; 0x5688
+     77c:	e30516ac 	movw	r1, #22188	; 0x56ac
      780:	e3401000 	movt	r1, #0
-     784:	eb001143 	bl	4c98 <printf>
+     784:	eb00114c 	bl	4cbc <printf>
         exit();
      788:	eb00102a 	bl	4838 <exit>
     }
 
     if(chdir("..") < 0){
-     78c:	e305069c 	movw	r0, #22172	; 0x569c
+     78c:	e30506c0 	movw	r0, #22208	; 0x56c0
      790:	e3400000 	movt	r0, #0
      794:	eb0010a5 	bl	4a30 <chdir>
      798:	e1a03000 	mov	r3, r0
      79c:	e3530000 	cmp	r3, #0
      7a0:	aa000007 	bge	7c4 <dirtest+0xcc>
         printf(stdout, "chdir .. failed\n");
-     7a4:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     7a4:	e3063be0 	movw	r3, #27616	; 0x6be0
      7a8:	e3403000 	movt	r3, #0
      7ac:	e5933000 	ldr	r3, [r3]
      7b0:	e1a00003 	mov	r0, r3
-     7b4:	e30516a0 	movw	r1, #22176	; 0x56a0
+     7b4:	e30516c4 	movw	r1, #22212	; 0x56c4
      7b8:	e3401000 	movt	r1, #0
-     7bc:	eb001135 	bl	4c98 <printf>
+     7bc:	eb00113e 	bl	4cbc <printf>
         exit();
      7c0:	eb00101c 	bl	4838 <exit>
     }
 
     if(unlink("dir0") < 0){
-     7c4:	e3050670 	movw	r0, #22128	; 0x5670
+     7c4:	e3050694 	movw	r0, #22164	; 0x5694
      7c8:	e3400000 	movt	r0, #0
      7cc:	eb001073 	bl	49a0 <unlink>
      7d0:	e1a03000 	mov	r3, r0
      7d4:	e3530000 	cmp	r3, #0
      7d8:	aa000007 	bge	7fc <dirtest+0x104>
         printf(stdout, "unlink dir0 failed\n");
-     7dc:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     7dc:	e3063be0 	movw	r3, #27616	; 0x6be0
      7e0:	e3403000 	movt	r3, #0
      7e4:	e5933000 	ldr	r3, [r3]
      7e8:	e1a00003 	mov	r0, r3
-     7ec:	e30516b4 	movw	r1, #22196	; 0x56b4
+     7ec:	e30516d8 	movw	r1, #22232	; 0x56d8
      7f0:	e3401000 	movt	r1, #0
-     7f4:	eb001127 	bl	4c98 <printf>
+     7f4:	eb001130 	bl	4cbc <printf>
         exit();
      7f8:	eb00100e 	bl	4838 <exit>
     }
     printf(stdout, "mkdir test\n");
-     7fc:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     7fc:	e3063be0 	movw	r3, #27616	; 0x6be0
      800:	e3403000 	movt	r3, #0
      804:	e5933000 	ldr	r3, [r3]
      808:	e1a00003 	mov	r0, r3
-     80c:	e3051664 	movw	r1, #22116	; 0x5664
+     80c:	e3051688 	movw	r1, #22152	; 0x5688
      810:	e3401000 	movt	r1, #0
-     814:	eb00111f 	bl	4c98 <printf>
+     814:	eb001128 	bl	4cbc <printf>
 }
      818:	e8bd8800 	pop	{fp, pc}
 
@@ -800,30 +800,30 @@ exectest(void)
      81c:	e92d4800 	push	{fp, lr}
      820:	e28db004 	add	fp, sp, #4
     printf(stdout, "exec test\n");
-     824:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     824:	e3063be0 	movw	r3, #27616	; 0x6be0
      828:	e3403000 	movt	r3, #0
      82c:	e5933000 	ldr	r3, [r3]
      830:	e1a00003 	mov	r0, r3
-     834:	e30516c8 	movw	r1, #22216	; 0x56c8
+     834:	e30516ec 	movw	r1, #22252	; 0x56ec
      838:	e3401000 	movt	r1, #0
-     83c:	eb001115 	bl	4c98 <printf>
+     83c:	eb00111e 	bl	4cbc <printf>
     if(exec("echo", echoargv) < 0){
-     840:	e3050370 	movw	r0, #21360	; 0x5370
+     840:	e3050394 	movw	r0, #21396	; 0x5394
      844:	e3400000 	movt	r0, #0
-     848:	e3061ba8 	movw	r1, #27560	; 0x6ba8
+     848:	e3061bcc 	movw	r1, #27596	; 0x6bcc
      84c:	e3401000 	movt	r1, #0
      850:	eb001037 	bl	4934 <exec>
      854:	e1a03000 	mov	r3, r0
      858:	e3530000 	cmp	r3, #0
      85c:	aa000007 	bge	880 <exectest+0x64>
         printf(stdout, "exec echo failed\n");
-     860:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+     860:	e3063be0 	movw	r3, #27616	; 0x6be0
      864:	e3403000 	movt	r3, #0
      868:	e5933000 	ldr	r3, [r3]
      86c:	e1a00003 	mov	r0, r3
-     870:	e30516d4 	movw	r1, #22228	; 0x56d4
+     870:	e30516f8 	movw	r1, #22264	; 0x56f8
      874:	e3401000 	movt	r1, #0
-     878:	eb001106 	bl	4c98 <printf>
+     878:	eb00110f 	bl	4cbc <printf>
         exit();
      87c:	eb000fed 	bl	4838 <exit>
     }
@@ -852,9 +852,9 @@ pipe1(void)
      8a4:	0a000004 	beq	8bc <pipe1+0x38>
         printf(1, "pipe() failed\n");
      8a8:	e3a00001 	mov	r0, #1
-     8ac:	e30516e8 	movw	r1, #22248	; 0x56e8
+     8ac:	e305170c 	movw	r1, #22284	; 0x570c
      8b0:	e3401000 	movt	r1, #0
-     8b4:	eb0010f7 	bl	4c98 <printf>
+     8b4:	eb001100 	bl	4cbc <printf>
         exit();
      8b8:	eb000fde 	bl	4838 <exit>
     }
@@ -883,7 +883,7 @@ pipe1(void)
                 buf[i] = seq++;
      8fc:	e51b3008 	ldr	r3, [fp, #-8]
      900:	e6ef2073 	uxtb	r2, r3
-     904:	e3093374 	movw	r3, #37748	; 0x9374
+     904:	e3093398 	movw	r3, #37784	; 0x9398
      908:	e3403000 	movt	r3, #0
      90c:	e51b100c 	ldr	r1, [fp, #-12]
      910:	e0833001 	add	r3, r3, r1
@@ -908,7 +908,7 @@ pipe1(void)
             if(write(fds[1], buf, 1033) != 1033){
      940:	e51b3020 	ldr	r3, [fp, #-32]	; 0xffffffe0
      944:	e1a00003 	mov	r0, r3
-     948:	e3091374 	movw	r1, #37748	; 0x9374
+     948:	e3091398 	movw	r1, #37784	; 0x9398
      94c:	e3401000 	movt	r1, #0
      950:	e3002409 	movw	r2, #1033	; 0x409
      954:	eb000fdb 	bl	48c8 <write>
@@ -918,9 +918,9 @@ pipe1(void)
      964:	0a000004 	beq	97c <pipe1+0xf8>
                 printf(1, "pipe1 oops 1\n");
      968:	e3a00001 	mov	r0, #1
-     96c:	e30516f8 	movw	r1, #22264	; 0x56f8
+     96c:	e305171c 	movw	r1, #22300	; 0x571c
      970:	e3401000 	movt	r1, #0
-     974:	eb0010c7 	bl	4c98 <printf>
+     974:	eb0010d0 	bl	4cbc <printf>
                 exit();
      978:	eb000fae 	bl	4838 <exit>
     }
@@ -963,7 +963,7 @@ pipe1(void)
      9c8:	e50b300c 	str	r3, [fp, #-12]
      9cc:	ea000018 	b	a34 <pipe1+0x1b0>
                 if((buf[i] & 0xff) != (seq++ & 0xff)){
-     9d0:	e3093374 	movw	r3, #37748	; 0x9374
+     9d0:	e3093398 	movw	r3, #37784	; 0x9398
      9d4:	e3403000 	movt	r3, #0
      9d8:	e51b200c 	ldr	r2, [fp, #-12]
      9dc:	e0833002 	add	r3, r3, r2
@@ -982,9 +982,9 @@ pipe1(void)
      a10:	0a000004 	beq	a28 <pipe1+0x1a4>
                     printf(1, "pipe1 oops 2\n");
      a14:	e3a00001 	mov	r0, #1
-     a18:	e3051708 	movw	r1, #22280	; 0x5708
+     a18:	e305172c 	movw	r1, #22316	; 0x572c
      a1c:	e3401000 	movt	r1, #0
-     a20:	eb00109c 	bl	4c98 <printf>
+     a20:	eb0010a5 	bl	4cbc <printf>
                     return;
      a24:	ea000034 	b	afc <pipe1+0x278>
     } else if(pid > 0){
@@ -1029,7 +1029,7 @@ pipe1(void)
         while((n = read(fds[0], buf, cc)) > 0){
      a74:	e51b3024 	ldr	r3, [fp, #-36]	; 0xffffffdc
      a78:	e1a00003 	mov	r0, r3
-     a7c:	e3091374 	movw	r1, #37748	; 0x9374
+     a7c:	e3091398 	movw	r1, #37784	; 0x9398
      a80:	e3401000 	movt	r1, #0
      a84:	e51b2014 	ldr	r2, [fp, #-20]	; 0xffffffec
      a88:	eb000f85 	bl	48a4 <read>
@@ -1049,10 +1049,10 @@ pipe1(void)
      aa8:	0a000005 	beq	ac4 <pipe1+0x240>
             printf(1, "pipe1 oops 3 total %d\n", total);
      aac:	e3a00001 	mov	r0, #1
-     ab0:	e3051718 	movw	r1, #22296	; 0x5718
+     ab0:	e305173c 	movw	r1, #22332	; 0x573c
      ab4:	e3401000 	movt	r1, #0
      ab8:	e51b2018 	ldr	r2, [fp, #-24]	; 0xffffffe8
-     abc:	eb001075 	bl	4c98 <printf>
+     abc:	eb00107e 	bl	4cbc <printf>
             exit();
      ac0:	eb000f5c 	bl	4838 <exit>
         }
@@ -1068,9 +1068,9 @@ pipe1(void)
     }
     printf(1, "pipe1 ok\n");
      ad4:	e3a00001 	mov	r0, #1
-     ad8:	e3051730 	movw	r1, #22320	; 0x5730
+     ad8:	e3051754 	movw	r1, #22356	; 0x5754
      adc:	e3401000 	movt	r1, #0
-     ae0:	eb00106c 	bl	4c98 <printf>
+     ae0:	eb001075 	bl	4cbc <printf>
      ae4:	ea000004 	b	afc <pipe1+0x278>
             exit();
         }
@@ -1079,9 +1079,9 @@ pipe1(void)
     } else {
         printf(1, "fork() failed\n");
      ae8:	e3a00001 	mov	r0, #1
-     aec:	e305173c 	movw	r1, #22332	; 0x573c
+     aec:	e3051760 	movw	r1, #22368	; 0x5760
      af0:	e3401000 	movt	r1, #0
-     af4:	eb001067 	bl	4c98 <printf>
+     af4:	eb001070 	bl	4cbc <printf>
         exit();
      af8:	eb000f4e 	bl	4838 <exit>
     }
@@ -1104,9 +1104,9 @@ preempt(void)
 
     printf(1, "preempt: ");
      b10:	e3a00001 	mov	r0, #1
-     b14:	e305174c 	movw	r1, #22348	; 0x574c
+     b14:	e3051770 	movw	r1, #22384	; 0x5770
      b18:	e3401000 	movt	r1, #0
-     b1c:	eb00105d 	bl	4c98 <printf>
+     b1c:	eb001066 	bl	4cbc <printf>
     pid1 = fork();
      b20:	eb000f3b 	bl	4814 <fork>
      b24:	e50b0008 	str	r0, [fp, #-8]
@@ -1147,7 +1147,7 @@ preempt(void)
         if(write(pfds[1], "x", 1) != 1)
      b7c:	e51b3014 	ldr	r3, [fp, #-20]	; 0xffffffec
      b80:	e1a00003 	mov	r0, r3
-     b84:	e3051758 	movw	r1, #22360	; 0x5758
+     b84:	e305177c 	movw	r1, #22396	; 0x577c
      b88:	e3401000 	movt	r1, #0
      b8c:	e3a02001 	mov	r2, #1
      b90:	eb000f4c 	bl	48c8 <write>
@@ -1156,9 +1156,9 @@ preempt(void)
      b9c:	0a000003 	beq	bb0 <preempt+0xac>
             printf(1, "preempt write error");
      ba0:	e3a00001 	mov	r0, #1
-     ba4:	e305175c 	movw	r1, #22364	; 0x575c
+     ba4:	e3051780 	movw	r1, #22400	; 0x5780
      ba8:	e3401000 	movt	r1, #0
-     bac:	eb001039 	bl	4c98 <printf>
+     bac:	eb001042 	bl	4cbc <printf>
         close(pfds[1]);
      bb0:	e51b3014 	ldr	r3, [fp, #-20]	; 0xffffffec
      bb4:	e1a00003 	mov	r0, r3
@@ -1175,7 +1175,7 @@ preempt(void)
     if(read(pfds[0], buf, sizeof(buf)) != 1){
      bcc:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
      bd0:	e1a00003 	mov	r0, r3
-     bd4:	e3091374 	movw	r1, #37748	; 0x9374
+     bd4:	e3091398 	movw	r1, #37784	; 0x9398
      bd8:	e3401000 	movt	r1, #0
      bdc:	e3a02a02 	mov	r2, #8192	; 0x2000
      be0:	eb000f2f 	bl	48a4 <read>
@@ -1184,9 +1184,9 @@ preempt(void)
      bec:	0a000004 	beq	c04 <preempt+0x100>
         printf(1, "preempt read error");
      bf0:	e3a00001 	mov	r0, #1
-     bf4:	e3051770 	movw	r1, #22384	; 0x5770
+     bf4:	e3051794 	movw	r1, #22420	; 0x5794
      bf8:	e3401000 	movt	r1, #0
-     bfc:	eb001025 	bl	4c98 <printf>
+     bfc:	eb00102e 	bl	4cbc <printf>
         return;
      c00:	ea000017 	b	c64 <preempt+0x160>
     }
@@ -1196,9 +1196,9 @@ preempt(void)
      c0c:	eb000f36 	bl	48ec <close>
     printf(1, "kill... ");
      c10:	e3a00001 	mov	r0, #1
-     c14:	e3051784 	movw	r1, #22404	; 0x5784
+     c14:	e30517a8 	movw	r1, #22440	; 0x57a8
      c18:	e3401000 	movt	r1, #0
-     c1c:	eb00101d 	bl	4c98 <printf>
+     c1c:	eb001026 	bl	4cbc <printf>
     kill(pid1);
      c20:	e51b0008 	ldr	r0, [fp, #-8]
      c24:	eb000f39 	bl	4910 <kill>
@@ -1210,9 +1210,9 @@ preempt(void)
      c34:	eb000f35 	bl	4910 <kill>
     printf(1, "wait... ");
      c38:	e3a00001 	mov	r0, #1
-     c3c:	e3051790 	movw	r1, #22416	; 0x5790
+     c3c:	e30517b4 	movw	r1, #22452	; 0x57b4
      c40:	e3401000 	movt	r1, #0
-     c44:	eb001013 	bl	4c98 <printf>
+     c44:	eb00101c 	bl	4cbc <printf>
     wait();
      c48:	eb000f03 	bl	485c <wait>
     wait();
@@ -1221,9 +1221,9 @@ preempt(void)
      c50:	eb000f01 	bl	485c <wait>
     printf(1, "preempt ok\n");
      c54:	e3a00001 	mov	r0, #1
-     c58:	e305179c 	movw	r1, #22428	; 0x579c
+     c58:	e30517c0 	movw	r1, #22464	; 0x57c0
      c5c:	e3401000 	movt	r1, #0
-     c60:	eb00100c 	bl	4c98 <printf>
+     c60:	eb001015 	bl	4cbc <printf>
 }
      c64:	e24bd004 	sub	sp, fp, #4
      c68:	e8bd8800 	pop	{fp, pc}
@@ -1252,9 +1252,9 @@ exitwait(void)
      c94:	aa000004 	bge	cac <exitwait+0x40>
             printf(1, "fork failed\n");
      c98:	e3a00001 	mov	r0, #1
-     c9c:	e30517a8 	movw	r1, #22440	; 0x57a8
+     c9c:	e30517cc 	movw	r1, #22476	; 0x57cc
      ca0:	e3401000 	movt	r1, #0
-     ca4:	eb000ffb 	bl	4c98 <printf>
+     ca4:	eb001004 	bl	4cbc <printf>
             return;
      ca8:	ea000017 	b	d0c <exitwait+0xa0>
         }
@@ -1270,9 +1270,9 @@ exitwait(void)
      cc8:	0a000005 	beq	ce4 <exitwait+0x78>
                 printf(1, "wait wrong pid\n");
      ccc:	e3a00001 	mov	r0, #1
-     cd0:	e30517b8 	movw	r1, #22456	; 0x57b8
+     cd0:	e30517dc 	movw	r1, #22492	; 0x57dc
      cd4:	e3401000 	movt	r1, #0
-     cd8:	eb000fee 	bl	4c98 <printf>
+     cd8:	eb000ff7 	bl	4cbc <printf>
                 return;
      cdc:	ea00000a 	b	d0c <exitwait+0xa0>
             }
@@ -1298,9 +1298,9 @@ exitwait(void)
     }
     printf(1, "exitwait ok\n");
      cfc:	e3a00001 	mov	r0, #1
-     d00:	e30517c8 	movw	r1, #22472	; 0x57c8
+     d00:	e30517ec 	movw	r1, #22508	; 0x57ec
      d04:	e3401000 	movt	r1, #0
-     d08:	eb000fe2 	bl	4c98 <printf>
+     d08:	eb000feb 	bl	4cbc <printf>
 }
      d0c:	e24bd004 	sub	sp, fp, #4
      d10:	e8bd8800 	pop	{fp, pc}
@@ -1318,9 +1318,9 @@ mem(void)
 
     printf(1, "mem test\n");
      d20:	e3a00001 	mov	r0, #1
-     d24:	e30517d8 	movw	r1, #22488	; 0x57d8
+     d24:	e30517fc 	movw	r1, #22524	; 0x57fc
      d28:	e3401000 	movt	r1, #0
-     d2c:	eb000fd9 	bl	4c98 <printf>
+     d2c:	eb000fe2 	bl	4cbc <printf>
     ppid = getpid();
      d30:	eb000f50 	bl	4a78 <getpid>
      d34:	e50b000c 	str	r0, [fp, #-12]
@@ -1349,7 +1349,7 @@ mem(void)
         m1 = 0;
         while((m2 = malloc(10001)) != 0){
      d6c:	e3020711 	movw	r0, #10001	; 0x2711
-     d70:	eb0010d8 	bl	50d8 <malloc>
+     d70:	eb0010e1 	bl	50fc <malloc>
      d74:	e50b0014 	str	r0, [fp, #-20]	; 0xffffffec
      d78:	e51b3014 	ldr	r3, [fp, #-20]	; 0xffffffec
      d7c:	e3530000 	cmp	r3, #0
@@ -1365,7 +1365,7 @@ mem(void)
      d90:	e50b3014 	str	r3, [fp, #-20]	; 0xffffffec
             free(m1);
      d94:	e51b0008 	ldr	r0, [fp, #-8]
-     d98:	eb00104c 	bl	4ed0 <free>
+     d98:	eb001055 	bl	4ef4 <free>
             m1 = m2;
      d9c:	e51b3014 	ldr	r3, [fp, #-20]	; 0xffffffec
      da0:	e50b3008 	str	r3, [fp, #-8]
@@ -1384,7 +1384,7 @@ mem(void)
         }
         m1 = malloc(1024*20);
      db0:	e3a00a05 	mov	r0, #20480	; 0x5000
-     db4:	eb0010c7 	bl	50d8 <malloc>
+     db4:	eb0010d0 	bl	50fc <malloc>
      db8:	e50b0008 	str	r0, [fp, #-8]
         if(m1 == 0){
      dbc:	e51b3008 	ldr	r3, [fp, #-8]
@@ -1392,9 +1392,9 @@ mem(void)
      dc4:	1a000006 	bne	de4 <mem+0xd0>
             printf(1, "couldn't allocate mem?!!\n");
      dc8:	e3a00001 	mov	r0, #1
-     dcc:	e30517e4 	movw	r1, #22500	; 0x57e4
+     dcc:	e3051808 	movw	r1, #22536	; 0x5808
      dd0:	e3401000 	movt	r1, #0
-     dd4:	eb000faf 	bl	4c98 <printf>
+     dd4:	eb000fb8 	bl	4cbc <printf>
             kill(ppid);
      dd8:	e51b000c 	ldr	r0, [fp, #-12]
      ddc:	eb000ecb 	bl	4910 <kill>
@@ -1403,12 +1403,12 @@ mem(void)
         }
         free(m1);
      de4:	e51b0008 	ldr	r0, [fp, #-8]
-     de8:	eb001038 	bl	4ed0 <free>
+     de8:	eb001041 	bl	4ef4 <free>
         printf(1, "mem ok\n");
      dec:	e3a00001 	mov	r0, #1
-     df0:	e3051800 	movw	r1, #22528	; 0x5800
+     df0:	e3051824 	movw	r1, #22564	; 0x5824
      df4:	e3401000 	movt	r1, #0
-     df8:	eb000fa6 	bl	4c98 <printf>
+     df8:	eb000faf 	bl	4cbc <printf>
         exit();
      dfc:	eb000e8d 	bl	4838 <exit>
     } else {
@@ -1434,16 +1434,16 @@ sharedfd(void)
 
     printf(1, "sharedfd test\n");
      e18:	e3a00001 	mov	r0, #1
-     e1c:	e3051808 	movw	r1, #22536	; 0x5808
+     e1c:	e305182c 	movw	r1, #22572	; 0x582c
      e20:	e3401000 	movt	r1, #0
-     e24:	eb000f9b 	bl	4c98 <printf>
+     e24:	eb000fa4 	bl	4cbc <printf>
 
     unlink("sharedfd");
-     e28:	e3050818 	movw	r0, #22552	; 0x5818
+     e28:	e305083c 	movw	r0, #22588	; 0x583c
      e2c:	e3400000 	movt	r0, #0
      e30:	eb000eda 	bl	49a0 <unlink>
     fd = open("sharedfd", O_CREATE|O_RDWR);
-     e34:	e3050818 	movw	r0, #22552	; 0x5818
+     e34:	e305083c 	movw	r0, #22588	; 0x583c
      e38:	e3400000 	movt	r0, #0
      e3c:	e3001202 	movw	r1, #514	; 0x202
      e40:	eb000ec4 	bl	4958 <open>
@@ -1454,9 +1454,9 @@ sharedfd(void)
      e50:	aa000004 	bge	e68 <sharedfd+0x5c>
         printf(1, "fstests: cannot open sharedfd for writing");
      e54:	e3a00001 	mov	r0, #1
-     e58:	e3051824 	movw	r1, #22564	; 0x5824
+     e58:	e3051848 	movw	r1, #22600	; 0x5848
      e5c:	e3401000 	movt	r1, #0
-     e60:	eb000f8c 	bl	4c98 <printf>
+     e60:	eb000f95 	bl	4cbc <printf>
         return;
      e64:	ea00007f 	b	1068 <sharedfd+0x25c>
     }
@@ -1490,9 +1490,9 @@ sharedfd(void)
      ec4:	0a000004 	beq	edc <sharedfd+0xd0>
             printf(1, "fstests: write sharedfd failed\n");
      ec8:	e3a00001 	mov	r0, #1
-     ecc:	e3051850 	movw	r1, #22608	; 0x5850
+     ecc:	e3051874 	movw	r1, #22644	; 0x5874
      ed0:	e3401000 	movt	r1, #0
-     ed4:	eb000f6f 	bl	4c98 <printf>
+     ed4:	eb000f78 	bl	4cbc <printf>
             break;
      ed8:	ea000006 	b	ef8 <sharedfd+0xec>
         printf(1, "fstests: cannot open sharedfd for writing");
@@ -1526,7 +1526,7 @@ sharedfd(void)
      f0c:	e51b0014 	ldr	r0, [fp, #-20]	; 0xffffffec
      f10:	eb000e75 	bl	48ec <close>
     fd = open("sharedfd", 0);
-     f14:	e3050818 	movw	r0, #22552	; 0x5818
+     f14:	e305083c 	movw	r0, #22588	; 0x583c
      f18:	e3400000 	movt	r0, #0
      f1c:	e3a01000 	mov	r1, #0
      f20:	eb000e8c 	bl	4958 <open>
@@ -1537,9 +1537,9 @@ sharedfd(void)
      f30:	aa000004 	bge	f48 <sharedfd+0x13c>
         printf(1, "fstests: cannot open sharedfd for reading\n");
      f34:	e3a00001 	mov	r0, #1
-     f38:	e3051870 	movw	r1, #22640	; 0x5870
+     f38:	e3051894 	movw	r1, #22676	; 0x5894
      f3c:	e3401000 	movt	r1, #0
-     f40:	eb000f54 	bl	4c98 <printf>
+     f40:	eb000f5d 	bl	4cbc <printf>
         return;
      f44:	ea000047 	b	1068 <sharedfd+0x25c>
     }
@@ -1618,7 +1618,7 @@ sharedfd(void)
     1004:	e51b0014 	ldr	r0, [fp, #-20]	; 0xffffffec
     1008:	eb000e37 	bl	48ec <close>
     unlink("sharedfd");
-    100c:	e3050818 	movw	r0, #22552	; 0x5818
+    100c:	e305083c 	movw	r0, #22588	; 0x583c
     1010:	e3400000 	movt	r0, #0
     1014:	eb000e61 	bl	49a0 <unlink>
     if(nc == 10000 && np == 10000){
@@ -1632,18 +1632,18 @@ sharedfd(void)
     1034:	1a000004 	bne	104c <sharedfd+0x240>
         printf(1, "sharedfd ok\n");
     1038:	e3a00001 	mov	r0, #1
-    103c:	e305189c 	movw	r1, #22684	; 0x589c
+    103c:	e30518c0 	movw	r1, #22720	; 0x58c0
     1040:	e3401000 	movt	r1, #0
-    1044:	eb000f13 	bl	4c98 <printf>
+    1044:	eb000f1c 	bl	4cbc <printf>
     1048:	ea000006 	b	1068 <sharedfd+0x25c>
     } else {
         printf(1, "sharedfd oops %d %d\n", nc, np);
     104c:	e3a00001 	mov	r0, #1
-    1050:	e30518ac 	movw	r1, #22700	; 0x58ac
+    1050:	e30518d0 	movw	r1, #22736	; 0x58d0
     1054:	e3401000 	movt	r1, #0
     1058:	e51b200c 	ldr	r2, [fp, #-12]
     105c:	e51b3010 	ldr	r3, [fp, #-16]
-    1060:	eb000f0c 	bl	4c98 <printf>
+    1060:	eb000f15 	bl	4cbc <printf>
         exit();
     1064:	eb000df3 	bl	4838 <exit>
     }
@@ -1666,16 +1666,16 @@ twofiles(void)
 
     printf(1, "twofiles test\n");
     107c:	e3a00001 	mov	r0, #1
-    1080:	e30518c4 	movw	r1, #22724	; 0x58c4
+    1080:	e30518e8 	movw	r1, #22760	; 0x58e8
     1084:	e3401000 	movt	r1, #0
-    1088:	eb000f02 	bl	4c98 <printf>
+    1088:	eb000f0b 	bl	4cbc <printf>
 
     unlink("f1");
-    108c:	e30508d4 	movw	r0, #22740	; 0x58d4
+    108c:	e30508f8 	movw	r0, #22776	; 0x58f8
     1090:	e3400000 	movt	r0, #0
     1094:	eb000e41 	bl	49a0 <unlink>
     unlink("f2");
-    1098:	e30508d8 	movw	r0, #22744	; 0x58d8
+    1098:	e30508fc 	movw	r0, #22780	; 0x58fc
     109c:	e3400000 	movt	r0, #0
     10a0:	eb000e3e 	bl	49a0 <unlink>
 
@@ -1688,9 +1688,9 @@ twofiles(void)
     10b4:	aa000004 	bge	10cc <twofiles+0x5c>
         printf(1, "fork failed\n");
     10b8:	e3a00001 	mov	r0, #1
-    10bc:	e30517a8 	movw	r1, #22440	; 0x57a8
+    10bc:	e30517cc 	movw	r1, #22476	; 0x57cc
     10c0:	e3401000 	movt	r1, #0
-    10c4:	eb000ef3 	bl	4c98 <printf>
+    10c4:	eb000efc 	bl	4cbc <printf>
         exit();
     10c8:	eb000dda 	bl	4838 <exit>
     }
@@ -1699,10 +1699,10 @@ twofiles(void)
     10cc:	e51b3014 	ldr	r3, [fp, #-20]	; 0xffffffec
     10d0:	e3530000 	cmp	r3, #0
     10d4:	0a000002 	beq	10e4 <twofiles+0x74>
-    10d8:	e30538d4 	movw	r3, #22740	; 0x58d4
+    10d8:	e30538f8 	movw	r3, #22776	; 0x58f8
     10dc:	e3403000 	movt	r3, #0
     10e0:	ea000001 	b	10ec <twofiles+0x7c>
-    10e4:	e30538d8 	movw	r3, #22744	; 0x58d8
+    10e4:	e30538fc 	movw	r3, #22780	; 0x58fc
     10e8:	e3403000 	movt	r3, #0
     10ec:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
     fd = open(fname, O_CREATE | O_RDWR);
@@ -1716,9 +1716,9 @@ twofiles(void)
     1108:	aa000004 	bge	1120 <twofiles+0xb0>
         printf(1, "create failed\n");
     110c:	e3a00001 	mov	r0, #1
-    1110:	e30518dc 	movw	r1, #22748	; 0x58dc
+    1110:	e3051900 	movw	r1, #22784	; 0x5900
     1114:	e3401000 	movt	r1, #0
-    1118:	eb000ede 	bl	4c98 <printf>
+    1118:	eb000ee7 	bl	4cbc <printf>
         exit();
     111c:	eb000dc5 	bl	4838 <exit>
     }
@@ -1730,7 +1730,7 @@ twofiles(void)
     112c:	e3a03070 	mov	r3, #112	; 0x70
     1130:	ea000000 	b	1138 <twofiles+0xc8>
     1134:	e3a03063 	mov	r3, #99	; 0x63
-    1138:	e3090374 	movw	r0, #37748	; 0x9374
+    1138:	e3090398 	movw	r0, #37784	; 0x9398
     113c:	e3400000 	movt	r0, #0
     1140:	e1a01003 	mov	r1, r3
     1144:	e3a02c02 	mov	r2, #512	; 0x200
@@ -1741,7 +1741,7 @@ twofiles(void)
     1154:	ea000011 	b	11a0 <twofiles+0x130>
         if((n = write(fd, buf, 500)) != 500){
     1158:	e51b001c 	ldr	r0, [fp, #-28]	; 0xffffffe4
-    115c:	e3091374 	movw	r1, #37748	; 0x9374
+    115c:	e3091398 	movw	r1, #37784	; 0x9398
     1160:	e3401000 	movt	r1, #0
     1164:	e3a02f7d 	mov	r2, #500	; 0x1f4
     1168:	eb000dd6 	bl	48c8 <write>
@@ -1751,10 +1751,10 @@ twofiles(void)
     1178:	0a000005 	beq	1194 <twofiles+0x124>
             printf(1, "write failed %d\n", n);
     117c:	e3a00001 	mov	r0, #1
-    1180:	e30518ec 	movw	r1, #22764	; 0x58ec
+    1180:	e3051910 	movw	r1, #22800	; 0x5910
     1184:	e3401000 	movt	r1, #0
     1188:	e51b2020 	ldr	r2, [fp, #-32]	; 0xffffffe0
-    118c:	eb000ec1 	bl	4c98 <printf>
+    118c:	eb000eca 	bl	4cbc <printf>
             exit();
     1190:	eb000da8 	bl	4838 <exit>
         printf(1, "create failed\n");
@@ -1803,10 +1803,10 @@ twofiles(void)
     11d4:	e51b3008 	ldr	r3, [fp, #-8]
     11d8:	e3530000 	cmp	r3, #0
     11dc:	0a000002 	beq	11ec <twofiles+0x17c>
-    11e0:	e30538d4 	movw	r3, #22740	; 0x58d4
+    11e0:	e30538f8 	movw	r3, #22776	; 0x58f8
     11e4:	e3403000 	movt	r3, #0
     11e8:	ea000001 	b	11f4 <twofiles+0x184>
-    11ec:	e30538d8 	movw	r3, #22744	; 0x58d8
+    11ec:	e30538fc 	movw	r3, #22780	; 0x58fc
     11f0:	e3403000 	movt	r3, #0
     11f4:	e1a00003 	mov	r0, r3
     11f8:	e3a01000 	mov	r1, #0
@@ -1822,7 +1822,7 @@ twofiles(void)
     1214:	e50b300c 	str	r3, [fp, #-12]
     1218:	ea000015 	b	1274 <twofiles+0x204>
                 if(buf[j] != (i?'p':'c')){
-    121c:	e3093374 	movw	r3, #37748	; 0x9374
+    121c:	e3093398 	movw	r3, #37784	; 0x9398
     1220:	e3403000 	movt	r3, #0
     1224:	e51b200c 	ldr	r2, [fp, #-12]
     1228:	e0833002 	add	r3, r3, r2
@@ -1838,9 +1838,9 @@ twofiles(void)
     1250:	0a000004 	beq	1268 <twofiles+0x1f8>
                     printf(1, "wrong char\n");
     1254:	e3a00001 	mov	r0, #1
-    1258:	e3051900 	movw	r1, #22784	; 0x5900
+    1258:	e3051924 	movw	r1, #22820	; 0x5924
     125c:	e3401000 	movt	r1, #0
-    1260:	eb000e8c 	bl	4c98 <printf>
+    1260:	eb000e95 	bl	4cbc <printf>
                     exit();
     1264:	eb000d73 	bl	4838 <exit>
 
@@ -1873,7 +1873,7 @@ twofiles(void)
         total = 0;
         while((n = read(fd, buf, sizeof(buf))) > 0){
     1294:	e51b001c 	ldr	r0, [fp, #-28]	; 0xffffffe4
-    1298:	e3091374 	movw	r1, #37748	; 0x9374
+    1298:	e3091398 	movw	r1, #37784	; 0x9398
     129c:	e3401000 	movt	r1, #0
     12a0:	e3a02a02 	mov	r2, #8192	; 0x2000
     12a4:	eb000d7e 	bl	48a4 <read>
@@ -1896,10 +1896,10 @@ twofiles(void)
     12cc:	0a000005 	beq	12e8 <twofiles+0x278>
             printf(1, "wrong length %d\n", total);
     12d0:	e3a00001 	mov	r0, #1
-    12d4:	e305190c 	movw	r1, #22796	; 0x590c
+    12d4:	e3051930 	movw	r1, #22832	; 0x5930
     12d8:	e3401000 	movt	r1, #0
     12dc:	e51b2010 	ldr	r2, [fp, #-16]
-    12e0:	eb000e6c 	bl	4c98 <printf>
+    12e0:	eb000e75 	bl	4cbc <printf>
             exit();
     12e4:	eb000d53 	bl	4838 <exit>
     if(pid)
@@ -1920,19 +1920,19 @@ twofiles(void)
     }
 
     unlink("f1");
-    1300:	e30508d4 	movw	r0, #22740	; 0x58d4
+    1300:	e30508f8 	movw	r0, #22776	; 0x58f8
     1304:	e3400000 	movt	r0, #0
     1308:	eb000da4 	bl	49a0 <unlink>
     unlink("f2");
-    130c:	e30508d8 	movw	r0, #22744	; 0x58d8
+    130c:	e30508fc 	movw	r0, #22780	; 0x58fc
     1310:	e3400000 	movt	r0, #0
     1314:	eb000da1 	bl	49a0 <unlink>
 
     printf(1, "twofiles ok\n");
     1318:	e3a00001 	mov	r0, #1
-    131c:	e3051920 	movw	r1, #22816	; 0x5920
+    131c:	e3051944 	movw	r1, #22852	; 0x5944
     1320:	e3401000 	movt	r1, #0
-    1324:	eb000e5b 	bl	4c98 <printf>
+    1324:	eb000e64 	bl	4cbc <printf>
 }
     1328:	e24bd004 	sub	sp, fp, #4
     132c:	e8bd8800 	pop	{fp, pc}
@@ -1952,9 +1952,9 @@ createdelete(void)
 
     printf(1, "createdelete test\n");
     133c:	e3a00001 	mov	r0, #1
-    1340:	e3051930 	movw	r1, #22832	; 0x5930
+    1340:	e3051954 	movw	r1, #22868	; 0x5954
     1344:	e3401000 	movt	r1, #0
-    1348:	eb000e52 	bl	4c98 <printf>
+    1348:	eb000e5b 	bl	4cbc <printf>
     pid = fork();
     134c:	eb000d30 	bl	4814 <fork>
     1350:	e50b000c 	str	r0, [fp, #-12]
@@ -1964,9 +1964,9 @@ createdelete(void)
     135c:	aa000004 	bge	1374 <createdelete+0x44>
         printf(1, "fork failed\n");
     1360:	e3a00001 	mov	r0, #1
-    1364:	e30517a8 	movw	r1, #22440	; 0x57a8
+    1364:	e30517cc 	movw	r1, #22476	; 0x57cc
     1368:	e3401000 	movt	r1, #0
-    136c:	eb000e49 	bl	4c98 <printf>
+    136c:	eb000e52 	bl	4cbc <printf>
         exit();
     1370:	eb000d30 	bl	4838 <exit>
     }
@@ -2004,9 +2004,9 @@ createdelete(void)
     13d4:	aa000004 	bge	13ec <createdelete+0xbc>
             printf(1, "create failed\n");
     13d8:	e3a00001 	mov	r0, #1
-    13dc:	e30518dc 	movw	r1, #22748	; 0x58dc
+    13dc:	e3051900 	movw	r1, #22784	; 0x5900
     13e0:	e3401000 	movt	r1, #0
-    13e4:	eb000e2b 	bl	4c98 <printf>
+    13e4:	eb000e34 	bl	4cbc <printf>
             exit();
     13e8:	eb000d12 	bl	4838 <exit>
         }
@@ -2039,9 +2039,9 @@ createdelete(void)
     1444:	aa000004 	bge	145c <createdelete+0x12c>
                 printf(1, "unlink failed\n");
     1448:	e3a00001 	mov	r0, #1
-    144c:	e3051944 	movw	r1, #22852	; 0x5944
+    144c:	e3051968 	movw	r1, #22888	; 0x5968
     1450:	e3401000 	movt	r1, #0
-    1454:	eb000e0f 	bl	4c98 <printf>
+    1454:	eb000e18 	bl	4cbc <printf>
                 exit();
     1458:	eb000cf6 	bl	4838 <exit>
         exit();
@@ -2102,11 +2102,11 @@ createdelete(void)
     14e4:	aa000006 	bge	1504 <createdelete+0x1d4>
             printf(1, "oops createdelete %s didn't exist\n", name);
     14e8:	e3a00001 	mov	r0, #1
-    14ec:	e3051954 	movw	r1, #22868	; 0x5954
+    14ec:	e3051978 	movw	r1, #22904	; 0x5978
     14f0:	e3401000 	movt	r1, #0
     14f4:	e24b3030 	sub	r3, fp, #48	; 0x30
     14f8:	e1a02003 	mov	r2, r3
-    14fc:	eb000de5 	bl	4c98 <printf>
+    14fc:	eb000dee 	bl	4cbc <printf>
             exit();
     1500:	eb000ccc 	bl	4838 <exit>
         } else if((i >= 1 && i < N/2) && fd >= 0){
@@ -2121,11 +2121,11 @@ createdelete(void)
     1524:	ba000006 	blt	1544 <createdelete+0x214>
             printf(1, "oops createdelete %s did exist\n", name);
     1528:	e3a00001 	mov	r0, #1
-    152c:	e3051978 	movw	r1, #22904	; 0x5978
+    152c:	e305199c 	movw	r1, #22940	; 0x599c
     1530:	e3401000 	movt	r1, #0
     1534:	e24b3030 	sub	r3, fp, #48	; 0x30
     1538:	e1a02003 	mov	r2, r3
-    153c:	eb000dd5 	bl	4c98 <printf>
+    153c:	eb000dde 	bl	4cbc <printf>
             exit();
     1540:	eb000cbc 	bl	4838 <exit>
         }
@@ -2164,11 +2164,11 @@ createdelete(void)
     15a8:	aa000006 	bge	15c8 <createdelete+0x298>
             printf(1, "oops createdelete %s didn't exist\n", name);
     15ac:	e3a00001 	mov	r0, #1
-    15b0:	e3051954 	movw	r1, #22868	; 0x5954
+    15b0:	e3051978 	movw	r1, #22904	; 0x5978
     15b4:	e3401000 	movt	r1, #0
     15b8:	e24b3030 	sub	r3, fp, #48	; 0x30
     15bc:	e1a02003 	mov	r2, r3
-    15c0:	eb000db4 	bl	4c98 <printf>
+    15c0:	eb000dbd 	bl	4cbc <printf>
             exit();
     15c4:	eb000c9b 	bl	4838 <exit>
         } else if((i >= 1 && i < N/2) && fd >= 0){
@@ -2183,11 +2183,11 @@ createdelete(void)
     15e8:	ba000006 	blt	1608 <createdelete+0x2d8>
             printf(1, "oops createdelete %s did exist\n", name);
     15ec:	e3a00001 	mov	r0, #1
-    15f0:	e3051978 	movw	r1, #22904	; 0x5978
+    15f0:	e305199c 	movw	r1, #22940	; 0x599c
     15f4:	e3401000 	movt	r1, #0
     15f8:	e24b3030 	sub	r3, fp, #48	; 0x30
     15fc:	e1a02003 	mov	r2, r3
-    1600:	eb000da4 	bl	4c98 <printf>
+    1600:	eb000dad 	bl	4cbc <printf>
             exit();
     1604:	eb000c8b 	bl	4838 <exit>
         }
@@ -2258,9 +2258,9 @@ createdelete(void)
 
     printf(1, "createdelete ok\n");
     1694:	e3a00001 	mov	r0, #1
-    1698:	e3051998 	movw	r1, #22936	; 0x5998
+    1698:	e30519bc 	movw	r1, #22972	; 0x59bc
     169c:	e3401000 	movt	r1, #0
-    16a0:	eb000d7c 	bl	4c98 <printf>
+    16a0:	eb000d85 	bl	4cbc <printf>
 }
     16a4:	e24bd004 	sub	sp, fp, #4
     16a8:	e8bd8800 	pop	{fp, pc}
@@ -2278,11 +2278,11 @@ unlinkread(void)
 
     printf(1, "unlinkread test\n");
     16b8:	e3a00001 	mov	r0, #1
-    16bc:	e30519ac 	movw	r1, #22956	; 0x59ac
+    16bc:	e30519d0 	movw	r1, #22992	; 0x59d0
     16c0:	e3401000 	movt	r1, #0
-    16c4:	eb000d73 	bl	4c98 <printf>
+    16c4:	eb000d7c 	bl	4cbc <printf>
     fd = open("unlinkread", O_CREATE | O_RDWR);
-    16c8:	e30509c0 	movw	r0, #22976	; 0x59c0
+    16c8:	e30509e4 	movw	r0, #23012	; 0x59e4
     16cc:	e3400000 	movt	r0, #0
     16d0:	e3001202 	movw	r1, #514	; 0x202
     16d4:	eb000c9f 	bl	4958 <open>
@@ -2293,15 +2293,15 @@ unlinkread(void)
     16e4:	aa000004 	bge	16fc <unlinkread+0x50>
         printf(1, "create unlinkread failed\n");
     16e8:	e3a00001 	mov	r0, #1
-    16ec:	e30519cc 	movw	r1, #22988	; 0x59cc
+    16ec:	e30519f0 	movw	r1, #23024	; 0x59f0
     16f0:	e3401000 	movt	r1, #0
-    16f4:	eb000d67 	bl	4c98 <printf>
+    16f4:	eb000d70 	bl	4cbc <printf>
         exit();
     16f8:	eb000c4e 	bl	4838 <exit>
     }
     write(fd, "hello", 5);
     16fc:	e51b0008 	ldr	r0, [fp, #-8]
-    1700:	e30519e8 	movw	r1, #23016	; 0x59e8
+    1700:	e3051a0c 	movw	r1, #23052	; 0x5a0c
     1704:	e3401000 	movt	r1, #0
     1708:	e3a02005 	mov	r2, #5
     170c:	eb000c6d 	bl	48c8 <write>
@@ -2310,7 +2310,7 @@ unlinkread(void)
     1714:	eb000c74 	bl	48ec <close>
 
     fd = open("unlinkread", O_RDWR);
-    1718:	e30509c0 	movw	r0, #22976	; 0x59c0
+    1718:	e30509e4 	movw	r0, #23012	; 0x59e4
     171c:	e3400000 	movt	r0, #0
     1720:	e3a01002 	mov	r1, #2
     1724:	eb000c8b 	bl	4958 <open>
@@ -2321,14 +2321,14 @@ unlinkread(void)
     1734:	aa000004 	bge	174c <unlinkread+0xa0>
         printf(1, "open unlinkread failed\n");
     1738:	e3a00001 	mov	r0, #1
-    173c:	e30519f0 	movw	r1, #23024	; 0x59f0
+    173c:	e3051a14 	movw	r1, #23060	; 0x5a14
     1740:	e3401000 	movt	r1, #0
-    1744:	eb000d53 	bl	4c98 <printf>
+    1744:	eb000d5c 	bl	4cbc <printf>
         exit();
     1748:	eb000c3a 	bl	4838 <exit>
     }
     if(unlink("unlinkread") != 0){
-    174c:	e30509c0 	movw	r0, #22976	; 0x59c0
+    174c:	e30509e4 	movw	r0, #23012	; 0x59e4
     1750:	e3400000 	movt	r0, #0
     1754:	eb000c91 	bl	49a0 <unlink>
     1758:	e1a03000 	mov	r3, r0
@@ -2336,22 +2336,22 @@ unlinkread(void)
     1760:	0a000004 	beq	1778 <unlinkread+0xcc>
         printf(1, "unlink unlinkread failed\n");
     1764:	e3a00001 	mov	r0, #1
-    1768:	e3051a08 	movw	r1, #23048	; 0x5a08
+    1768:	e3051a2c 	movw	r1, #23084	; 0x5a2c
     176c:	e3401000 	movt	r1, #0
-    1770:	eb000d48 	bl	4c98 <printf>
+    1770:	eb000d51 	bl	4cbc <printf>
         exit();
     1774:	eb000c2f 	bl	4838 <exit>
     }
 
     fd1 = open("unlinkread", O_CREATE | O_RDWR);
-    1778:	e30509c0 	movw	r0, #22976	; 0x59c0
+    1778:	e30509e4 	movw	r0, #23012	; 0x59e4
     177c:	e3400000 	movt	r0, #0
     1780:	e3001202 	movw	r1, #514	; 0x202
     1784:	eb000c73 	bl	4958 <open>
     1788:	e50b000c 	str	r0, [fp, #-12]
     write(fd1, "yyy", 3);
     178c:	e51b000c 	ldr	r0, [fp, #-12]
-    1790:	e3051a24 	movw	r1, #23076	; 0x5a24
+    1790:	e3051a48 	movw	r1, #23112	; 0x5a48
     1794:	e3401000 	movt	r1, #0
     1798:	e3a02003 	mov	r2, #3
     179c:	eb000c49 	bl	48c8 <write>
@@ -2361,7 +2361,7 @@ unlinkread(void)
 
     if(read(fd, buf, sizeof(buf)) != 5){
     17a8:	e51b0008 	ldr	r0, [fp, #-8]
-    17ac:	e3091374 	movw	r1, #37748	; 0x9374
+    17ac:	e3091398 	movw	r1, #37784	; 0x9398
     17b0:	e3401000 	movt	r1, #0
     17b4:	e3a02a02 	mov	r2, #8192	; 0x2000
     17b8:	eb000c39 	bl	48a4 <read>
@@ -2370,29 +2370,29 @@ unlinkread(void)
     17c4:	0a000004 	beq	17dc <unlinkread+0x130>
         printf(1, "unlinkread read failed");
     17c8:	e3a00001 	mov	r0, #1
-    17cc:	e3051a28 	movw	r1, #23080	; 0x5a28
+    17cc:	e3051a4c 	movw	r1, #23116	; 0x5a4c
     17d0:	e3401000 	movt	r1, #0
-    17d4:	eb000d2f 	bl	4c98 <printf>
+    17d4:	eb000d38 	bl	4cbc <printf>
         exit();
     17d8:	eb000c16 	bl	4838 <exit>
     }
     if(buf[0] != 'h'){
-    17dc:	e3093374 	movw	r3, #37748	; 0x9374
+    17dc:	e3093398 	movw	r3, #37784	; 0x9398
     17e0:	e3403000 	movt	r3, #0
     17e4:	e5d33000 	ldrb	r3, [r3]
     17e8:	e3530068 	cmp	r3, #104	; 0x68
     17ec:	0a000004 	beq	1804 <unlinkread+0x158>
         printf(1, "unlinkread wrong data\n");
     17f0:	e3a00001 	mov	r0, #1
-    17f4:	e3051a40 	movw	r1, #23104	; 0x5a40
+    17f4:	e3051a64 	movw	r1, #23140	; 0x5a64
     17f8:	e3401000 	movt	r1, #0
-    17fc:	eb000d25 	bl	4c98 <printf>
+    17fc:	eb000d2e 	bl	4cbc <printf>
         exit();
     1800:	eb000c0c 	bl	4838 <exit>
     }
     if(write(fd, buf, 10) != 10){
     1804:	e51b0008 	ldr	r0, [fp, #-8]
-    1808:	e3091374 	movw	r1, #37748	; 0x9374
+    1808:	e3091398 	movw	r1, #37784	; 0x9398
     180c:	e3401000 	movt	r1, #0
     1810:	e3a0200a 	mov	r2, #10
     1814:	eb000c2b 	bl	48c8 <write>
@@ -2401,9 +2401,9 @@ unlinkread(void)
     1820:	0a000004 	beq	1838 <unlinkread+0x18c>
         printf(1, "unlinkread write failed\n");
     1824:	e3a00001 	mov	r0, #1
-    1828:	e3051a58 	movw	r1, #23128	; 0x5a58
+    1828:	e3051a7c 	movw	r1, #23164	; 0x5a7c
     182c:	e3401000 	movt	r1, #0
-    1830:	eb000d18 	bl	4c98 <printf>
+    1830:	eb000d21 	bl	4cbc <printf>
         exit();
     1834:	eb000bff 	bl	4838 <exit>
     }
@@ -2411,14 +2411,14 @@ unlinkread(void)
     1838:	e51b0008 	ldr	r0, [fp, #-8]
     183c:	eb000c2a 	bl	48ec <close>
     unlink("unlinkread");
-    1840:	e30509c0 	movw	r0, #22976	; 0x59c0
+    1840:	e30509e4 	movw	r0, #23012	; 0x59e4
     1844:	e3400000 	movt	r0, #0
     1848:	eb000c54 	bl	49a0 <unlink>
     printf(1, "unlinkread ok\n");
     184c:	e3a00001 	mov	r0, #1
-    1850:	e3051a74 	movw	r1, #23156	; 0x5a74
+    1850:	e3051a98 	movw	r1, #23192	; 0x5a98
     1854:	e3401000 	movt	r1, #0
-    1858:	eb000d0e 	bl	4c98 <printf>
+    1858:	eb000d17 	bl	4cbc <printf>
 }
     185c:	e24bd004 	sub	sp, fp, #4
     1860:	e8bd8800 	pop	{fp, pc}
@@ -2435,21 +2435,21 @@ linktest(void)
 
     printf(1, "linktest\n");
     1870:	e3a00001 	mov	r0, #1
-    1874:	e3051a84 	movw	r1, #23172	; 0x5a84
+    1874:	e3051aa8 	movw	r1, #23208	; 0x5aa8
     1878:	e3401000 	movt	r1, #0
-    187c:	eb000d05 	bl	4c98 <printf>
+    187c:	eb000d0e 	bl	4cbc <printf>
 
     unlink("lf1");
-    1880:	e3050a90 	movw	r0, #23184	; 0x5a90
+    1880:	e3050ab4 	movw	r0, #23220	; 0x5ab4
     1884:	e3400000 	movt	r0, #0
     1888:	eb000c44 	bl	49a0 <unlink>
     unlink("lf2");
-    188c:	e3050a94 	movw	r0, #23188	; 0x5a94
+    188c:	e3050ab8 	movw	r0, #23224	; 0x5ab8
     1890:	e3400000 	movt	r0, #0
     1894:	eb000c41 	bl	49a0 <unlink>
 
     fd = open("lf1", O_CREATE|O_RDWR);
-    1898:	e3050a90 	movw	r0, #23184	; 0x5a90
+    1898:	e3050ab4 	movw	r0, #23220	; 0x5ab4
     189c:	e3400000 	movt	r0, #0
     18a0:	e3001202 	movw	r1, #514	; 0x202
     18a4:	eb000c2b 	bl	4958 <open>
@@ -2460,15 +2460,15 @@ linktest(void)
     18b4:	aa000004 	bge	18cc <linktest+0x68>
         printf(1, "create lf1 failed\n");
     18b8:	e3a00001 	mov	r0, #1
-    18bc:	e3051a98 	movw	r1, #23192	; 0x5a98
+    18bc:	e3051abc 	movw	r1, #23228	; 0x5abc
     18c0:	e3401000 	movt	r1, #0
-    18c4:	eb000cf3 	bl	4c98 <printf>
+    18c4:	eb000cfc 	bl	4cbc <printf>
         exit();
     18c8:	eb000bda 	bl	4838 <exit>
     }
     if(write(fd, "hello", 5) != 5){
     18cc:	e51b0008 	ldr	r0, [fp, #-8]
-    18d0:	e30519e8 	movw	r1, #23016	; 0x59e8
+    18d0:	e3051a0c 	movw	r1, #23052	; 0x5a0c
     18d4:	e3401000 	movt	r1, #0
     18d8:	e3a02005 	mov	r2, #5
     18dc:	eb000bf9 	bl	48c8 <write>
@@ -2477,9 +2477,9 @@ linktest(void)
     18e8:	0a000004 	beq	1900 <linktest+0x9c>
         printf(1, "write lf1 failed\n");
     18ec:	e3a00001 	mov	r0, #1
-    18f0:	e3051aac 	movw	r1, #23212	; 0x5aac
+    18f0:	e3051ad0 	movw	r1, #23248	; 0x5ad0
     18f4:	e3401000 	movt	r1, #0
-    18f8:	eb000ce6 	bl	4c98 <printf>
+    18f8:	eb000cef 	bl	4cbc <printf>
         exit();
     18fc:	eb000bcd 	bl	4838 <exit>
     }
@@ -2488,9 +2488,9 @@ linktest(void)
     1904:	eb000bf8 	bl	48ec <close>
 
     if(link("lf1", "lf2") < 0){
-    1908:	e3050a90 	movw	r0, #23184	; 0x5a90
+    1908:	e3050ab4 	movw	r0, #23220	; 0x5ab4
     190c:	e3400000 	movt	r0, #0
-    1910:	e3051a94 	movw	r1, #23188	; 0x5a94
+    1910:	e3051ab8 	movw	r1, #23224	; 0x5ab8
     1914:	e3401000 	movt	r1, #0
     1918:	eb000c32 	bl	49e8 <link>
     191c:	e1a03000 	mov	r3, r0
@@ -2498,19 +2498,19 @@ linktest(void)
     1924:	aa000004 	bge	193c <linktest+0xd8>
         printf(1, "link lf1 lf2 failed\n");
     1928:	e3a00001 	mov	r0, #1
-    192c:	e3051ac0 	movw	r1, #23232	; 0x5ac0
+    192c:	e3051ae4 	movw	r1, #23268	; 0x5ae4
     1930:	e3401000 	movt	r1, #0
-    1934:	eb000cd7 	bl	4c98 <printf>
+    1934:	eb000ce0 	bl	4cbc <printf>
         exit();
     1938:	eb000bbe 	bl	4838 <exit>
     }
     unlink("lf1");
-    193c:	e3050a90 	movw	r0, #23184	; 0x5a90
+    193c:	e3050ab4 	movw	r0, #23220	; 0x5ab4
     1940:	e3400000 	movt	r0, #0
     1944:	eb000c15 	bl	49a0 <unlink>
 
     if(open("lf1", 0) >= 0){
-    1948:	e3050a90 	movw	r0, #23184	; 0x5a90
+    1948:	e3050ab4 	movw	r0, #23220	; 0x5ab4
     194c:	e3400000 	movt	r0, #0
     1950:	e3a01000 	mov	r1, #0
     1954:	eb000bff 	bl	4958 <open>
@@ -2519,15 +2519,15 @@ linktest(void)
     1960:	ba000004 	blt	1978 <linktest+0x114>
         printf(1, "unlinked lf1 but it is still there!\n");
     1964:	e3a00001 	mov	r0, #1
-    1968:	e3051ad8 	movw	r1, #23256	; 0x5ad8
+    1968:	e3051afc 	movw	r1, #23292	; 0x5afc
     196c:	e3401000 	movt	r1, #0
-    1970:	eb000cc8 	bl	4c98 <printf>
+    1970:	eb000cd1 	bl	4cbc <printf>
         exit();
     1974:	eb000baf 	bl	4838 <exit>
     }
 
     fd = open("lf2", 0);
-    1978:	e3050a94 	movw	r0, #23188	; 0x5a94
+    1978:	e3050ab8 	movw	r0, #23224	; 0x5ab8
     197c:	e3400000 	movt	r0, #0
     1980:	e3a01000 	mov	r1, #0
     1984:	eb000bf3 	bl	4958 <open>
@@ -2538,15 +2538,15 @@ linktest(void)
     1994:	aa000004 	bge	19ac <linktest+0x148>
         printf(1, "open lf2 failed\n");
     1998:	e3a00001 	mov	r0, #1
-    199c:	e3051b00 	movw	r1, #23296	; 0x5b00
+    199c:	e3051b24 	movw	r1, #23332	; 0x5b24
     19a0:	e3401000 	movt	r1, #0
-    19a4:	eb000cbb 	bl	4c98 <printf>
+    19a4:	eb000cc4 	bl	4cbc <printf>
         exit();
     19a8:	eb000ba2 	bl	4838 <exit>
     }
     if(read(fd, buf, sizeof(buf)) != 5){
     19ac:	e51b0008 	ldr	r0, [fp, #-8]
-    19b0:	e3091374 	movw	r1, #37748	; 0x9374
+    19b0:	e3091398 	movw	r1, #37784	; 0x9398
     19b4:	e3401000 	movt	r1, #0
     19b8:	e3a02a02 	mov	r2, #8192	; 0x2000
     19bc:	eb000bb8 	bl	48a4 <read>
@@ -2555,9 +2555,9 @@ linktest(void)
     19c8:	0a000004 	beq	19e0 <linktest+0x17c>
         printf(1, "read lf2 failed\n");
     19cc:	e3a00001 	mov	r0, #1
-    19d0:	e3051b14 	movw	r1, #23316	; 0x5b14
+    19d0:	e3051b38 	movw	r1, #23352	; 0x5b38
     19d4:	e3401000 	movt	r1, #0
-    19d8:	eb000cae 	bl	4c98 <printf>
+    19d8:	eb000cb7 	bl	4cbc <printf>
         exit();
     19dc:	eb000b95 	bl	4838 <exit>
     }
@@ -2566,9 +2566,9 @@ linktest(void)
     19e4:	eb000bc0 	bl	48ec <close>
 
     if(link("lf2", "lf2") >= 0){
-    19e8:	e3050a94 	movw	r0, #23188	; 0x5a94
+    19e8:	e3050ab8 	movw	r0, #23224	; 0x5ab8
     19ec:	e3400000 	movt	r0, #0
-    19f0:	e3051a94 	movw	r1, #23188	; 0x5a94
+    19f0:	e3051ab8 	movw	r1, #23224	; 0x5ab8
     19f4:	e3401000 	movt	r1, #0
     19f8:	eb000bfa 	bl	49e8 <link>
     19fc:	e1a03000 	mov	r3, r0
@@ -2576,21 +2576,21 @@ linktest(void)
     1a04:	ba000004 	blt	1a1c <linktest+0x1b8>
         printf(1, "link lf2 lf2 succeeded! oops\n");
     1a08:	e3a00001 	mov	r0, #1
-    1a0c:	e3051b28 	movw	r1, #23336	; 0x5b28
+    1a0c:	e3051b4c 	movw	r1, #23372	; 0x5b4c
     1a10:	e3401000 	movt	r1, #0
-    1a14:	eb000c9f 	bl	4c98 <printf>
+    1a14:	eb000ca8 	bl	4cbc <printf>
         exit();
     1a18:	eb000b86 	bl	4838 <exit>
     }
 
     unlink("lf2");
-    1a1c:	e3050a94 	movw	r0, #23188	; 0x5a94
+    1a1c:	e3050ab8 	movw	r0, #23224	; 0x5ab8
     1a20:	e3400000 	movt	r0, #0
     1a24:	eb000bdd 	bl	49a0 <unlink>
     if(link("lf2", "lf1") >= 0){
-    1a28:	e3050a94 	movw	r0, #23188	; 0x5a94
+    1a28:	e3050ab8 	movw	r0, #23224	; 0x5ab8
     1a2c:	e3400000 	movt	r0, #0
-    1a30:	e3051a90 	movw	r1, #23184	; 0x5a90
+    1a30:	e3051ab4 	movw	r1, #23220	; 0x5ab4
     1a34:	e3401000 	movt	r1, #0
     1a38:	eb000bea 	bl	49e8 <link>
     1a3c:	e1a03000 	mov	r3, r0
@@ -2598,17 +2598,17 @@ linktest(void)
     1a44:	ba000004 	blt	1a5c <linktest+0x1f8>
         printf(1, "link non-existant succeeded! oops\n");
     1a48:	e3a00001 	mov	r0, #1
-    1a4c:	e3051b48 	movw	r1, #23368	; 0x5b48
+    1a4c:	e3051b6c 	movw	r1, #23404	; 0x5b6c
     1a50:	e3401000 	movt	r1, #0
-    1a54:	eb000c8f 	bl	4c98 <printf>
+    1a54:	eb000c98 	bl	4cbc <printf>
         exit();
     1a58:	eb000b76 	bl	4838 <exit>
     }
 
     if(link(".", "lf1") >= 0){
-    1a5c:	e3050b6c 	movw	r0, #23404	; 0x5b6c
+    1a5c:	e3050b90 	movw	r0, #23440	; 0x5b90
     1a60:	e3400000 	movt	r0, #0
-    1a64:	e3051a90 	movw	r1, #23184	; 0x5a90
+    1a64:	e3051ab4 	movw	r1, #23220	; 0x5ab4
     1a68:	e3401000 	movt	r1, #0
     1a6c:	eb000bdd 	bl	49e8 <link>
     1a70:	e1a03000 	mov	r3, r0
@@ -2616,18 +2616,18 @@ linktest(void)
     1a78:	ba000004 	blt	1a90 <linktest+0x22c>
         printf(1, "link . lf1 succeeded! oops\n");
     1a7c:	e3a00001 	mov	r0, #1
-    1a80:	e3051b70 	movw	r1, #23408	; 0x5b70
+    1a80:	e3051b94 	movw	r1, #23444	; 0x5b94
     1a84:	e3401000 	movt	r1, #0
-    1a88:	eb000c82 	bl	4c98 <printf>
+    1a88:	eb000c8b 	bl	4cbc <printf>
         exit();
     1a8c:	eb000b69 	bl	4838 <exit>
     }
 
     printf(1, "linktest ok\n");
     1a90:	e3a00001 	mov	r0, #1
-    1a94:	e3051b8c 	movw	r1, #23436	; 0x5b8c
+    1a94:	e3051bb0 	movw	r1, #23472	; 0x5bb0
     1a98:	e3401000 	movt	r1, #0
-    1a9c:	eb000c7d 	bl	4c98 <printf>
+    1a9c:	eb000c86 	bl	4cbc <printf>
 }
     1aa0:	e24bd004 	sub	sp, fp, #4
     1aa4:	e8bd8800 	pop	{fp, pc}
@@ -2648,9 +2648,9 @@ concreate(void)
 
     printf(1, "concreate test\n");
     1ab4:	e3a00001 	mov	r0, #1
-    1ab8:	e3051b9c 	movw	r1, #23452	; 0x5b9c
+    1ab8:	e3051bc0 	movw	r1, #23488	; 0x5bc0
     1abc:	e3401000 	movt	r1, #0
-    1ac0:	eb000c74 	bl	4c98 <printf>
+    1ac0:	eb000c7d 	bl	4cbc <printf>
     file[0] = 'C';
     1ac4:	e3a03043 	mov	r3, #67	; 0x43
     1ac8:	e54b3018 	strb	r3, [fp, #-24]	; 0xffffffe8
@@ -2691,7 +2691,7 @@ concreate(void)
     1b3c:	e3520001 	cmp	r2, #1
     1b40:	1a000005 	bne	1b5c <concreate+0xb4>
             link("C0", file);
-    1b44:	e3050bac 	movw	r0, #23468	; 0x5bac
+    1b44:	e3050bd0 	movw	r0, #23504	; 0x5bd0
     1b48:	e3400000 	movt	r0, #0
     1b4c:	e24b3018 	sub	r3, fp, #24
     1b50:	e1a01003 	mov	r1, r3
@@ -2715,7 +2715,7 @@ concreate(void)
     1b94:	e3520001 	cmp	r2, #1
     1b98:	1a000005 	bne	1bb4 <concreate+0x10c>
             link("C0", file);
-    1b9c:	e3050bac 	movw	r0, #23468	; 0x5bac
+    1b9c:	e3050bd0 	movw	r0, #23504	; 0x5bd0
     1ba0:	e3400000 	movt	r0, #0
     1ba4:	e24b3018 	sub	r3, fp, #24
     1ba8:	e1a01003 	mov	r1, r3
@@ -2734,11 +2734,11 @@ concreate(void)
     1bd0:	aa000006 	bge	1bf0 <concreate+0x148>
                 printf(1, "concreate create %s failed\n", file);
     1bd4:	e3a00001 	mov	r0, #1
-    1bd8:	e3051bb0 	movw	r1, #23472	; 0x5bb0
+    1bd8:	e3051bd4 	movw	r1, #23508	; 0x5bd4
     1bdc:	e3401000 	movt	r1, #0
     1be0:	e24b3018 	sub	r3, fp, #24
     1be4:	e1a02003 	mov	r2, r3
-    1be8:	eb000c2a 	bl	4c98 <printf>
+    1be8:	eb000c33 	bl	4cbc <printf>
                 exit();
     1bec:	eb000b11 	bl	4838 <exit>
             }
@@ -2779,7 +2779,7 @@ concreate(void)
     1c30:	e3a02028 	mov	r2, #40	; 0x28
     1c34:	eb000a06 	bl	4454 <memset>
     fd = open(".", 0);
-    1c38:	e3050b6c 	movw	r0, #23404	; 0x5b6c
+    1c38:	e3050b90 	movw	r0, #23440	; 0x5b90
     1c3c:	e3400000 	movt	r0, #0
     1c40:	e3a01000 	mov	r1, #0
     1c44:	eb000b43 	bl	4958 <open>
@@ -2816,10 +2816,10 @@ concreate(void)
     1ca0:	e24b3050 	sub	r3, fp, #80	; 0x50
     1ca4:	e2833002 	add	r3, r3, #2
     1ca8:	e3a00001 	mov	r0, #1
-    1cac:	e3051bcc 	movw	r1, #23500	; 0x5bcc
+    1cac:	e3051bf0 	movw	r1, #23536	; 0x5bf0
     1cb0:	e3401000 	movt	r1, #0
     1cb4:	e1a02003 	mov	r2, r3
-    1cb8:	eb000bf6 	bl	4c98 <printf>
+    1cb8:	eb000bff 	bl	4cbc <printf>
                 exit();
     1cbc:	eb000add 	bl	4838 <exit>
             }
@@ -2837,10 +2837,10 @@ concreate(void)
     1ce4:	e24b3050 	sub	r3, fp, #80	; 0x50
     1ce8:	e2833002 	add	r3, r3, #2
     1cec:	e3a00001 	mov	r0, #1
-    1cf0:	e3051be8 	movw	r1, #23528	; 0x5be8
+    1cf0:	e3051c0c 	movw	r1, #23564	; 0x5c0c
     1cf4:	e3401000 	movt	r1, #0
     1cf8:	e1a02003 	mov	r2, r3
-    1cfc:	eb000be5 	bl	4c98 <printf>
+    1cfc:	eb000bee 	bl	4cbc <printf>
                 exit();
     1d00:	eb000acc 	bl	4838 <exit>
             }
@@ -2894,9 +2894,9 @@ concreate(void)
     1d68:	0a000004 	beq	1d80 <concreate+0x2d8>
         printf(1, "concreate not enough files in directory listing\n");
     1d6c:	e3a00001 	mov	r0, #1
-    1d70:	e3051c08 	movw	r1, #23560	; 0x5c08
+    1d70:	e3051c2c 	movw	r1, #23596	; 0x5c2c
     1d74:	e3401000 	movt	r1, #0
-    1d78:	eb000bc6 	bl	4c98 <printf>
+    1d78:	eb000bcf 	bl	4cbc <printf>
         exit();
     1d7c:	eb000aad 	bl	4838 <exit>
     }
@@ -2920,9 +2920,9 @@ concreate(void)
     1db0:	aa000004 	bge	1dc8 <concreate+0x320>
             printf(1, "fork failed\n");
     1db4:	e3a00001 	mov	r0, #1
-    1db8:	e30517a8 	movw	r1, #22440	; 0x57a8
+    1db8:	e30517cc 	movw	r1, #22476	; 0x57cc
     1dbc:	e3401000 	movt	r1, #0
-    1dc0:	eb000bb4 	bl	4c98 <printf>
+    1dc0:	eb000bbd 	bl	4cbc <printf>
             exit();
     1dc4:	eb000a9b 	bl	4838 <exit>
         }
@@ -3044,9 +3044,9 @@ concreate(void)
 
     printf(1, "concreate ok\n");
     1f10:	e3a00001 	mov	r0, #1
-    1f14:	e3051c3c 	movw	r1, #23612	; 0x5c3c
+    1f14:	e3051c60 	movw	r1, #23648	; 0x5c60
     1f18:	e3401000 	movt	r1, #0
-    1f1c:	eb000b5d 	bl	4c98 <printf>
+    1f1c:	eb000b66 	bl	4cbc <printf>
 }
     1f20:	e24bd004 	sub	sp, fp, #4
     1f24:	e8bd8800 	pop	{fp, pc}
@@ -3065,12 +3065,12 @@ linkunlink()
 
     printf(1, "linkunlink test\n");
     1f34:	e3a00001 	mov	r0, #1
-    1f38:	e3051c4c 	movw	r1, #23628	; 0x5c4c
+    1f38:	e3051c70 	movw	r1, #23664	; 0x5c70
     1f3c:	e3401000 	movt	r1, #0
-    1f40:	eb000b54 	bl	4c98 <printf>
+    1f40:	eb000b5d 	bl	4cbc <printf>
 
     unlink("x");
-    1f44:	e3050758 	movw	r0, #22360	; 0x5758
+    1f44:	e305077c 	movw	r0, #22396	; 0x577c
     1f48:	e3400000 	movt	r0, #0
     1f4c:	eb000a93 	bl	49a0 <unlink>
     pid = fork();
@@ -3082,9 +3082,9 @@ linkunlink()
     1f60:	aa000004 	bge	1f78 <linkunlink+0x50>
         printf(1, "fork failed\n");
     1f64:	e3a00001 	mov	r0, #1
-    1f68:	e30517a8 	movw	r1, #22440	; 0x57a8
+    1f68:	e30517cc 	movw	r1, #22476	; 0x57cc
     1f6c:	e3401000 	movt	r1, #0
-    1f70:	eb000b48 	bl	4c98 <printf>
+    1f70:	eb000b51 	bl	4cbc <printf>
         exit();
     1f74:	eb000a2f 	bl	4838 <exit>
     }
@@ -3122,7 +3122,7 @@ linkunlink()
     1fe0:	e3520000 	cmp	r2, #0
     1fe4:	1a000007 	bne	2008 <linkunlink+0xe0>
             close(open("x", O_RDWR | O_CREATE));
-    1fe8:	e3050758 	movw	r0, #22360	; 0x5758
+    1fe8:	e305077c 	movw	r0, #22396	; 0x577c
     1fec:	e3400000 	movt	r0, #0
     1ff0:	e3001202 	movw	r1, #514	; 0x202
     1ff4:	eb000a57 	bl	4958 <open>
@@ -3143,15 +3143,15 @@ linkunlink()
     202c:	e3520001 	cmp	r2, #1
     2030:	1a000005 	bne	204c <linkunlink+0x124>
             link("cat", "x");
-    2034:	e3050c60 	movw	r0, #23648	; 0x5c60
+    2034:	e3050c84 	movw	r0, #23684	; 0x5c84
     2038:	e3400000 	movt	r0, #0
-    203c:	e3051758 	movw	r1, #22360	; 0x5758
+    203c:	e305177c 	movw	r1, #22396	; 0x577c
     2040:	e3401000 	movt	r1, #0
     2044:	eb000a67 	bl	49e8 <link>
     2048:	ea000002 	b	2058 <linkunlink+0x130>
         } else {
             unlink("x");
-    204c:	e3050758 	movw	r0, #22360	; 0x5758
+    204c:	e305077c 	movw	r0, #22396	; 0x577c
     2050:	e3400000 	movt	r0, #0
     2054:	eb000a51 	bl	49a0 <unlink>
         printf(1, "fork failed\n");
@@ -3182,9 +3182,9 @@ linkunlink()
 
     printf(1, "linkunlink ok\n");
     2080:	e3a00001 	mov	r0, #1
-    2084:	e3051c64 	movw	r1, #23652	; 0x5c64
+    2084:	e3051c88 	movw	r1, #23688	; 0x5c88
     2088:	e3401000 	movt	r1, #0
-    208c:	eb000b01 	bl	4c98 <printf>
+    208c:	eb000b0a 	bl	4cbc <printf>
 }
     2090:	e24bd004 	sub	sp, fp, #4
     2094:	e8bd8800 	pop	{fp, pc}
@@ -3211,16 +3211,16 @@ bigdir(void)
 
     printf(1, "bigdir test\n");
     20a8:	e3a00001 	mov	r0, #1
-    20ac:	e3051c74 	movw	r1, #23668	; 0x5c74
+    20ac:	e3051c98 	movw	r1, #23704	; 0x5c98
     20b0:	e3401000 	movt	r1, #0
-    20b4:	eb000af7 	bl	4c98 <printf>
+    20b4:	eb000b00 	bl	4cbc <printf>
     unlink("bd");
-    20b8:	e3050c84 	movw	r0, #23684	; 0x5c84
+    20b8:	e3050ca8 	movw	r0, #23720	; 0x5ca8
     20bc:	e3400000 	movt	r0, #0
     20c0:	eb000a36 	bl	49a0 <unlink>
 
     fd = open("bd", O_CREATE);
-    20c4:	e3050c84 	movw	r0, #23684	; 0x5c84
+    20c4:	e3050ca8 	movw	r0, #23720	; 0x5ca8
     20c8:	e3400000 	movt	r0, #0
     20cc:	e3a01c02 	mov	r1, #512	; 0x200
     20d0:	eb000a20 	bl	4958 <open>
@@ -3231,9 +3231,9 @@ bigdir(void)
     20e0:	aa000004 	bge	20f8 <bigdir+0x5c>
         printf(1, "bigdir create failed\n");
     20e4:	e3a00001 	mov	r0, #1
-    20e8:	e3051c88 	movw	r1, #23688	; 0x5c88
+    20e8:	e3051cac 	movw	r1, #23724	; 0x5cac
     20ec:	e3401000 	movt	r1, #0
-    20f0:	eb000ae8 	bl	4c98 <printf>
+    20f0:	eb000af1 	bl	4cbc <printf>
         exit();
     20f4:	eb0009cf 	bl	4838 <exit>
     }
@@ -3273,7 +3273,7 @@ bigdir(void)
     2160:	e3a03000 	mov	r3, #0
     2164:	e54b3015 	strb	r3, [fp, #-21]	; 0xffffffeb
         if(link("bd", name) != 0){
-    2168:	e3050c84 	movw	r0, #23684	; 0x5c84
+    2168:	e3050ca8 	movw	r0, #23720	; 0x5ca8
     216c:	e3400000 	movt	r0, #0
     2170:	e24b3018 	sub	r3, fp, #24
     2174:	e1a01003 	mov	r1, r3
@@ -3283,9 +3283,9 @@ bigdir(void)
     2184:	0a000004 	beq	219c <bigdir+0x100>
             printf(1, "bigdir link failed\n");
     2188:	e3a00001 	mov	r0, #1
-    218c:	e3051ca0 	movw	r1, #23712	; 0x5ca0
+    218c:	e3051cc4 	movw	r1, #23748	; 0x5cc4
     2190:	e3401000 	movt	r1, #0
-    2194:	eb000abf 	bl	4c98 <printf>
+    2194:	eb000ac8 	bl	4cbc <printf>
             exit();
     2198:	eb0009a6 	bl	4838 <exit>
         printf(1, "bigdir create failed\n");
@@ -3307,7 +3307,7 @@ bigdir(void)
     }
 
     unlink("bd");
-    21b8:	e3050c84 	movw	r0, #23684	; 0x5c84
+    21b8:	e3050ca8 	movw	r0, #23720	; 0x5ca8
     21bc:	e3400000 	movt	r0, #0
     21c0:	eb0009f6 	bl	49a0 <unlink>
     for(i = 0; i < 500; i++){
@@ -3350,9 +3350,9 @@ bigdir(void)
     2240:	0a000004 	beq	2258 <bigdir+0x1bc>
             printf(1, "bigdir unlink failed");
     2244:	e3a00001 	mov	r0, #1
-    2248:	e3051cb4 	movw	r1, #23732	; 0x5cb4
+    2248:	e3051cd8 	movw	r1, #23768	; 0x5cd8
     224c:	e3401000 	movt	r1, #0
-    2250:	eb000a90 	bl	4c98 <printf>
+    2250:	eb000a99 	bl	4cbc <printf>
             exit();
     2254:	eb000977 	bl	4838 <exit>
             exit();
@@ -3375,9 +3375,9 @@ bigdir(void)
 
     printf(1, "bigdir ok\n");
     2274:	e3a00001 	mov	r0, #1
-    2278:	e3051ccc 	movw	r1, #23756	; 0x5ccc
+    2278:	e3051cf0 	movw	r1, #23792	; 0x5cf0
     227c:	e3401000 	movt	r1, #0
-    2280:	eb000a84 	bl	4c98 <printf>
+    2280:	eb000a8d 	bl	4cbc <printf>
 }
     2284:	e24bd004 	sub	sp, fp, #4
     2288:	e8bd8800 	pop	{fp, pc}
@@ -3394,16 +3394,16 @@ subdir(void)
 
     printf(1, "subdir test\n");
     2298:	e3a00001 	mov	r0, #1
-    229c:	e3051cd8 	movw	r1, #23768	; 0x5cd8
+    229c:	e3051cfc 	movw	r1, #23804	; 0x5cfc
     22a0:	e3401000 	movt	r1, #0
-    22a4:	eb000a7b 	bl	4c98 <printf>
+    22a4:	eb000a84 	bl	4cbc <printf>
 
     unlink("ff");
-    22a8:	e3050ce8 	movw	r0, #23784	; 0x5ce8
+    22a8:	e3050d0c 	movw	r0, #23820	; 0x5d0c
     22ac:	e3400000 	movt	r0, #0
     22b0:	eb0009ba 	bl	49a0 <unlink>
     if(mkdir("dd") != 0){
-    22b4:	e3050cec 	movw	r0, #23788	; 0x5cec
+    22b4:	e3050d10 	movw	r0, #23824	; 0x5d10
     22b8:	e3400000 	movt	r0, #0
     22bc:	eb0009d2 	bl	4a0c <mkdir>
     22c0:	e1a03000 	mov	r3, r0
@@ -3411,15 +3411,15 @@ subdir(void)
     22c8:	0a000004 	beq	22e0 <subdir+0x54>
         printf(1, "subdir mkdir dd failed\n");
     22cc:	e3a00001 	mov	r0, #1
-    22d0:	e3051cf0 	movw	r1, #23792	; 0x5cf0
+    22d0:	e3051d14 	movw	r1, #23828	; 0x5d14
     22d4:	e3401000 	movt	r1, #0
-    22d8:	eb000a6e 	bl	4c98 <printf>
+    22d8:	eb000a77 	bl	4cbc <printf>
         exit();
     22dc:	eb000955 	bl	4838 <exit>
     }
 
     fd = open("dd/ff", O_CREATE | O_RDWR);
-    22e0:	e3050d08 	movw	r0, #23816	; 0x5d08
+    22e0:	e3050d2c 	movw	r0, #23852	; 0x5d2c
     22e4:	e3400000 	movt	r0, #0
     22e8:	e3001202 	movw	r1, #514	; 0x202
     22ec:	eb000999 	bl	4958 <open>
@@ -3430,15 +3430,15 @@ subdir(void)
     22fc:	aa000004 	bge	2314 <subdir+0x88>
         printf(1, "create dd/ff failed\n");
     2300:	e3a00001 	mov	r0, #1
-    2304:	e3051d10 	movw	r1, #23824	; 0x5d10
+    2304:	e3051d34 	movw	r1, #23860	; 0x5d34
     2308:	e3401000 	movt	r1, #0
-    230c:	eb000a61 	bl	4c98 <printf>
+    230c:	eb000a6a 	bl	4cbc <printf>
         exit();
     2310:	eb000948 	bl	4838 <exit>
     }
     write(fd, "ff", 2);
     2314:	e51b0008 	ldr	r0, [fp, #-8]
-    2318:	e3051ce8 	movw	r1, #23784	; 0x5ce8
+    2318:	e3051d0c 	movw	r1, #23820	; 0x5d0c
     231c:	e3401000 	movt	r1, #0
     2320:	e3a02002 	mov	r2, #2
     2324:	eb000967 	bl	48c8 <write>
@@ -3447,7 +3447,7 @@ subdir(void)
     232c:	eb00096e 	bl	48ec <close>
 
     if(unlink("dd") >= 0){
-    2330:	e3050cec 	movw	r0, #23788	; 0x5cec
+    2330:	e3050d10 	movw	r0, #23824	; 0x5d10
     2334:	e3400000 	movt	r0, #0
     2338:	eb000998 	bl	49a0 <unlink>
     233c:	e1a03000 	mov	r3, r0
@@ -3455,15 +3455,15 @@ subdir(void)
     2344:	ba000004 	blt	235c <subdir+0xd0>
         printf(1, "unlink dd (non-empty dir) succeeded!\n");
     2348:	e3a00001 	mov	r0, #1
-    234c:	e3051d28 	movw	r1, #23848	; 0x5d28
+    234c:	e3051d4c 	movw	r1, #23884	; 0x5d4c
     2350:	e3401000 	movt	r1, #0
-    2354:	eb000a4f 	bl	4c98 <printf>
+    2354:	eb000a58 	bl	4cbc <printf>
         exit();
     2358:	eb000936 	bl	4838 <exit>
     }
 
     if(mkdir("/dd/dd") != 0){
-    235c:	e3050d50 	movw	r0, #23888	; 0x5d50
+    235c:	e3050d74 	movw	r0, #23924	; 0x5d74
     2360:	e3400000 	movt	r0, #0
     2364:	eb0009a8 	bl	4a0c <mkdir>
     2368:	e1a03000 	mov	r3, r0
@@ -3471,15 +3471,15 @@ subdir(void)
     2370:	0a000004 	beq	2388 <subdir+0xfc>
         printf(1, "subdir mkdir dd/dd failed\n");
     2374:	e3a00001 	mov	r0, #1
-    2378:	e3051d58 	movw	r1, #23896	; 0x5d58
+    2378:	e3051d7c 	movw	r1, #23932	; 0x5d7c
     237c:	e3401000 	movt	r1, #0
-    2380:	eb000a44 	bl	4c98 <printf>
+    2380:	eb000a4d 	bl	4cbc <printf>
         exit();
     2384:	eb00092b 	bl	4838 <exit>
     }
 
     fd = open("dd/dd/ff", O_CREATE | O_RDWR);
-    2388:	e3050d74 	movw	r0, #23924	; 0x5d74
+    2388:	e3050d98 	movw	r0, #23960	; 0x5d98
     238c:	e3400000 	movt	r0, #0
     2390:	e3001202 	movw	r1, #514	; 0x202
     2394:	eb00096f 	bl	4958 <open>
@@ -3490,15 +3490,15 @@ subdir(void)
     23a4:	aa000004 	bge	23bc <subdir+0x130>
         printf(1, "create dd/dd/ff failed\n");
     23a8:	e3a00001 	mov	r0, #1
-    23ac:	e3051d80 	movw	r1, #23936	; 0x5d80
+    23ac:	e3051da4 	movw	r1, #23972	; 0x5da4
     23b0:	e3401000 	movt	r1, #0
-    23b4:	eb000a37 	bl	4c98 <printf>
+    23b4:	eb000a40 	bl	4cbc <printf>
         exit();
     23b8:	eb00091e 	bl	4838 <exit>
     }
     write(fd, "FF", 2);
     23bc:	e51b0008 	ldr	r0, [fp, #-8]
-    23c0:	e3051d98 	movw	r1, #23960	; 0x5d98
+    23c0:	e3051dbc 	movw	r1, #23996	; 0x5dbc
     23c4:	e3401000 	movt	r1, #0
     23c8:	e3a02002 	mov	r2, #2
     23cc:	eb00093d 	bl	48c8 <write>
@@ -3507,7 +3507,7 @@ subdir(void)
     23d4:	eb000944 	bl	48ec <close>
 
     fd = open("dd/dd/../ff", 0);
-    23d8:	e3050d9c 	movw	r0, #23964	; 0x5d9c
+    23d8:	e3050dc0 	movw	r0, #24000	; 0x5dc0
     23dc:	e3400000 	movt	r0, #0
     23e0:	e3a01000 	mov	r1, #0
     23e4:	eb00095b 	bl	4958 <open>
@@ -3518,15 +3518,15 @@ subdir(void)
     23f4:	aa000004 	bge	240c <subdir+0x180>
         printf(1, "open dd/dd/../ff failed\n");
     23f8:	e3a00001 	mov	r0, #1
-    23fc:	e3051da8 	movw	r1, #23976	; 0x5da8
+    23fc:	e3051dcc 	movw	r1, #24012	; 0x5dcc
     2400:	e3401000 	movt	r1, #0
-    2404:	eb000a23 	bl	4c98 <printf>
+    2404:	eb000a2c 	bl	4cbc <printf>
         exit();
     2408:	eb00090a 	bl	4838 <exit>
     }
     cc = read(fd, buf, sizeof(buf));
     240c:	e51b0008 	ldr	r0, [fp, #-8]
-    2410:	e3091374 	movw	r1, #37748	; 0x9374
+    2410:	e3091398 	movw	r1, #37784	; 0x9398
     2414:	e3401000 	movt	r1, #0
     2418:	e3a02a02 	mov	r2, #8192	; 0x2000
     241c:	eb000920 	bl	48a4 <read>
@@ -3535,16 +3535,16 @@ subdir(void)
     2424:	e51b300c 	ldr	r3, [fp, #-12]
     2428:	e3530002 	cmp	r3, #2
     242c:	1a000004 	bne	2444 <subdir+0x1b8>
-    2430:	e3093374 	movw	r3, #37748	; 0x9374
+    2430:	e3093398 	movw	r3, #37784	; 0x9398
     2434:	e3403000 	movt	r3, #0
     2438:	e5d33000 	ldrb	r3, [r3]
     243c:	e3530066 	cmp	r3, #102	; 0x66
     2440:	0a000004 	beq	2458 <subdir+0x1cc>
         printf(1, "dd/dd/../ff wrong content\n");
     2444:	e3a00001 	mov	r0, #1
-    2448:	e3051dc4 	movw	r1, #24004	; 0x5dc4
+    2448:	e3051de8 	movw	r1, #24040	; 0x5de8
     244c:	e3401000 	movt	r1, #0
-    2450:	eb000a10 	bl	4c98 <printf>
+    2450:	eb000a19 	bl	4cbc <printf>
         exit();
     2454:	eb0008f7 	bl	4838 <exit>
     }
@@ -3553,9 +3553,9 @@ subdir(void)
     245c:	eb000922 	bl	48ec <close>
 
     if(link("dd/dd/ff", "dd/dd/ffff") != 0){
-    2460:	e3050d74 	movw	r0, #23924	; 0x5d74
+    2460:	e3050d98 	movw	r0, #23960	; 0x5d98
     2464:	e3400000 	movt	r0, #0
-    2468:	e3051de0 	movw	r1, #24032	; 0x5de0
+    2468:	e3051e04 	movw	r1, #24068	; 0x5e04
     246c:	e3401000 	movt	r1, #0
     2470:	eb00095c 	bl	49e8 <link>
     2474:	e1a03000 	mov	r3, r0
@@ -3563,15 +3563,15 @@ subdir(void)
     247c:	0a000004 	beq	2494 <subdir+0x208>
         printf(1, "link dd/dd/ff dd/dd/ffff failed\n");
     2480:	e3a00001 	mov	r0, #1
-    2484:	e3051dec 	movw	r1, #24044	; 0x5dec
+    2484:	e3051e10 	movw	r1, #24080	; 0x5e10
     2488:	e3401000 	movt	r1, #0
-    248c:	eb000a01 	bl	4c98 <printf>
+    248c:	eb000a0a 	bl	4cbc <printf>
         exit();
     2490:	eb0008e8 	bl	4838 <exit>
     }
 
     if(unlink("dd/dd/ff") != 0){
-    2494:	e3050d74 	movw	r0, #23924	; 0x5d74
+    2494:	e3050d98 	movw	r0, #23960	; 0x5d98
     2498:	e3400000 	movt	r0, #0
     249c:	eb00093f 	bl	49a0 <unlink>
     24a0:	e1a03000 	mov	r3, r0
@@ -3579,14 +3579,14 @@ subdir(void)
     24a8:	0a000004 	beq	24c0 <subdir+0x234>
         printf(1, "unlink dd/dd/ff failed\n");
     24ac:	e3a00001 	mov	r0, #1
-    24b0:	e3051e10 	movw	r1, #24080	; 0x5e10
+    24b0:	e3051e34 	movw	r1, #24116	; 0x5e34
     24b4:	e3401000 	movt	r1, #0
-    24b8:	eb0009f6 	bl	4c98 <printf>
+    24b8:	eb0009ff 	bl	4cbc <printf>
         exit();
     24bc:	eb0008dd 	bl	4838 <exit>
     }
     if(open("dd/dd/ff", O_RDONLY) >= 0){
-    24c0:	e3050d74 	movw	r0, #23924	; 0x5d74
+    24c0:	e3050d98 	movw	r0, #23960	; 0x5d98
     24c4:	e3400000 	movt	r0, #0
     24c8:	e3a01000 	mov	r1, #0
     24cc:	eb000921 	bl	4958 <open>
@@ -3595,15 +3595,15 @@ subdir(void)
     24d8:	ba000004 	blt	24f0 <subdir+0x264>
         printf(1, "open (unlinked) dd/dd/ff succeeded\n");
     24dc:	e3a00001 	mov	r0, #1
-    24e0:	e3051e28 	movw	r1, #24104	; 0x5e28
+    24e0:	e3051e4c 	movw	r1, #24140	; 0x5e4c
     24e4:	e3401000 	movt	r1, #0
-    24e8:	eb0009ea 	bl	4c98 <printf>
+    24e8:	eb0009f3 	bl	4cbc <printf>
         exit();
     24ec:	eb0008d1 	bl	4838 <exit>
     }
 
     if(chdir("dd") != 0){
-    24f0:	e3050cec 	movw	r0, #23788	; 0x5cec
+    24f0:	e3050d10 	movw	r0, #23824	; 0x5d10
     24f4:	e3400000 	movt	r0, #0
     24f8:	eb00094c 	bl	4a30 <chdir>
     24fc:	e1a03000 	mov	r3, r0
@@ -3611,14 +3611,14 @@ subdir(void)
     2504:	0a000004 	beq	251c <subdir+0x290>
         printf(1, "chdir dd failed\n");
     2508:	e3a00001 	mov	r0, #1
-    250c:	e3051e4c 	movw	r1, #24140	; 0x5e4c
+    250c:	e3051e70 	movw	r1, #24176	; 0x5e70
     2510:	e3401000 	movt	r1, #0
-    2514:	eb0009df 	bl	4c98 <printf>
+    2514:	eb0009e8 	bl	4cbc <printf>
         exit();
     2518:	eb0008c6 	bl	4838 <exit>
     }
     if(chdir("dd/../../dd") != 0){
-    251c:	e3050e60 	movw	r0, #24160	; 0x5e60
+    251c:	e3050e84 	movw	r0, #24196	; 0x5e84
     2520:	e3400000 	movt	r0, #0
     2524:	eb000941 	bl	4a30 <chdir>
     2528:	e1a03000 	mov	r3, r0
@@ -3626,14 +3626,14 @@ subdir(void)
     2530:	0a000004 	beq	2548 <subdir+0x2bc>
         printf(1, "chdir dd/../../dd failed\n");
     2534:	e3a00001 	mov	r0, #1
-    2538:	e3051e6c 	movw	r1, #24172	; 0x5e6c
+    2538:	e3051e90 	movw	r1, #24208	; 0x5e90
     253c:	e3401000 	movt	r1, #0
-    2540:	eb0009d4 	bl	4c98 <printf>
+    2540:	eb0009dd 	bl	4cbc <printf>
         exit();
     2544:	eb0008bb 	bl	4838 <exit>
     }
     if(chdir("dd/../../../dd") != 0){
-    2548:	e3050e88 	movw	r0, #24200	; 0x5e88
+    2548:	e3050eac 	movw	r0, #24236	; 0x5eac
     254c:	e3400000 	movt	r0, #0
     2550:	eb000936 	bl	4a30 <chdir>
     2554:	e1a03000 	mov	r3, r0
@@ -3641,14 +3641,14 @@ subdir(void)
     255c:	0a000004 	beq	2574 <subdir+0x2e8>
         printf(1, "chdir dd/../../dd failed\n");
     2560:	e3a00001 	mov	r0, #1
-    2564:	e3051e6c 	movw	r1, #24172	; 0x5e6c
+    2564:	e3051e90 	movw	r1, #24208	; 0x5e90
     2568:	e3401000 	movt	r1, #0
-    256c:	eb0009c9 	bl	4c98 <printf>
+    256c:	eb0009d2 	bl	4cbc <printf>
         exit();
     2570:	eb0008b0 	bl	4838 <exit>
     }
     if(chdir("./..") != 0){
-    2574:	e3050e98 	movw	r0, #24216	; 0x5e98
+    2574:	e3050ebc 	movw	r0, #24252	; 0x5ebc
     2578:	e3400000 	movt	r0, #0
     257c:	eb00092b 	bl	4a30 <chdir>
     2580:	e1a03000 	mov	r3, r0
@@ -3656,15 +3656,15 @@ subdir(void)
     2588:	0a000004 	beq	25a0 <subdir+0x314>
         printf(1, "chdir ./.. failed\n");
     258c:	e3a00001 	mov	r0, #1
-    2590:	e3051ea0 	movw	r1, #24224	; 0x5ea0
+    2590:	e3051ec4 	movw	r1, #24260	; 0x5ec4
     2594:	e3401000 	movt	r1, #0
-    2598:	eb0009be 	bl	4c98 <printf>
+    2598:	eb0009c7 	bl	4cbc <printf>
         exit();
     259c:	eb0008a5 	bl	4838 <exit>
     }
 
     fd = open("dd/dd/ffff", 0);
-    25a0:	e3050de0 	movw	r0, #24032	; 0x5de0
+    25a0:	e3050e04 	movw	r0, #24068	; 0x5e04
     25a4:	e3400000 	movt	r0, #0
     25a8:	e3a01000 	mov	r1, #0
     25ac:	eb0008e9 	bl	4958 <open>
@@ -3675,15 +3675,15 @@ subdir(void)
     25bc:	aa000004 	bge	25d4 <subdir+0x348>
         printf(1, "open dd/dd/ffff failed\n");
     25c0:	e3a00001 	mov	r0, #1
-    25c4:	e3051eb4 	movw	r1, #24244	; 0x5eb4
+    25c4:	e3051ed8 	movw	r1, #24280	; 0x5ed8
     25c8:	e3401000 	movt	r1, #0
-    25cc:	eb0009b1 	bl	4c98 <printf>
+    25cc:	eb0009ba 	bl	4cbc <printf>
         exit();
     25d0:	eb000898 	bl	4838 <exit>
     }
     if(read(fd, buf, sizeof(buf)) != 2){
     25d4:	e51b0008 	ldr	r0, [fp, #-8]
-    25d8:	e3091374 	movw	r1, #37748	; 0x9374
+    25d8:	e3091398 	movw	r1, #37784	; 0x9398
     25dc:	e3401000 	movt	r1, #0
     25e0:	e3a02a02 	mov	r2, #8192	; 0x2000
     25e4:	eb0008ae 	bl	48a4 <read>
@@ -3692,9 +3692,9 @@ subdir(void)
     25f0:	0a000004 	beq	2608 <subdir+0x37c>
         printf(1, "read dd/dd/ffff wrong len\n");
     25f4:	e3a00001 	mov	r0, #1
-    25f8:	e3051ecc 	movw	r1, #24268	; 0x5ecc
+    25f8:	e3051ef0 	movw	r1, #24304	; 0x5ef0
     25fc:	e3401000 	movt	r1, #0
-    2600:	eb0009a4 	bl	4c98 <printf>
+    2600:	eb0009ad 	bl	4cbc <printf>
         exit();
     2604:	eb00088b 	bl	4838 <exit>
     }
@@ -3703,7 +3703,7 @@ subdir(void)
     260c:	eb0008b6 	bl	48ec <close>
 
     if(open("dd/dd/ff", O_RDONLY) >= 0){
-    2610:	e3050d74 	movw	r0, #23924	; 0x5d74
+    2610:	e3050d98 	movw	r0, #23960	; 0x5d98
     2614:	e3400000 	movt	r0, #0
     2618:	e3a01000 	mov	r1, #0
     261c:	eb0008cd 	bl	4958 <open>
@@ -3712,15 +3712,15 @@ subdir(void)
     2628:	ba000004 	blt	2640 <subdir+0x3b4>
         printf(1, "open (unlinked) dd/dd/ff succeeded!\n");
     262c:	e3a00001 	mov	r0, #1
-    2630:	e3051ee8 	movw	r1, #24296	; 0x5ee8
+    2630:	e3051f0c 	movw	r1, #24332	; 0x5f0c
     2634:	e3401000 	movt	r1, #0
-    2638:	eb000996 	bl	4c98 <printf>
+    2638:	eb00099f 	bl	4cbc <printf>
         exit();
     263c:	eb00087d 	bl	4838 <exit>
     }
 
     if(open("dd/ff/ff", O_CREATE|O_RDWR) >= 0){
-    2640:	e3050f10 	movw	r0, #24336	; 0x5f10
+    2640:	e3050f34 	movw	r0, #24372	; 0x5f34
     2644:	e3400000 	movt	r0, #0
     2648:	e3001202 	movw	r1, #514	; 0x202
     264c:	eb0008c1 	bl	4958 <open>
@@ -3729,14 +3729,14 @@ subdir(void)
     2658:	ba000004 	blt	2670 <subdir+0x3e4>
         printf(1, "create dd/ff/ff succeeded!\n");
     265c:	e3a00001 	mov	r0, #1
-    2660:	e3051f1c 	movw	r1, #24348	; 0x5f1c
+    2660:	e3051f40 	movw	r1, #24384	; 0x5f40
     2664:	e3401000 	movt	r1, #0
-    2668:	eb00098a 	bl	4c98 <printf>
+    2668:	eb000993 	bl	4cbc <printf>
         exit();
     266c:	eb000871 	bl	4838 <exit>
     }
     if(open("dd/xx/ff", O_CREATE|O_RDWR) >= 0){
-    2670:	e3050f38 	movw	r0, #24376	; 0x5f38
+    2670:	e3050f5c 	movw	r0, #24412	; 0x5f5c
     2674:	e3400000 	movt	r0, #0
     2678:	e3001202 	movw	r1, #514	; 0x202
     267c:	eb0008b5 	bl	4958 <open>
@@ -3745,14 +3745,14 @@ subdir(void)
     2688:	ba000004 	blt	26a0 <subdir+0x414>
         printf(1, "create dd/xx/ff succeeded!\n");
     268c:	e3a00001 	mov	r0, #1
-    2690:	e3051f44 	movw	r1, #24388	; 0x5f44
+    2690:	e3051f68 	movw	r1, #24424	; 0x5f68
     2694:	e3401000 	movt	r1, #0
-    2698:	eb00097e 	bl	4c98 <printf>
+    2698:	eb000987 	bl	4cbc <printf>
         exit();
     269c:	eb000865 	bl	4838 <exit>
     }
     if(open("dd", O_CREATE) >= 0){
-    26a0:	e3050cec 	movw	r0, #23788	; 0x5cec
+    26a0:	e3050d10 	movw	r0, #23824	; 0x5d10
     26a4:	e3400000 	movt	r0, #0
     26a8:	e3a01c02 	mov	r1, #512	; 0x200
     26ac:	eb0008a9 	bl	4958 <open>
@@ -3761,14 +3761,14 @@ subdir(void)
     26b8:	ba000004 	blt	26d0 <subdir+0x444>
         printf(1, "create dd succeeded!\n");
     26bc:	e3a00001 	mov	r0, #1
-    26c0:	e3051f60 	movw	r1, #24416	; 0x5f60
+    26c0:	e3051f84 	movw	r1, #24452	; 0x5f84
     26c4:	e3401000 	movt	r1, #0
-    26c8:	eb000972 	bl	4c98 <printf>
+    26c8:	eb00097b 	bl	4cbc <printf>
         exit();
     26cc:	eb000859 	bl	4838 <exit>
     }
     if(open("dd", O_RDWR) >= 0){
-    26d0:	e3050cec 	movw	r0, #23788	; 0x5cec
+    26d0:	e3050d10 	movw	r0, #23824	; 0x5d10
     26d4:	e3400000 	movt	r0, #0
     26d8:	e3a01002 	mov	r1, #2
     26dc:	eb00089d 	bl	4958 <open>
@@ -3777,14 +3777,14 @@ subdir(void)
     26e8:	ba000004 	blt	2700 <subdir+0x474>
         printf(1, "open dd rdwr succeeded!\n");
     26ec:	e3a00001 	mov	r0, #1
-    26f0:	e3051f78 	movw	r1, #24440	; 0x5f78
+    26f0:	e3051f9c 	movw	r1, #24476	; 0x5f9c
     26f4:	e3401000 	movt	r1, #0
-    26f8:	eb000966 	bl	4c98 <printf>
+    26f8:	eb00096f 	bl	4cbc <printf>
         exit();
     26fc:	eb00084d 	bl	4838 <exit>
     }
     if(open("dd", O_WRONLY) >= 0){
-    2700:	e3050cec 	movw	r0, #23788	; 0x5cec
+    2700:	e3050d10 	movw	r0, #23824	; 0x5d10
     2704:	e3400000 	movt	r0, #0
     2708:	e3a01001 	mov	r1, #1
     270c:	eb000891 	bl	4958 <open>
@@ -3793,16 +3793,16 @@ subdir(void)
     2718:	ba000004 	blt	2730 <subdir+0x4a4>
         printf(1, "open dd wronly succeeded!\n");
     271c:	e3a00001 	mov	r0, #1
-    2720:	e3051f94 	movw	r1, #24468	; 0x5f94
+    2720:	e3051fb8 	movw	r1, #24504	; 0x5fb8
     2724:	e3401000 	movt	r1, #0
-    2728:	eb00095a 	bl	4c98 <printf>
+    2728:	eb000963 	bl	4cbc <printf>
         exit();
     272c:	eb000841 	bl	4838 <exit>
     }
     if(link("dd/ff/ff", "dd/dd/xx") == 0){
-    2730:	e3050f10 	movw	r0, #24336	; 0x5f10
+    2730:	e3050f34 	movw	r0, #24372	; 0x5f34
     2734:	e3400000 	movt	r0, #0
-    2738:	e3051fb0 	movw	r1, #24496	; 0x5fb0
+    2738:	e3051fd4 	movw	r1, #24532	; 0x5fd4
     273c:	e3401000 	movt	r1, #0
     2740:	eb0008a8 	bl	49e8 <link>
     2744:	e1a03000 	mov	r3, r0
@@ -3810,16 +3810,16 @@ subdir(void)
     274c:	1a000004 	bne	2764 <subdir+0x4d8>
         printf(1, "link dd/ff/ff dd/dd/xx succeeded!\n");
     2750:	e3a00001 	mov	r0, #1
-    2754:	e3051fbc 	movw	r1, #24508	; 0x5fbc
+    2754:	e3051fe0 	movw	r1, #24544	; 0x5fe0
     2758:	e3401000 	movt	r1, #0
-    275c:	eb00094d 	bl	4c98 <printf>
+    275c:	eb000956 	bl	4cbc <printf>
         exit();
     2760:	eb000834 	bl	4838 <exit>
     }
     if(link("dd/xx/ff", "dd/dd/xx") == 0){
-    2764:	e3050f38 	movw	r0, #24376	; 0x5f38
+    2764:	e3050f5c 	movw	r0, #24412	; 0x5f5c
     2768:	e3400000 	movt	r0, #0
-    276c:	e3051fb0 	movw	r1, #24496	; 0x5fb0
+    276c:	e3051fd4 	movw	r1, #24532	; 0x5fd4
     2770:	e3401000 	movt	r1, #0
     2774:	eb00089b 	bl	49e8 <link>
     2778:	e1a03000 	mov	r3, r0
@@ -3827,16 +3827,16 @@ subdir(void)
     2780:	1a000004 	bne	2798 <subdir+0x50c>
         printf(1, "link dd/xx/ff dd/dd/xx succeeded!\n");
     2784:	e3a00001 	mov	r0, #1
-    2788:	e3051fe0 	movw	r1, #24544	; 0x5fe0
+    2788:	e3061004 	movw	r1, #24580	; 0x6004
     278c:	e3401000 	movt	r1, #0
-    2790:	eb000940 	bl	4c98 <printf>
+    2790:	eb000949 	bl	4cbc <printf>
         exit();
     2794:	eb000827 	bl	4838 <exit>
     }
     if(link("dd/ff", "dd/dd/ffff") == 0){
-    2798:	e3050d08 	movw	r0, #23816	; 0x5d08
+    2798:	e3050d2c 	movw	r0, #23852	; 0x5d2c
     279c:	e3400000 	movt	r0, #0
-    27a0:	e3051de0 	movw	r1, #24032	; 0x5de0
+    27a0:	e3051e04 	movw	r1, #24068	; 0x5e04
     27a4:	e3401000 	movt	r1, #0
     27a8:	eb00088e 	bl	49e8 <link>
     27ac:	e1a03000 	mov	r3, r0
@@ -3844,14 +3844,14 @@ subdir(void)
     27b4:	1a000004 	bne	27cc <subdir+0x540>
         printf(1, "link dd/ff dd/dd/ffff succeeded!\n");
     27b8:	e3a00001 	mov	r0, #1
-    27bc:	e3061004 	movw	r1, #24580	; 0x6004
+    27bc:	e3061028 	movw	r1, #24616	; 0x6028
     27c0:	e3401000 	movt	r1, #0
-    27c4:	eb000933 	bl	4c98 <printf>
+    27c4:	eb00093c 	bl	4cbc <printf>
         exit();
     27c8:	eb00081a 	bl	4838 <exit>
     }
     if(mkdir("dd/ff/ff") == 0){
-    27cc:	e3050f10 	movw	r0, #24336	; 0x5f10
+    27cc:	e3050f34 	movw	r0, #24372	; 0x5f34
     27d0:	e3400000 	movt	r0, #0
     27d4:	eb00088c 	bl	4a0c <mkdir>
     27d8:	e1a03000 	mov	r3, r0
@@ -3859,14 +3859,14 @@ subdir(void)
     27e0:	1a000004 	bne	27f8 <subdir+0x56c>
         printf(1, "mkdir dd/ff/ff succeeded!\n");
     27e4:	e3a00001 	mov	r0, #1
-    27e8:	e3061028 	movw	r1, #24616	; 0x6028
+    27e8:	e306104c 	movw	r1, #24652	; 0x604c
     27ec:	e3401000 	movt	r1, #0
-    27f0:	eb000928 	bl	4c98 <printf>
+    27f0:	eb000931 	bl	4cbc <printf>
         exit();
     27f4:	eb00080f 	bl	4838 <exit>
     }
     if(mkdir("dd/xx/ff") == 0){
-    27f8:	e3050f38 	movw	r0, #24376	; 0x5f38
+    27f8:	e3050f5c 	movw	r0, #24412	; 0x5f5c
     27fc:	e3400000 	movt	r0, #0
     2800:	eb000881 	bl	4a0c <mkdir>
     2804:	e1a03000 	mov	r3, r0
@@ -3874,14 +3874,14 @@ subdir(void)
     280c:	1a000004 	bne	2824 <subdir+0x598>
         printf(1, "mkdir dd/xx/ff succeeded!\n");
     2810:	e3a00001 	mov	r0, #1
-    2814:	e3061044 	movw	r1, #24644	; 0x6044
+    2814:	e3061068 	movw	r1, #24680	; 0x6068
     2818:	e3401000 	movt	r1, #0
-    281c:	eb00091d 	bl	4c98 <printf>
+    281c:	eb000926 	bl	4cbc <printf>
         exit();
     2820:	eb000804 	bl	4838 <exit>
     }
     if(mkdir("dd/dd/ffff") == 0){
-    2824:	e3050de0 	movw	r0, #24032	; 0x5de0
+    2824:	e3050e04 	movw	r0, #24068	; 0x5e04
     2828:	e3400000 	movt	r0, #0
     282c:	eb000876 	bl	4a0c <mkdir>
     2830:	e1a03000 	mov	r3, r0
@@ -3889,14 +3889,14 @@ subdir(void)
     2838:	1a000004 	bne	2850 <subdir+0x5c4>
         printf(1, "mkdir dd/dd/ffff succeeded!\n");
     283c:	e3a00001 	mov	r0, #1
-    2840:	e3061060 	movw	r1, #24672	; 0x6060
+    2840:	e3061084 	movw	r1, #24708	; 0x6084
     2844:	e3401000 	movt	r1, #0
-    2848:	eb000912 	bl	4c98 <printf>
+    2848:	eb00091b 	bl	4cbc <printf>
         exit();
     284c:	eb0007f9 	bl	4838 <exit>
     }
     if(unlink("dd/xx/ff") == 0){
-    2850:	e3050f38 	movw	r0, #24376	; 0x5f38
+    2850:	e3050f5c 	movw	r0, #24412	; 0x5f5c
     2854:	e3400000 	movt	r0, #0
     2858:	eb000850 	bl	49a0 <unlink>
     285c:	e1a03000 	mov	r3, r0
@@ -3904,14 +3904,14 @@ subdir(void)
     2864:	1a000004 	bne	287c <subdir+0x5f0>
         printf(1, "unlink dd/xx/ff succeeded!\n");
     2868:	e3a00001 	mov	r0, #1
-    286c:	e3061080 	movw	r1, #24704	; 0x6080
+    286c:	e30610a4 	movw	r1, #24740	; 0x60a4
     2870:	e3401000 	movt	r1, #0
-    2874:	eb000907 	bl	4c98 <printf>
+    2874:	eb000910 	bl	4cbc <printf>
         exit();
     2878:	eb0007ee 	bl	4838 <exit>
     }
     if(unlink("dd/ff/ff") == 0){
-    287c:	e3050f10 	movw	r0, #24336	; 0x5f10
+    287c:	e3050f34 	movw	r0, #24372	; 0x5f34
     2880:	e3400000 	movt	r0, #0
     2884:	eb000845 	bl	49a0 <unlink>
     2888:	e1a03000 	mov	r3, r0
@@ -3919,14 +3919,14 @@ subdir(void)
     2890:	1a000004 	bne	28a8 <subdir+0x61c>
         printf(1, "unlink dd/ff/ff succeeded!\n");
     2894:	e3a00001 	mov	r0, #1
-    2898:	e306109c 	movw	r1, #24732	; 0x609c
+    2898:	e30610c0 	movw	r1, #24768	; 0x60c0
     289c:	e3401000 	movt	r1, #0
-    28a0:	eb0008fc 	bl	4c98 <printf>
+    28a0:	eb000905 	bl	4cbc <printf>
         exit();
     28a4:	eb0007e3 	bl	4838 <exit>
     }
     if(chdir("dd/ff") == 0){
-    28a8:	e3050d08 	movw	r0, #23816	; 0x5d08
+    28a8:	e3050d2c 	movw	r0, #23852	; 0x5d2c
     28ac:	e3400000 	movt	r0, #0
     28b0:	eb00085e 	bl	4a30 <chdir>
     28b4:	e1a03000 	mov	r3, r0
@@ -3934,14 +3934,14 @@ subdir(void)
     28bc:	1a000004 	bne	28d4 <subdir+0x648>
         printf(1, "chdir dd/ff succeeded!\n");
     28c0:	e3a00001 	mov	r0, #1
-    28c4:	e30610b8 	movw	r1, #24760	; 0x60b8
+    28c4:	e30610dc 	movw	r1, #24796	; 0x60dc
     28c8:	e3401000 	movt	r1, #0
-    28cc:	eb0008f1 	bl	4c98 <printf>
+    28cc:	eb0008fa 	bl	4cbc <printf>
         exit();
     28d0:	eb0007d8 	bl	4838 <exit>
     }
     if(chdir("dd/xx") == 0){
-    28d4:	e30600d0 	movw	r0, #24784	; 0x60d0
+    28d4:	e30600f4 	movw	r0, #24820	; 0x60f4
     28d8:	e3400000 	movt	r0, #0
     28dc:	eb000853 	bl	4a30 <chdir>
     28e0:	e1a03000 	mov	r3, r0
@@ -3949,15 +3949,15 @@ subdir(void)
     28e8:	1a000004 	bne	2900 <subdir+0x674>
         printf(1, "chdir dd/xx succeeded!\n");
     28ec:	e3a00001 	mov	r0, #1
-    28f0:	e30610d8 	movw	r1, #24792	; 0x60d8
+    28f0:	e30610fc 	movw	r1, #24828	; 0x60fc
     28f4:	e3401000 	movt	r1, #0
-    28f8:	eb0008e6 	bl	4c98 <printf>
+    28f8:	eb0008ef 	bl	4cbc <printf>
         exit();
     28fc:	eb0007cd 	bl	4838 <exit>
     }
 
     if(unlink("dd/dd/ffff") != 0){
-    2900:	e3050de0 	movw	r0, #24032	; 0x5de0
+    2900:	e3050e04 	movw	r0, #24068	; 0x5e04
     2904:	e3400000 	movt	r0, #0
     2908:	eb000824 	bl	49a0 <unlink>
     290c:	e1a03000 	mov	r3, r0
@@ -3965,14 +3965,14 @@ subdir(void)
     2914:	0a000004 	beq	292c <subdir+0x6a0>
         printf(1, "unlink dd/dd/ff failed\n");
     2918:	e3a00001 	mov	r0, #1
-    291c:	e3051e10 	movw	r1, #24080	; 0x5e10
+    291c:	e3051e34 	movw	r1, #24116	; 0x5e34
     2920:	e3401000 	movt	r1, #0
-    2924:	eb0008db 	bl	4c98 <printf>
+    2924:	eb0008e4 	bl	4cbc <printf>
         exit();
     2928:	eb0007c2 	bl	4838 <exit>
     }
     if(unlink("dd/ff") != 0){
-    292c:	e3050d08 	movw	r0, #23816	; 0x5d08
+    292c:	e3050d2c 	movw	r0, #23852	; 0x5d2c
     2930:	e3400000 	movt	r0, #0
     2934:	eb000819 	bl	49a0 <unlink>
     2938:	e1a03000 	mov	r3, r0
@@ -3980,14 +3980,14 @@ subdir(void)
     2940:	0a000004 	beq	2958 <subdir+0x6cc>
         printf(1, "unlink dd/ff failed\n");
     2944:	e3a00001 	mov	r0, #1
-    2948:	e30610f0 	movw	r1, #24816	; 0x60f0
+    2948:	e3061114 	movw	r1, #24852	; 0x6114
     294c:	e3401000 	movt	r1, #0
-    2950:	eb0008d0 	bl	4c98 <printf>
+    2950:	eb0008d9 	bl	4cbc <printf>
         exit();
     2954:	eb0007b7 	bl	4838 <exit>
     }
     if(unlink("dd") == 0){
-    2958:	e3050cec 	movw	r0, #23788	; 0x5cec
+    2958:	e3050d10 	movw	r0, #23824	; 0x5d10
     295c:	e3400000 	movt	r0, #0
     2960:	eb00080e 	bl	49a0 <unlink>
     2964:	e1a03000 	mov	r3, r0
@@ -3995,14 +3995,14 @@ subdir(void)
     296c:	1a000004 	bne	2984 <subdir+0x6f8>
         printf(1, "unlink non-empty dd succeeded!\n");
     2970:	e3a00001 	mov	r0, #1
-    2974:	e3061108 	movw	r1, #24840	; 0x6108
+    2974:	e306112c 	movw	r1, #24876	; 0x612c
     2978:	e3401000 	movt	r1, #0
-    297c:	eb0008c5 	bl	4c98 <printf>
+    297c:	eb0008ce 	bl	4cbc <printf>
         exit();
     2980:	eb0007ac 	bl	4838 <exit>
     }
     if(unlink("dd/dd") < 0){
-    2984:	e3060128 	movw	r0, #24872	; 0x6128
+    2984:	e306014c 	movw	r0, #24908	; 0x614c
     2988:	e3400000 	movt	r0, #0
     298c:	eb000803 	bl	49a0 <unlink>
     2990:	e1a03000 	mov	r3, r0
@@ -4010,14 +4010,14 @@ subdir(void)
     2998:	aa000004 	bge	29b0 <subdir+0x724>
         printf(1, "unlink dd/dd failed\n");
     299c:	e3a00001 	mov	r0, #1
-    29a0:	e3061130 	movw	r1, #24880	; 0x6130
+    29a0:	e3061154 	movw	r1, #24916	; 0x6154
     29a4:	e3401000 	movt	r1, #0
-    29a8:	eb0008ba 	bl	4c98 <printf>
+    29a8:	eb0008c3 	bl	4cbc <printf>
         exit();
     29ac:	eb0007a1 	bl	4838 <exit>
     }
     if(unlink("dd") < 0){
-    29b0:	e3050cec 	movw	r0, #23788	; 0x5cec
+    29b0:	e3050d10 	movw	r0, #23824	; 0x5d10
     29b4:	e3400000 	movt	r0, #0
     29b8:	eb0007f8 	bl	49a0 <unlink>
     29bc:	e1a03000 	mov	r3, r0
@@ -4025,18 +4025,18 @@ subdir(void)
     29c4:	aa000004 	bge	29dc <subdir+0x750>
         printf(1, "unlink dd failed\n");
     29c8:	e3a00001 	mov	r0, #1
-    29cc:	e3061148 	movw	r1, #24904	; 0x6148
+    29cc:	e306116c 	movw	r1, #24940	; 0x616c
     29d0:	e3401000 	movt	r1, #0
-    29d4:	eb0008af 	bl	4c98 <printf>
+    29d4:	eb0008b8 	bl	4cbc <printf>
         exit();
     29d8:	eb000796 	bl	4838 <exit>
     }
 
     printf(1, "subdir ok\n");
     29dc:	e3a00001 	mov	r0, #1
-    29e0:	e306115c 	movw	r1, #24924	; 0x615c
+    29e0:	e3061180 	movw	r1, #24960	; 0x6180
     29e4:	e3401000 	movt	r1, #0
-    29e8:	eb0008aa 	bl	4c98 <printf>
+    29e8:	eb0008b3 	bl	4cbc <printf>
 }
     29ec:	e24bd004 	sub	sp, fp, #4
     29f0:	e8bd8800 	pop	{fp, pc}
@@ -4054,12 +4054,12 @@ bigwrite(void)
 
     printf(1, "bigwrite test\n");
     2a00:	e3a00001 	mov	r0, #1
-    2a04:	e3061168 	movw	r1, #24936	; 0x6168
+    2a04:	e306118c 	movw	r1, #24972	; 0x618c
     2a08:	e3401000 	movt	r1, #0
-    2a0c:	eb0008a1 	bl	4c98 <printf>
+    2a0c:	eb0008aa 	bl	4cbc <printf>
 
     unlink("bigwrite");
-    2a10:	e3060178 	movw	r0, #24952	; 0x6178
+    2a10:	e306019c 	movw	r0, #24988	; 0x619c
     2a14:	e3400000 	movt	r0, #0
     2a18:	eb0007e0 	bl	49a0 <unlink>
     for(sz = 499; sz < 12*512; sz += 471){
@@ -4067,7 +4067,7 @@ bigwrite(void)
     2a20:	e50b3008 	str	r3, [fp, #-8]
     2a24:	ea00002f 	b	2ae8 <bigwrite+0xf4>
         fd = open("bigwrite", O_CREATE | O_RDWR);
-    2a28:	e3060178 	movw	r0, #24952	; 0x6178
+    2a28:	e306019c 	movw	r0, #24988	; 0x619c
     2a2c:	e3400000 	movt	r0, #0
     2a30:	e3001202 	movw	r1, #514	; 0x202
     2a34:	eb0007c7 	bl	4958 <open>
@@ -4078,9 +4078,9 @@ bigwrite(void)
     2a44:	aa000004 	bge	2a5c <bigwrite+0x68>
             printf(1, "cannot create bigwrite\n");
     2a48:	e3a00001 	mov	r0, #1
-    2a4c:	e3061184 	movw	r1, #24964	; 0x6184
+    2a4c:	e30611a8 	movw	r1, #25000	; 0x61a8
     2a50:	e3401000 	movt	r1, #0
-    2a54:	eb00088f 	bl	4c98 <printf>
+    2a54:	eb000898 	bl	4cbc <printf>
             exit();
     2a58:	eb000776 	bl	4838 <exit>
         }
@@ -4091,7 +4091,7 @@ bigwrite(void)
     2a64:	ea000013 	b	2ab8 <bigwrite+0xc4>
             int cc = write(fd, buf, sz);
     2a68:	e51b0010 	ldr	r0, [fp, #-16]
-    2a6c:	e3091374 	movw	r1, #37748	; 0x9374
+    2a6c:	e3091398 	movw	r1, #37784	; 0x9398
     2a70:	e3401000 	movt	r1, #0
     2a74:	e51b2008 	ldr	r2, [fp, #-8]
     2a78:	eb000792 	bl	48c8 <write>
@@ -4103,11 +4103,11 @@ bigwrite(void)
     2a8c:	0a000006 	beq	2aac <bigwrite+0xb8>
                 printf(1, "write(%d) ret %d\n", sz, cc);
     2a90:	e3a00001 	mov	r0, #1
-    2a94:	e306119c 	movw	r1, #24988	; 0x619c
+    2a94:	e30611c0 	movw	r1, #25024	; 0x61c0
     2a98:	e3401000 	movt	r1, #0
     2a9c:	e51b2008 	ldr	r2, [fp, #-8]
     2aa0:	e51b3014 	ldr	r3, [fp, #-20]	; 0xffffffec
-    2aa4:	eb00087b 	bl	4c98 <printf>
+    2aa4:	eb000884 	bl	4cbc <printf>
                 exit();
     2aa8:	eb000762 	bl	4838 <exit>
         if(fd < 0){
@@ -4131,7 +4131,7 @@ bigwrite(void)
     2ac4:	e51b0010 	ldr	r0, [fp, #-16]
     2ac8:	eb000787 	bl	48ec <close>
         unlink("bigwrite");
-    2acc:	e3060178 	movw	r0, #24952	; 0x6178
+    2acc:	e306019c 	movw	r0, #24988	; 0x619c
     2ad0:	e3400000 	movt	r0, #0
     2ad4:	eb0007b1 	bl	49a0 <unlink>
     int fd, sz;
@@ -4155,9 +4155,9 @@ bigwrite(void)
 
     printf(1, "bigwrite ok\n");
     2af8:	e3a00001 	mov	r0, #1
-    2afc:	e30611b0 	movw	r1, #25008	; 0x61b0
+    2afc:	e30611d4 	movw	r1, #25044	; 0x61d4
     2b00:	e3401000 	movt	r1, #0
-    2b04:	eb000863 	bl	4c98 <printf>
+    2b04:	eb00086c 	bl	4cbc <printf>
 }
     2b08:	e24bd004 	sub	sp, fp, #4
     2b0c:	e8bd8800 	pop	{fp, pc}
@@ -4174,16 +4174,16 @@ bigfile(void)
 
     printf(1, "bigfile test\n");
     2b1c:	e3a00001 	mov	r0, #1
-    2b20:	e30611c0 	movw	r1, #25024	; 0x61c0
+    2b20:	e30611e4 	movw	r1, #25060	; 0x61e4
     2b24:	e3401000 	movt	r1, #0
-    2b28:	eb00085a 	bl	4c98 <printf>
+    2b28:	eb000863 	bl	4cbc <printf>
 
     unlink("bigfile");
-    2b2c:	e30601d0 	movw	r0, #25040	; 0x61d0
+    2b2c:	e30601f4 	movw	r0, #25076	; 0x61f4
     2b30:	e3400000 	movt	r0, #0
     2b34:	eb000799 	bl	49a0 <unlink>
     fd = open("bigfile", O_CREATE | O_RDWR);
-    2b38:	e30601d0 	movw	r0, #25040	; 0x61d0
+    2b38:	e30601f4 	movw	r0, #25076	; 0x61f4
     2b3c:	e3400000 	movt	r0, #0
     2b40:	e3001202 	movw	r1, #514	; 0x202
     2b44:	eb000783 	bl	4958 <open>
@@ -4194,9 +4194,9 @@ bigfile(void)
     2b54:	aa000004 	bge	2b6c <bigfile+0x5c>
         printf(1, "cannot create bigfile");
     2b58:	e3a00001 	mov	r0, #1
-    2b5c:	e30611d8 	movw	r1, #25048	; 0x61d8
+    2b5c:	e30611fc 	movw	r1, #25084	; 0x61fc
     2b60:	e3401000 	movt	r1, #0
-    2b64:	eb00084b 	bl	4c98 <printf>
+    2b64:	eb000854 	bl	4cbc <printf>
         exit();
     2b68:	eb000732 	bl	4838 <exit>
     }
@@ -4205,14 +4205,14 @@ bigfile(void)
     2b70:	e50b3008 	str	r3, [fp, #-8]
     2b74:	ea000014 	b	2bcc <bigfile+0xbc>
         memset(buf, i, 600);
-    2b78:	e3090374 	movw	r0, #37748	; 0x9374
+    2b78:	e3090398 	movw	r0, #37784	; 0x9398
     2b7c:	e3400000 	movt	r0, #0
     2b80:	e51b1008 	ldr	r1, [fp, #-8]
     2b84:	e3a02f96 	mov	r2, #600	; 0x258
     2b88:	eb000631 	bl	4454 <memset>
         if(write(fd, buf, 600) != 600){
     2b8c:	e51b0010 	ldr	r0, [fp, #-16]
-    2b90:	e3091374 	movw	r1, #37748	; 0x9374
+    2b90:	e3091398 	movw	r1, #37784	; 0x9398
     2b94:	e3401000 	movt	r1, #0
     2b98:	e3a02f96 	mov	r2, #600	; 0x258
     2b9c:	eb000749 	bl	48c8 <write>
@@ -4221,9 +4221,9 @@ bigfile(void)
     2ba8:	0a000004 	beq	2bc0 <bigfile+0xb0>
             printf(1, "write bigfile failed\n");
     2bac:	e3a00001 	mov	r0, #1
-    2bb0:	e30611f0 	movw	r1, #25072	; 0x61f0
+    2bb0:	e3061214 	movw	r1, #25108	; 0x6214
     2bb4:	e3401000 	movt	r1, #0
-    2bb8:	eb000836 	bl	4c98 <printf>
+    2bb8:	eb00083f 	bl	4cbc <printf>
             exit();
     2bbc:	eb00071d 	bl	4838 <exit>
     fd = open("bigfile", O_CREATE | O_RDWR);
@@ -4248,7 +4248,7 @@ bigfile(void)
     2bdc:	eb000742 	bl	48ec <close>
 
     fd = open("bigfile", 0);
-    2be0:	e30601d0 	movw	r0, #25040	; 0x61d0
+    2be0:	e30601f4 	movw	r0, #25076	; 0x61f4
     2be4:	e3400000 	movt	r0, #0
     2be8:	e3a01000 	mov	r1, #0
     2bec:	eb000759 	bl	4958 <open>
@@ -4259,9 +4259,9 @@ bigfile(void)
     2bfc:	aa000004 	bge	2c14 <bigfile+0x104>
         printf(1, "cannot open bigfile\n");
     2c00:	e3a00001 	mov	r0, #1
-    2c04:	e3061208 	movw	r1, #25096	; 0x6208
+    2c04:	e306122c 	movw	r1, #25132	; 0x622c
     2c08:	e3401000 	movt	r1, #0
-    2c0c:	eb000821 	bl	4c98 <printf>
+    2c0c:	eb00082a 	bl	4cbc <printf>
         exit();
     2c10:	eb000708 	bl	4838 <exit>
     }
@@ -4273,7 +4273,7 @@ bigfile(void)
     2c20:	e50b3008 	str	r3, [fp, #-8]
         cc = read(fd, buf, 300);
     2c24:	e51b0010 	ldr	r0, [fp, #-16]
-    2c28:	e3091374 	movw	r1, #37748	; 0x9374
+    2c28:	e3091398 	movw	r1, #37784	; 0x9398
     2c2c:	e3401000 	movt	r1, #0
     2c30:	e3a02f4b 	mov	r2, #300	; 0x12c
     2c34:	eb00071a 	bl	48a4 <read>
@@ -4284,9 +4284,9 @@ bigfile(void)
     2c44:	aa000004 	bge	2c5c <bigfile+0x14c>
             printf(1, "read bigfile failed\n");
     2c48:	e3a00001 	mov	r0, #1
-    2c4c:	e3061220 	movw	r1, #25120	; 0x6220
+    2c4c:	e3061244 	movw	r1, #25156	; 0x6244
     2c50:	e3401000 	movt	r1, #0
-    2c54:	eb00080f 	bl	4c98 <printf>
+    2c54:	eb000818 	bl	4cbc <printf>
             exit();
     2c58:	eb0006f6 	bl	4838 <exit>
         }
@@ -4301,14 +4301,14 @@ bigfile(void)
     2c70:	0a000004 	beq	2c88 <bigfile+0x178>
             printf(1, "short read bigfile\n");
     2c74:	e3a00001 	mov	r0, #1
-    2c78:	e3061238 	movw	r1, #25144	; 0x6238
+    2c78:	e306125c 	movw	r1, #25180	; 0x625c
     2c7c:	e3401000 	movt	r1, #0
-    2c80:	eb000804 	bl	4c98 <printf>
+    2c80:	eb00080d 	bl	4cbc <printf>
             exit();
     2c84:	eb0006eb 	bl	4838 <exit>
         }
         if(buf[0] != i/2 || buf[299] != i/2){
-    2c88:	e3093374 	movw	r3, #37748	; 0x9374
+    2c88:	e3093398 	movw	r3, #37784	; 0x9398
     2c8c:	e3403000 	movt	r3, #0
     2c90:	e5d33000 	ldrb	r3, [r3]
     2c94:	e1a02003 	mov	r2, r3
@@ -4318,7 +4318,7 @@ bigfile(void)
     2ca4:	e1a030c3 	asr	r3, r3, #1
     2ca8:	e1520003 	cmp	r2, r3
     2cac:	1a000009 	bne	2cd8 <bigfile+0x1c8>
-    2cb0:	e3093374 	movw	r3, #37748	; 0x9374
+    2cb0:	e3093398 	movw	r3, #37784	; 0x9398
     2cb4:	e3403000 	movt	r3, #0
     2cb8:	e5d3312b 	ldrb	r3, [r3, #299]	; 0x12b
     2cbc:	e1a02003 	mov	r2, r3
@@ -4330,9 +4330,9 @@ bigfile(void)
     2cd4:	0a000004 	beq	2cec <bigfile+0x1dc>
             printf(1, "read bigfile wrong data\n");
     2cd8:	e3a00001 	mov	r0, #1
-    2cdc:	e306124c 	movw	r1, #25164	; 0x624c
+    2cdc:	e3061270 	movw	r1, #25200	; 0x6270
     2ce0:	e3401000 	movt	r1, #0
-    2ce4:	eb0007eb 	bl	4c98 <printf>
+    2ce4:	eb0007f4 	bl	4cbc <printf>
             exit();
     2ce8:	eb0006d2 	bl	4838 <exit>
         }
@@ -4379,22 +4379,22 @@ bigfile(void)
     2d24:	0a000004 	beq	2d3c <bigfile+0x22c>
         printf(1, "read bigfile wrong total\n");
     2d28:	e3a00001 	mov	r0, #1
-    2d2c:	e3061268 	movw	r1, #25192	; 0x6268
+    2d2c:	e306128c 	movw	r1, #25228	; 0x628c
     2d30:	e3401000 	movt	r1, #0
-    2d34:	eb0007d7 	bl	4c98 <printf>
+    2d34:	eb0007e0 	bl	4cbc <printf>
         exit();
     2d38:	eb0006be 	bl	4838 <exit>
     }
     unlink("bigfile");
-    2d3c:	e30601d0 	movw	r0, #25040	; 0x61d0
+    2d3c:	e30601f4 	movw	r0, #25076	; 0x61f4
     2d40:	e3400000 	movt	r0, #0
     2d44:	eb000715 	bl	49a0 <unlink>
 
     printf(1, "bigfile test ok\n");
     2d48:	e3a00001 	mov	r0, #1
-    2d4c:	e3061284 	movw	r1, #25220	; 0x6284
+    2d4c:	e30612a8 	movw	r1, #25256	; 0x62a8
     2d50:	e3401000 	movt	r1, #0
-    2d54:	eb0007cf 	bl	4c98 <printf>
+    2d54:	eb0007d8 	bl	4cbc <printf>
 }
     2d58:	e24bd004 	sub	sp, fp, #4
     2d5c:	e8bd8800 	pop	{fp, pc}
@@ -4412,12 +4412,12 @@ fourteen(void)
     // DIRSIZ is 14.
     printf(1, "fourteen test\n");
     2d6c:	e3a00001 	mov	r0, #1
-    2d70:	e3061298 	movw	r1, #25240	; 0x6298
+    2d70:	e30612bc 	movw	r1, #25276	; 0x62bc
     2d74:	e3401000 	movt	r1, #0
-    2d78:	eb0007c6 	bl	4c98 <printf>
+    2d78:	eb0007cf 	bl	4cbc <printf>
 
     if(mkdir("12345678901234") != 0){
-    2d7c:	e30602a8 	movw	r0, #25256	; 0x62a8
+    2d7c:	e30602cc 	movw	r0, #25292	; 0x62cc
     2d80:	e3400000 	movt	r0, #0
     2d84:	eb000720 	bl	4a0c <mkdir>
     2d88:	e1a03000 	mov	r3, r0
@@ -4425,14 +4425,14 @@ fourteen(void)
     2d90:	0a000004 	beq	2da8 <fourteen+0x48>
         printf(1, "mkdir 12345678901234 failed\n");
     2d94:	e3a00001 	mov	r0, #1
-    2d98:	e30612b8 	movw	r1, #25272	; 0x62b8
+    2d98:	e30612dc 	movw	r1, #25308	; 0x62dc
     2d9c:	e3401000 	movt	r1, #0
-    2da0:	eb0007bc 	bl	4c98 <printf>
+    2da0:	eb0007c5 	bl	4cbc <printf>
         exit();
     2da4:	eb0006a3 	bl	4838 <exit>
     }
     if(mkdir("12345678901234/123456789012345") != 0){
-    2da8:	e30602d8 	movw	r0, #25304	; 0x62d8
+    2da8:	e30602fc 	movw	r0, #25340	; 0x62fc
     2dac:	e3400000 	movt	r0, #0
     2db0:	eb000715 	bl	4a0c <mkdir>
     2db4:	e1a03000 	mov	r3, r0
@@ -4440,14 +4440,14 @@ fourteen(void)
     2dbc:	0a000004 	beq	2dd4 <fourteen+0x74>
         printf(1, "mkdir 12345678901234/123456789012345 failed\n");
     2dc0:	e3a00001 	mov	r0, #1
-    2dc4:	e30612f8 	movw	r1, #25336	; 0x62f8
+    2dc4:	e306131c 	movw	r1, #25372	; 0x631c
     2dc8:	e3401000 	movt	r1, #0
-    2dcc:	eb0007b1 	bl	4c98 <printf>
+    2dcc:	eb0007ba 	bl	4cbc <printf>
         exit();
     2dd0:	eb000698 	bl	4838 <exit>
     }
     fd = open("123456789012345/123456789012345/123456789012345", O_CREATE);
-    2dd4:	e3060328 	movw	r0, #25384	; 0x6328
+    2dd4:	e306034c 	movw	r0, #25420	; 0x634c
     2dd8:	e3400000 	movt	r0, #0
     2ddc:	e3a01c02 	mov	r1, #512	; 0x200
     2de0:	eb0006dc 	bl	4958 <open>
@@ -4458,9 +4458,9 @@ fourteen(void)
     2df0:	aa000004 	bge	2e08 <fourteen+0xa8>
         printf(1, "create 123456789012345/123456789012345/123456789012345 failed\n");
     2df4:	e3a00001 	mov	r0, #1
-    2df8:	e3061358 	movw	r1, #25432	; 0x6358
+    2df8:	e306137c 	movw	r1, #25468	; 0x637c
     2dfc:	e3401000 	movt	r1, #0
-    2e00:	eb0007a4 	bl	4c98 <printf>
+    2e00:	eb0007ad 	bl	4cbc <printf>
         exit();
     2e04:	eb00068b 	bl	4838 <exit>
     }
@@ -4468,7 +4468,7 @@ fourteen(void)
     2e08:	e51b0008 	ldr	r0, [fp, #-8]
     2e0c:	eb0006b6 	bl	48ec <close>
     fd = open("12345678901234/12345678901234/12345678901234", 0);
-    2e10:	e3060398 	movw	r0, #25496	; 0x6398
+    2e10:	e30603bc 	movw	r0, #25532	; 0x63bc
     2e14:	e3400000 	movt	r0, #0
     2e18:	e3a01000 	mov	r1, #0
     2e1c:	eb0006cd 	bl	4958 <open>
@@ -4479,9 +4479,9 @@ fourteen(void)
     2e2c:	aa000004 	bge	2e44 <fourteen+0xe4>
         printf(1, "open 12345678901234/12345678901234/12345678901234 failed\n");
     2e30:	e3a00001 	mov	r0, #1
-    2e34:	e30613c8 	movw	r1, #25544	; 0x63c8
+    2e34:	e30613ec 	movw	r1, #25580	; 0x63ec
     2e38:	e3401000 	movt	r1, #0
-    2e3c:	eb000795 	bl	4c98 <printf>
+    2e3c:	eb00079e 	bl	4cbc <printf>
         exit();
     2e40:	eb00067c 	bl	4838 <exit>
     }
@@ -4490,7 +4490,7 @@ fourteen(void)
     2e48:	eb0006a7 	bl	48ec <close>
 
     if(mkdir("12345678901234/12345678901234") == 0){
-    2e4c:	e3060404 	movw	r0, #25604	; 0x6404
+    2e4c:	e3060428 	movw	r0, #25640	; 0x6428
     2e50:	e3400000 	movt	r0, #0
     2e54:	eb0006ec 	bl	4a0c <mkdir>
     2e58:	e1a03000 	mov	r3, r0
@@ -4498,14 +4498,14 @@ fourteen(void)
     2e60:	1a000004 	bne	2e78 <fourteen+0x118>
         printf(1, "mkdir 12345678901234/12345678901234 succeeded!\n");
     2e64:	e3a00001 	mov	r0, #1
-    2e68:	e3061424 	movw	r1, #25636	; 0x6424
+    2e68:	e3061448 	movw	r1, #25672	; 0x6448
     2e6c:	e3401000 	movt	r1, #0
-    2e70:	eb000788 	bl	4c98 <printf>
+    2e70:	eb000791 	bl	4cbc <printf>
         exit();
     2e74:	eb00066f 	bl	4838 <exit>
     }
     if(mkdir("123456789012345/12345678901234") == 0){
-    2e78:	e3060454 	movw	r0, #25684	; 0x6454
+    2e78:	e3060478 	movw	r0, #25720	; 0x6478
     2e7c:	e3400000 	movt	r0, #0
     2e80:	eb0006e1 	bl	4a0c <mkdir>
     2e84:	e1a03000 	mov	r3, r0
@@ -4513,18 +4513,18 @@ fourteen(void)
     2e8c:	1a000004 	bne	2ea4 <fourteen+0x144>
         printf(1, "mkdir 12345678901234/123456789012345 succeeded!\n");
     2e90:	e3a00001 	mov	r0, #1
-    2e94:	e3061474 	movw	r1, #25716	; 0x6474
+    2e94:	e3061498 	movw	r1, #25752	; 0x6498
     2e98:	e3401000 	movt	r1, #0
-    2e9c:	eb00077d 	bl	4c98 <printf>
+    2e9c:	eb000786 	bl	4cbc <printf>
         exit();
     2ea0:	eb000664 	bl	4838 <exit>
     }
 
     printf(1, "fourteen ok\n");
     2ea4:	e3a00001 	mov	r0, #1
-    2ea8:	e30614a8 	movw	r1, #25768	; 0x64a8
+    2ea8:	e30614cc 	movw	r1, #25804	; 0x64cc
     2eac:	e3401000 	movt	r1, #0
-    2eb0:	eb000778 	bl	4c98 <printf>
+    2eb0:	eb000781 	bl	4cbc <printf>
 }
     2eb4:	e24bd004 	sub	sp, fp, #4
     2eb8:	e8bd8800 	pop	{fp, pc}
@@ -4538,11 +4538,11 @@ rmdot(void)
     2ec0:	e28db004 	add	fp, sp, #4
     printf(1, "rmdot test\n");
     2ec4:	e3a00001 	mov	r0, #1
-    2ec8:	e30614b8 	movw	r1, #25784	; 0x64b8
+    2ec8:	e30614dc 	movw	r1, #25820	; 0x64dc
     2ecc:	e3401000 	movt	r1, #0
-    2ed0:	eb000770 	bl	4c98 <printf>
+    2ed0:	eb000779 	bl	4cbc <printf>
     if(mkdir("dots") != 0){
-    2ed4:	e30604c4 	movw	r0, #25796	; 0x64c4
+    2ed4:	e30604e8 	movw	r0, #25832	; 0x64e8
     2ed8:	e3400000 	movt	r0, #0
     2edc:	eb0006ca 	bl	4a0c <mkdir>
     2ee0:	e1a03000 	mov	r3, r0
@@ -4550,14 +4550,14 @@ rmdot(void)
     2ee8:	0a000004 	beq	2f00 <rmdot+0x44>
         printf(1, "mkdir dots failed\n");
     2eec:	e3a00001 	mov	r0, #1
-    2ef0:	e30614cc 	movw	r1, #25804	; 0x64cc
+    2ef0:	e30614f0 	movw	r1, #25840	; 0x64f0
     2ef4:	e3401000 	movt	r1, #0
-    2ef8:	eb000766 	bl	4c98 <printf>
+    2ef8:	eb00076f 	bl	4cbc <printf>
         exit();
     2efc:	eb00064d 	bl	4838 <exit>
     }
     if(chdir("dots") != 0){
-    2f00:	e30604c4 	movw	r0, #25796	; 0x64c4
+    2f00:	e30604e8 	movw	r0, #25832	; 0x64e8
     2f04:	e3400000 	movt	r0, #0
     2f08:	eb0006c8 	bl	4a30 <chdir>
     2f0c:	e1a03000 	mov	r3, r0
@@ -4565,14 +4565,14 @@ rmdot(void)
     2f14:	0a000004 	beq	2f2c <rmdot+0x70>
         printf(1, "chdir dots failed\n");
     2f18:	e3a00001 	mov	r0, #1
-    2f1c:	e30614e0 	movw	r1, #25824	; 0x64e0
+    2f1c:	e3061504 	movw	r1, #25860	; 0x6504
     2f20:	e3401000 	movt	r1, #0
-    2f24:	eb00075b 	bl	4c98 <printf>
+    2f24:	eb000764 	bl	4cbc <printf>
         exit();
     2f28:	eb000642 	bl	4838 <exit>
     }
     if(unlink(".") == 0){
-    2f2c:	e3050b6c 	movw	r0, #23404	; 0x5b6c
+    2f2c:	e3050b90 	movw	r0, #23440	; 0x5b90
     2f30:	e3400000 	movt	r0, #0
     2f34:	eb000699 	bl	49a0 <unlink>
     2f38:	e1a03000 	mov	r3, r0
@@ -4580,14 +4580,14 @@ rmdot(void)
     2f40:	1a000004 	bne	2f58 <rmdot+0x9c>
         printf(1, "rm . worked!\n");
     2f44:	e3a00001 	mov	r0, #1
-    2f48:	e30614f4 	movw	r1, #25844	; 0x64f4
+    2f48:	e3061518 	movw	r1, #25880	; 0x6518
     2f4c:	e3401000 	movt	r1, #0
-    2f50:	eb000750 	bl	4c98 <printf>
+    2f50:	eb000759 	bl	4cbc <printf>
         exit();
     2f54:	eb000637 	bl	4838 <exit>
     }
     if(unlink("..") == 0){
-    2f58:	e305069c 	movw	r0, #22172	; 0x569c
+    2f58:	e30506c0 	movw	r0, #22208	; 0x56c0
     2f5c:	e3400000 	movt	r0, #0
     2f60:	eb00068e 	bl	49a0 <unlink>
     2f64:	e1a03000 	mov	r3, r0
@@ -4595,14 +4595,14 @@ rmdot(void)
     2f6c:	1a000004 	bne	2f84 <rmdot+0xc8>
         printf(1, "rm .. worked!\n");
     2f70:	e3a00001 	mov	r0, #1
-    2f74:	e3061504 	movw	r1, #25860	; 0x6504
+    2f74:	e3061528 	movw	r1, #25896	; 0x6528
     2f78:	e3401000 	movt	r1, #0
-    2f7c:	eb000745 	bl	4c98 <printf>
+    2f7c:	eb00074e 	bl	4cbc <printf>
         exit();
     2f80:	eb00062c 	bl	4838 <exit>
     }
     if(chdir("/") != 0){
-    2f84:	e3060514 	movw	r0, #25876	; 0x6514
+    2f84:	e3060538 	movw	r0, #25912	; 0x6538
     2f88:	e3400000 	movt	r0, #0
     2f8c:	eb0006a7 	bl	4a30 <chdir>
     2f90:	e1a03000 	mov	r3, r0
@@ -4610,14 +4610,14 @@ rmdot(void)
     2f98:	0a000004 	beq	2fb0 <rmdot+0xf4>
         printf(1, "chdir / failed\n");
     2f9c:	e3a00001 	mov	r0, #1
-    2fa0:	e3061518 	movw	r1, #25880	; 0x6518
+    2fa0:	e306153c 	movw	r1, #25916	; 0x653c
     2fa4:	e3401000 	movt	r1, #0
-    2fa8:	eb00073a 	bl	4c98 <printf>
+    2fa8:	eb000743 	bl	4cbc <printf>
         exit();
     2fac:	eb000621 	bl	4838 <exit>
     }
     if(unlink("dots/.") == 0){
-    2fb0:	e3060528 	movw	r0, #25896	; 0x6528
+    2fb0:	e306054c 	movw	r0, #25932	; 0x654c
     2fb4:	e3400000 	movt	r0, #0
     2fb8:	eb000678 	bl	49a0 <unlink>
     2fbc:	e1a03000 	mov	r3, r0
@@ -4625,14 +4625,14 @@ rmdot(void)
     2fc4:	1a000004 	bne	2fdc <rmdot+0x120>
         printf(1, "unlink dots/. worked!\n");
     2fc8:	e3a00001 	mov	r0, #1
-    2fcc:	e3061530 	movw	r1, #25904	; 0x6530
+    2fcc:	e3061554 	movw	r1, #25940	; 0x6554
     2fd0:	e3401000 	movt	r1, #0
-    2fd4:	eb00072f 	bl	4c98 <printf>
+    2fd4:	eb000738 	bl	4cbc <printf>
         exit();
     2fd8:	eb000616 	bl	4838 <exit>
     }
     if(unlink("dots/..") == 0){
-    2fdc:	e3060548 	movw	r0, #25928	; 0x6548
+    2fdc:	e306056c 	movw	r0, #25964	; 0x656c
     2fe0:	e3400000 	movt	r0, #0
     2fe4:	eb00066d 	bl	49a0 <unlink>
     2fe8:	e1a03000 	mov	r3, r0
@@ -4640,14 +4640,14 @@ rmdot(void)
     2ff0:	1a000004 	bne	3008 <rmdot+0x14c>
         printf(1, "unlink dots/.. worked!\n");
     2ff4:	e3a00001 	mov	r0, #1
-    2ff8:	e3061550 	movw	r1, #25936	; 0x6550
+    2ff8:	e3061574 	movw	r1, #25972	; 0x6574
     2ffc:	e3401000 	movt	r1, #0
-    3000:	eb000724 	bl	4c98 <printf>
+    3000:	eb00072d 	bl	4cbc <printf>
         exit();
     3004:	eb00060b 	bl	4838 <exit>
     }
     if(unlink("dots") != 0){
-    3008:	e30604c4 	movw	r0, #25796	; 0x64c4
+    3008:	e30604e8 	movw	r0, #25832	; 0x64e8
     300c:	e3400000 	movt	r0, #0
     3010:	eb000662 	bl	49a0 <unlink>
     3014:	e1a03000 	mov	r3, r0
@@ -4655,17 +4655,17 @@ rmdot(void)
     301c:	0a000004 	beq	3034 <rmdot+0x178>
         printf(1, "unlink dots failed!\n");
     3020:	e3a00001 	mov	r0, #1
-    3024:	e3061568 	movw	r1, #25960	; 0x6568
+    3024:	e306158c 	movw	r1, #25996	; 0x658c
     3028:	e3401000 	movt	r1, #0
-    302c:	eb000719 	bl	4c98 <printf>
+    302c:	eb000722 	bl	4cbc <printf>
         exit();
     3030:	eb000600 	bl	4838 <exit>
     }
     printf(1, "rmdot ok\n");
     3034:	e3a00001 	mov	r0, #1
-    3038:	e3061580 	movw	r1, #25984	; 0x6580
+    3038:	e30615a4 	movw	r1, #26020	; 0x65a4
     303c:	e3401000 	movt	r1, #0
-    3040:	eb000714 	bl	4c98 <printf>
+    3040:	eb00071d 	bl	4cbc <printf>
 }
     3044:	e8bd8800 	pop	{fp, pc}
 
@@ -4681,12 +4681,12 @@ dirfile(void)
 
     printf(1, "dir vs file\n");
     3054:	e3a00001 	mov	r0, #1
-    3058:	e306158c 	movw	r1, #25996	; 0x658c
+    3058:	e30615b0 	movw	r1, #26032	; 0x65b0
     305c:	e3401000 	movt	r1, #0
-    3060:	eb00070c 	bl	4c98 <printf>
+    3060:	eb000715 	bl	4cbc <printf>
 
     fd = open("dirfile", O_CREATE);
-    3064:	e306059c 	movw	r0, #26012	; 0x659c
+    3064:	e30605c0 	movw	r0, #26048	; 0x65c0
     3068:	e3400000 	movt	r0, #0
     306c:	e3a01c02 	mov	r1, #512	; 0x200
     3070:	eb000638 	bl	4958 <open>
@@ -4697,9 +4697,9 @@ dirfile(void)
     3080:	aa000004 	bge	3098 <dirfile+0x50>
         printf(1, "create dirfile failed\n");
     3084:	e3a00001 	mov	r0, #1
-    3088:	e30615a4 	movw	r1, #26020	; 0x65a4
+    3088:	e30615c8 	movw	r1, #26056	; 0x65c8
     308c:	e3401000 	movt	r1, #0
-    3090:	eb000700 	bl	4c98 <printf>
+    3090:	eb000709 	bl	4cbc <printf>
         exit();
     3094:	eb0005e7 	bl	4838 <exit>
     }
@@ -4707,7 +4707,7 @@ dirfile(void)
     3098:	e51b0008 	ldr	r0, [fp, #-8]
     309c:	eb000612 	bl	48ec <close>
     if(chdir("dirfile") == 0){
-    30a0:	e306059c 	movw	r0, #26012	; 0x659c
+    30a0:	e30605c0 	movw	r0, #26048	; 0x65c0
     30a4:	e3400000 	movt	r0, #0
     30a8:	eb000660 	bl	4a30 <chdir>
     30ac:	e1a03000 	mov	r3, r0
@@ -4715,14 +4715,14 @@ dirfile(void)
     30b4:	1a000004 	bne	30cc <dirfile+0x84>
         printf(1, "chdir dirfile succeeded!\n");
     30b8:	e3a00001 	mov	r0, #1
-    30bc:	e30615bc 	movw	r1, #26044	; 0x65bc
+    30bc:	e30615e0 	movw	r1, #26080	; 0x65e0
     30c0:	e3401000 	movt	r1, #0
-    30c4:	eb0006f3 	bl	4c98 <printf>
+    30c4:	eb0006fc 	bl	4cbc <printf>
         exit();
     30c8:	eb0005da 	bl	4838 <exit>
     }
     fd = open("dirfile/xx", 0);
-    30cc:	e30605d8 	movw	r0, #26072	; 0x65d8
+    30cc:	e30605fc 	movw	r0, #26108	; 0x65fc
     30d0:	e3400000 	movt	r0, #0
     30d4:	e3a01000 	mov	r1, #0
     30d8:	eb00061e 	bl	4958 <open>
@@ -4733,14 +4733,14 @@ dirfile(void)
     30e8:	ba000004 	blt	3100 <dirfile+0xb8>
         printf(1, "create dirfile/xx succeeded!\n");
     30ec:	e3a00001 	mov	r0, #1
-    30f0:	e30615e4 	movw	r1, #26084	; 0x65e4
+    30f0:	e3061608 	movw	r1, #26120	; 0x6608
     30f4:	e3401000 	movt	r1, #0
-    30f8:	eb0006e6 	bl	4c98 <printf>
+    30f8:	eb0006ef 	bl	4cbc <printf>
         exit();
     30fc:	eb0005cd 	bl	4838 <exit>
     }
     fd = open("dirfile/xx", O_CREATE);
-    3100:	e30605d8 	movw	r0, #26072	; 0x65d8
+    3100:	e30605fc 	movw	r0, #26108	; 0x65fc
     3104:	e3400000 	movt	r0, #0
     3108:	e3a01c02 	mov	r1, #512	; 0x200
     310c:	eb000611 	bl	4958 <open>
@@ -4751,14 +4751,14 @@ dirfile(void)
     311c:	ba000004 	blt	3134 <dirfile+0xec>
         printf(1, "create dirfile/xx succeeded!\n");
     3120:	e3a00001 	mov	r0, #1
-    3124:	e30615e4 	movw	r1, #26084	; 0x65e4
+    3124:	e3061608 	movw	r1, #26120	; 0x6608
     3128:	e3401000 	movt	r1, #0
-    312c:	eb0006d9 	bl	4c98 <printf>
+    312c:	eb0006e2 	bl	4cbc <printf>
         exit();
     3130:	eb0005c0 	bl	4838 <exit>
     }
     if(mkdir("dirfile/xx") == 0){
-    3134:	e30605d8 	movw	r0, #26072	; 0x65d8
+    3134:	e30605fc 	movw	r0, #26108	; 0x65fc
     3138:	e3400000 	movt	r0, #0
     313c:	eb000632 	bl	4a0c <mkdir>
     3140:	e1a03000 	mov	r3, r0
@@ -4766,14 +4766,14 @@ dirfile(void)
     3148:	1a000004 	bne	3160 <dirfile+0x118>
         printf(1, "mkdir dirfile/xx succeeded!\n");
     314c:	e3a00001 	mov	r0, #1
-    3150:	e3061604 	movw	r1, #26116	; 0x6604
+    3150:	e3061628 	movw	r1, #26152	; 0x6628
     3154:	e3401000 	movt	r1, #0
-    3158:	eb0006ce 	bl	4c98 <printf>
+    3158:	eb0006d7 	bl	4cbc <printf>
         exit();
     315c:	eb0005b5 	bl	4838 <exit>
     }
     if(unlink("dirfile/xx") == 0){
-    3160:	e30605d8 	movw	r0, #26072	; 0x65d8
+    3160:	e30605fc 	movw	r0, #26108	; 0x65fc
     3164:	e3400000 	movt	r0, #0
     3168:	eb00060c 	bl	49a0 <unlink>
     316c:	e1a03000 	mov	r3, r0
@@ -4781,16 +4781,16 @@ dirfile(void)
     3174:	1a000004 	bne	318c <dirfile+0x144>
         printf(1, "unlink dirfile/xx succeeded!\n");
     3178:	e3a00001 	mov	r0, #1
-    317c:	e3061624 	movw	r1, #26148	; 0x6624
+    317c:	e3061648 	movw	r1, #26184	; 0x6648
     3180:	e3401000 	movt	r1, #0
-    3184:	eb0006c3 	bl	4c98 <printf>
+    3184:	eb0006cc 	bl	4cbc <printf>
         exit();
     3188:	eb0005aa 	bl	4838 <exit>
     }
     if(link("README", "dirfile/xx") == 0){
-    318c:	e3060644 	movw	r0, #26180	; 0x6644
+    318c:	e3060668 	movw	r0, #26216	; 0x6668
     3190:	e3400000 	movt	r0, #0
-    3194:	e30615d8 	movw	r1, #26072	; 0x65d8
+    3194:	e30615fc 	movw	r1, #26108	; 0x65fc
     3198:	e3401000 	movt	r1, #0
     319c:	eb000611 	bl	49e8 <link>
     31a0:	e1a03000 	mov	r3, r0
@@ -4798,14 +4798,14 @@ dirfile(void)
     31a8:	1a000004 	bne	31c0 <dirfile+0x178>
         printf(1, "link to dirfile/xx succeeded!\n");
     31ac:	e3a00001 	mov	r0, #1
-    31b0:	e306164c 	movw	r1, #26188	; 0x664c
+    31b0:	e3061670 	movw	r1, #26224	; 0x6670
     31b4:	e3401000 	movt	r1, #0
-    31b8:	eb0006b6 	bl	4c98 <printf>
+    31b8:	eb0006bf 	bl	4cbc <printf>
         exit();
     31bc:	eb00059d 	bl	4838 <exit>
     }
     if(unlink("dirfile") != 0){
-    31c0:	e306059c 	movw	r0, #26012	; 0x659c
+    31c0:	e30605c0 	movw	r0, #26048	; 0x65c0
     31c4:	e3400000 	movt	r0, #0
     31c8:	eb0005f4 	bl	49a0 <unlink>
     31cc:	e1a03000 	mov	r3, r0
@@ -4813,15 +4813,15 @@ dirfile(void)
     31d4:	0a000004 	beq	31ec <dirfile+0x1a4>
         printf(1, "unlink dirfile failed!\n");
     31d8:	e3a00001 	mov	r0, #1
-    31dc:	e306166c 	movw	r1, #26220	; 0x666c
+    31dc:	e3061690 	movw	r1, #26256	; 0x6690
     31e0:	e3401000 	movt	r1, #0
-    31e4:	eb0006ab 	bl	4c98 <printf>
+    31e4:	eb0006b4 	bl	4cbc <printf>
         exit();
     31e8:	eb000592 	bl	4838 <exit>
     }
 
     fd = open(".", O_RDWR);
-    31ec:	e3050b6c 	movw	r0, #23404	; 0x5b6c
+    31ec:	e3050b90 	movw	r0, #23440	; 0x5b90
     31f0:	e3400000 	movt	r0, #0
     31f4:	e3a01002 	mov	r1, #2
     31f8:	eb0005d6 	bl	4958 <open>
@@ -4832,21 +4832,21 @@ dirfile(void)
     3208:	ba000004 	blt	3220 <dirfile+0x1d8>
         printf(1, "open . for writing succeeded!\n");
     320c:	e3a00001 	mov	r0, #1
-    3210:	e3061684 	movw	r1, #26244	; 0x6684
+    3210:	e30616a8 	movw	r1, #26280	; 0x66a8
     3214:	e3401000 	movt	r1, #0
-    3218:	eb00069e 	bl	4c98 <printf>
+    3218:	eb0006a7 	bl	4cbc <printf>
         exit();
     321c:	eb000585 	bl	4838 <exit>
     }
     fd = open(".", 0);
-    3220:	e3050b6c 	movw	r0, #23404	; 0x5b6c
+    3220:	e3050b90 	movw	r0, #23440	; 0x5b90
     3224:	e3400000 	movt	r0, #0
     3228:	e3a01000 	mov	r1, #0
     322c:	eb0005c9 	bl	4958 <open>
     3230:	e50b0008 	str	r0, [fp, #-8]
     if(write(fd, "x", 1) > 0){
     3234:	e51b0008 	ldr	r0, [fp, #-8]
-    3238:	e3051758 	movw	r1, #22360	; 0x5758
+    3238:	e305177c 	movw	r1, #22396	; 0x577c
     323c:	e3401000 	movt	r1, #0
     3240:	e3a02001 	mov	r2, #1
     3244:	eb00059f 	bl	48c8 <write>
@@ -4855,9 +4855,9 @@ dirfile(void)
     3250:	da000004 	ble	3268 <dirfile+0x220>
         printf(1, "write . succeeded!\n");
     3254:	e3a00001 	mov	r0, #1
-    3258:	e30616a4 	movw	r1, #26276	; 0x66a4
+    3258:	e30616c8 	movw	r1, #26312	; 0x66c8
     325c:	e3401000 	movt	r1, #0
-    3260:	eb00068c 	bl	4c98 <printf>
+    3260:	eb000695 	bl	4cbc <printf>
         exit();
     3264:	eb000573 	bl	4838 <exit>
     }
@@ -4867,9 +4867,9 @@ dirfile(void)
 
     printf(1, "dir vs file OK\n");
     3270:	e3a00001 	mov	r0, #1
-    3274:	e30616b8 	movw	r1, #26296	; 0x66b8
+    3274:	e30616dc 	movw	r1, #26332	; 0x66dc
     3278:	e3401000 	movt	r1, #0
-    327c:	eb000685 	bl	4c98 <printf>
+    327c:	eb00068e 	bl	4cbc <printf>
 }
     3280:	e24bd004 	sub	sp, fp, #4
     3284:	e8bd8800 	pop	{fp, pc}
@@ -4887,9 +4887,9 @@ iref(void)
 
     printf(1, "empty file name\n");
     3294:	e3a00001 	mov	r0, #1
-    3298:	e30616c8 	movw	r1, #26312	; 0x66c8
+    3298:	e30616ec 	movw	r1, #26348	; 0x66ec
     329c:	e3401000 	movt	r1, #0
-    32a0:	eb00067c 	bl	4c98 <printf>
+    32a0:	eb000685 	bl	4cbc <printf>
 
     // the 50 is NINODE
     for(i = 0; i < 50 + 1; i++){
@@ -4897,7 +4897,7 @@ iref(void)
     32a8:	e50b3008 	str	r3, [fp, #-8]
     32ac:	ea000037 	b	3390 <iref+0x108>
         if(mkdir("irefd") != 0){
-    32b0:	e30606dc 	movw	r0, #26332	; 0x66dc
+    32b0:	e3060700 	movw	r0, #26368	; 0x6700
     32b4:	e3400000 	movt	r0, #0
     32b8:	eb0005d3 	bl	4a0c <mkdir>
     32bc:	e1a03000 	mov	r3, r0
@@ -4905,14 +4905,14 @@ iref(void)
     32c4:	0a000004 	beq	32dc <iref+0x54>
             printf(1, "mkdir irefd failed\n");
     32c8:	e3a00001 	mov	r0, #1
-    32cc:	e30616e4 	movw	r1, #26340	; 0x66e4
+    32cc:	e3061708 	movw	r1, #26376	; 0x6708
     32d0:	e3401000 	movt	r1, #0
-    32d4:	eb00066f 	bl	4c98 <printf>
+    32d4:	eb000678 	bl	4cbc <printf>
             exit();
     32d8:	eb000556 	bl	4838 <exit>
         }
         if(chdir("irefd") != 0){
-    32dc:	e30606dc 	movw	r0, #26332	; 0x66dc
+    32dc:	e3060700 	movw	r0, #26368	; 0x6700
     32e0:	e3400000 	movt	r0, #0
     32e4:	eb0005d1 	bl	4a30 <chdir>
     32e8:	e1a03000 	mov	r3, r0
@@ -4920,25 +4920,25 @@ iref(void)
     32f0:	0a000004 	beq	3308 <iref+0x80>
             printf(1, "chdir irefd failed\n");
     32f4:	e3a00001 	mov	r0, #1
-    32f8:	e30616f8 	movw	r1, #26360	; 0x66f8
+    32f8:	e306171c 	movw	r1, #26396	; 0x671c
     32fc:	e3401000 	movt	r1, #0
-    3300:	eb000664 	bl	4c98 <printf>
+    3300:	eb00066d 	bl	4cbc <printf>
             exit();
     3304:	eb00054b 	bl	4838 <exit>
         }
 
         mkdir("");
-    3308:	e306070c 	movw	r0, #26380	; 0x670c
+    3308:	e3060730 	movw	r0, #26416	; 0x6730
     330c:	e3400000 	movt	r0, #0
     3310:	eb0005bd 	bl	4a0c <mkdir>
         link("README", "");
-    3314:	e3060644 	movw	r0, #26180	; 0x6644
+    3314:	e3060668 	movw	r0, #26216	; 0x6668
     3318:	e3400000 	movt	r0, #0
-    331c:	e306170c 	movw	r1, #26380	; 0x670c
+    331c:	e3061730 	movw	r1, #26416	; 0x6730
     3320:	e3401000 	movt	r1, #0
     3324:	eb0005af 	bl	49e8 <link>
         fd = open("", O_CREATE);
-    3328:	e306070c 	movw	r0, #26380	; 0x670c
+    3328:	e3060730 	movw	r0, #26416	; 0x6730
     332c:	e3400000 	movt	r0, #0
     3330:	e3a01c02 	mov	r1, #512	; 0x200
     3334:	eb000587 	bl	4958 <open>
@@ -4951,7 +4951,7 @@ iref(void)
     3348:	e51b000c 	ldr	r0, [fp, #-12]
     334c:	eb000566 	bl	48ec <close>
         fd = open("xx", O_CREATE);
-    3350:	e3060710 	movw	r0, #26384	; 0x6710
+    3350:	e3060734 	movw	r0, #26420	; 0x6734
     3354:	e3400000 	movt	r0, #0
     3358:	e3a01c02 	mov	r1, #512	; 0x200
     335c:	eb00057d 	bl	4958 <open>
@@ -4964,7 +4964,7 @@ iref(void)
     3370:	e51b000c 	ldr	r0, [fp, #-12]
     3374:	eb00055c 	bl	48ec <close>
         unlink("xx");
-    3378:	e3060710 	movw	r0, #26384	; 0x6710
+    3378:	e3060734 	movw	r0, #26420	; 0x6734
     337c:	e3400000 	movt	r0, #0
     3380:	eb000586 	bl	49a0 <unlink>
     int i, fd;
@@ -4985,14 +4985,14 @@ iref(void)
     }
 
     chdir("/");
-    339c:	e3060514 	movw	r0, #25876	; 0x6514
+    339c:	e3060538 	movw	r0, #25912	; 0x6538
     33a0:	e3400000 	movt	r0, #0
     33a4:	eb0005a1 	bl	4a30 <chdir>
     printf(1, "empty file name OK\n");
     33a8:	e3a00001 	mov	r0, #1
-    33ac:	e3061714 	movw	r1, #26388	; 0x6714
+    33ac:	e3061738 	movw	r1, #26424	; 0x6738
     33b0:	e3401000 	movt	r1, #0
-    33b4:	eb000637 	bl	4c98 <printf>
+    33b4:	eb000640 	bl	4cbc <printf>
 }
     33b8:	e24bd004 	sub	sp, fp, #4
     33bc:	e8bd8800 	pop	{fp, pc}
@@ -5011,9 +5011,9 @@ forktest(void)
 
     printf(1, "fork test\n");
     33cc:	e3a00001 	mov	r0, #1
-    33d0:	e3061728 	movw	r1, #26408	; 0x6728
+    33d0:	e306174c 	movw	r1, #26444	; 0x674c
     33d4:	e3401000 	movt	r1, #0
-    33d8:	eb00062e 	bl	4c98 <printf>
+    33d8:	eb000637 	bl	4cbc <printf>
 
     for(n=0; n<1000; n++){
     33dc:	e3a03000 	mov	r3, #0
@@ -5061,9 +5061,9 @@ forktest(void)
     3438:	1a000010 	bne	3480 <forktest+0xc0>
         printf(1, "fork claimed to work 1000 times!\n");
     343c:	e3a00001 	mov	r0, #1
-    3440:	e3061734 	movw	r1, #26420	; 0x6734
+    3440:	e3061758 	movw	r1, #26456	; 0x6758
     3444:	e3401000 	movt	r1, #0
-    3448:	eb000612 	bl	4c98 <printf>
+    3448:	eb00061b 	bl	4cbc <printf>
         exit();
     344c:	eb0004f9 	bl	4838 <exit>
     }
@@ -5076,9 +5076,9 @@ forktest(void)
     345c:	aa000004 	bge	3474 <forktest+0xb4>
             printf(1, "wait stopped early\n");
     3460:	e3a00001 	mov	r0, #1
-    3464:	e3061758 	movw	r1, #26456	; 0x6758
+    3464:	e306177c 	movw	r1, #26492	; 0x677c
     3468:	e3401000 	movt	r1, #0
-    346c:	eb000609 	bl	4c98 <printf>
+    346c:	eb000612 	bl	4cbc <printf>
             exit();
     3470:	eb0004f0 	bl	4838 <exit>
     if(n == 1000){
@@ -5105,18 +5105,18 @@ forktest(void)
     3498:	0a000004 	beq	34b0 <forktest+0xf0>
         printf(1, "wait got too many\n");
     349c:	e3a00001 	mov	r0, #1
-    34a0:	e306176c 	movw	r1, #26476	; 0x676c
+    34a0:	e3061790 	movw	r1, #26512	; 0x6790
     34a4:	e3401000 	movt	r1, #0
-    34a8:	eb0005fa 	bl	4c98 <printf>
+    34a8:	eb000603 	bl	4cbc <printf>
         exit();
     34ac:	eb0004e1 	bl	4838 <exit>
     }
 
     printf(1, "fork test OK\n");
     34b0:	e3a00001 	mov	r0, #1
-    34b4:	e3061780 	movw	r1, #26496	; 0x6780
+    34b4:	e30617a4 	movw	r1, #26532	; 0x67a4
     34b8:	e3401000 	movt	r1, #0
-    34bc:	eb0005f5 	bl	4c98 <printf>
+    34bc:	eb0005fe 	bl	4cbc <printf>
 }
     34c0:	e24bd004 	sub	sp, fp, #4
     34c4:	e8bd8800 	pop	{fp, pc}
@@ -5134,13 +5134,13 @@ sbrktest(void)
     uint amt;
 
     printf(stdout, "sbrk test\n");
-    34d4:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    34d4:	e3063be0 	movw	r3, #27616	; 0x6be0
     34d8:	e3403000 	movt	r3, #0
     34dc:	e5933000 	ldr	r3, [r3]
     34e0:	e1a00003 	mov	r0, r3
-    34e4:	e3061790 	movw	r1, #26512	; 0x6790
+    34e4:	e30617b4 	movw	r1, #26548	; 0x67b4
     34e8:	e3401000 	movt	r1, #0
-    34ec:	eb0005e9 	bl	4c98 <printf>
+    34ec:	eb0005f2 	bl	4cbc <printf>
     oldbrk = sbrk(0);
     34f0:	e3a00000 	mov	r0, #0
     34f4:	eb000568 	bl	4a9c <sbrk>
@@ -5166,17 +5166,17 @@ sbrktest(void)
     3528:	e1520003 	cmp	r2, r3
     352c:	0a00000b 	beq	3560 <sbrktest+0x98>
             printf(stdout, "sbrk test failed %d %x %x\n", i, a, b);
-    3530:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3530:	e3063be0 	movw	r3, #27616	; 0x6be0
     3534:	e3403000 	movt	r3, #0
     3538:	e5933000 	ldr	r3, [r3]
     353c:	e51b201c 	ldr	r2, [fp, #-28]	; 0xffffffe4
     3540:	e58d2000 	str	r2, [sp]
     3544:	e1a00003 	mov	r0, r3
-    3548:	e306179c 	movw	r1, #26524	; 0x679c
+    3548:	e30617c0 	movw	r1, #26560	; 0x67c0
     354c:	e3401000 	movt	r1, #0
     3550:	e51b2014 	ldr	r2, [fp, #-20]	; 0xffffffec
     3554:	e51b3010 	ldr	r3, [fp, #-16]
-    3558:	eb0005ce 	bl	4c98 <printf>
+    3558:	eb0005d7 	bl	4cbc <printf>
             exit();
     355c:	eb0004b5 	bl	4838 <exit>
         }
@@ -5214,13 +5214,13 @@ sbrktest(void)
     35a0:	e3530000 	cmp	r3, #0
     35a4:	aa000007 	bge	35c8 <sbrktest+0x100>
         printf(stdout, "sbrk test fork failed\n");
-    35a8:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    35a8:	e3063be0 	movw	r3, #27616	; 0x6be0
     35ac:	e3403000 	movt	r3, #0
     35b0:	e5933000 	ldr	r3, [r3]
     35b4:	e1a00003 	mov	r0, r3
-    35b8:	e30617b8 	movw	r1, #26552	; 0x67b8
+    35b8:	e30617dc 	movw	r1, #26588	; 0x67dc
     35bc:	e3401000 	movt	r1, #0
-    35c0:	eb0005b4 	bl	4c98 <printf>
+    35c0:	eb0005bd 	bl	4cbc <printf>
         exit();
     35c4:	eb00049b 	bl	4838 <exit>
     }
@@ -5239,13 +5239,13 @@ sbrktest(void)
     35ec:	e1520003 	cmp	r2, r3
     35f0:	0a000007 	beq	3614 <sbrktest+0x14c>
         printf(stdout, "sbrk test failed post-fork\n");
-    35f4:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    35f4:	e3063be0 	movw	r3, #27616	; 0x6be0
     35f8:	e3403000 	movt	r3, #0
     35fc:	e5933000 	ldr	r3, [r3]
     3600:	e1a00003 	mov	r0, r3
-    3604:	e30617d0 	movw	r1, #26576	; 0x67d0
+    3604:	e30617f4 	movw	r1, #26612	; 0x67f4
     3608:	e3401000 	movt	r1, #0
-    360c:	eb0005a1 	bl	4c98 <printf>
+    360c:	eb0005aa 	bl	4cbc <printf>
         exit();
     3610:	eb000488 	bl	4838 <exit>
     }
@@ -5279,13 +5279,13 @@ sbrktest(void)
     3658:	e1520003 	cmp	r2, r3
     365c:	0a000007 	beq	3680 <sbrktest+0x1b8>
         printf(stdout, "sbrk test failed to grow big address space; enough phys mem?\n");
-    3660:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3660:	e3063be0 	movw	r3, #27616	; 0x6be0
     3664:	e3403000 	movt	r3, #0
     3668:	e5933000 	ldr	r3, [r3]
     366c:	e1a00003 	mov	r0, r3
-    3670:	e30617ec 	movw	r1, #26604	; 0x67ec
+    3670:	e3061810 	movw	r1, #26640	; 0x6810
     3674:	e3401000 	movt	r1, #0
-    3678:	eb000586 	bl	4c98 <printf>
+    3678:	eb00058f 	bl	4cbc <printf>
         exit();
     367c:	eb00046d 	bl	4838 <exit>
     }
@@ -5313,13 +5313,13 @@ sbrktest(void)
     36b8:	e3730001 	cmn	r3, #1
     36bc:	1a000007 	bne	36e0 <sbrktest+0x218>
         printf(stdout, "sbrk could not deallocate\n");
-    36c0:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    36c0:	e3063be0 	movw	r3, #27616	; 0x6be0
     36c4:	e3403000 	movt	r3, #0
     36c8:	e5933000 	ldr	r3, [r3]
     36cc:	e1a00003 	mov	r0, r3
-    36d0:	e306182c 	movw	r1, #26668	; 0x682c
+    36d0:	e3061850 	movw	r1, #26704	; 0x6850
     36d4:	e3401000 	movt	r1, #0
-    36d8:	eb00056e 	bl	4c98 <printf>
+    36d8:	eb000577 	bl	4cbc <printf>
         exit();
     36dc:	eb000455 	bl	4838 <exit>
     }
@@ -5334,15 +5334,15 @@ sbrktest(void)
     36f8:	e1520003 	cmp	r2, r3
     36fc:	0a000009 	beq	3728 <sbrktest+0x260>
         printf(stdout, "sbrk deallocation produced wrong address, a %x c %x\n", a, c);
-    3700:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3700:	e3063be0 	movw	r3, #27616	; 0x6be0
     3704:	e3403000 	movt	r3, #0
     3708:	e5933000 	ldr	r3, [r3]
     370c:	e1a00003 	mov	r0, r3
-    3710:	e3061848 	movw	r1, #26696	; 0x6848
+    3710:	e306186c 	movw	r1, #26732	; 0x686c
     3714:	e3401000 	movt	r1, #0
     3718:	e51b2010 	ldr	r2, [fp, #-16]
     371c:	e51b3024 	ldr	r3, [fp, #-36]	; 0xffffffdc
-    3720:	eb00055c 	bl	4c98 <printf>
+    3720:	eb000565 	bl	4cbc <printf>
         exit();
     3724:	eb000443 	bl	4838 <exit>
     }
@@ -5369,15 +5369,15 @@ sbrktest(void)
     3764:	e1520003 	cmp	r2, r3
     3768:	0a000009 	beq	3794 <sbrktest+0x2cc>
         printf(stdout, "sbrk re-allocation failed, a %x c %x\n", a, c);
-    376c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    376c:	e3063be0 	movw	r3, #27616	; 0x6be0
     3770:	e3403000 	movt	r3, #0
     3774:	e5933000 	ldr	r3, [r3]
     3778:	e1a00003 	mov	r0, r3
-    377c:	e3061880 	movw	r1, #26752	; 0x6880
+    377c:	e30618a4 	movw	r1, #26788	; 0x68a4
     3780:	e3401000 	movt	r1, #0
     3784:	e51b2010 	ldr	r2, [fp, #-16]
     3788:	e51b3024 	ldr	r3, [fp, #-36]	; 0xffffffdc
-    378c:	eb000541 	bl	4c98 <printf>
+    378c:	eb00054a 	bl	4cbc <printf>
         exit();
     3790:	eb000428 	bl	4838 <exit>
     }
@@ -5388,13 +5388,13 @@ sbrktest(void)
     37a0:	1a000007 	bne	37c4 <sbrktest+0x2fc>
         // should be zero
         printf(stdout, "sbrk de-allocation didn't really deallocate\n");
-    37a4:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    37a4:	e3063be0 	movw	r3, #27616	; 0x6be0
     37a8:	e3403000 	movt	r3, #0
     37ac:	e5933000 	ldr	r3, [r3]
     37b0:	e1a00003 	mov	r0, r3
-    37b4:	e30618a8 	movw	r1, #26792	; 0x68a8
+    37b4:	e30618cc 	movw	r1, #26828	; 0x68cc
     37b8:	e3401000 	movt	r1, #0
-    37bc:	eb000535 	bl	4c98 <printf>
+    37bc:	eb00053e 	bl	4cbc <printf>
         exit();
     37c0:	eb00041c 	bl	4838 <exit>
     }
@@ -5418,15 +5418,15 @@ sbrktest(void)
     37f8:	e1520003 	cmp	r2, r3
     37fc:	0a000009 	beq	3828 <sbrktest+0x360>
         printf(stdout, "sbrk downsize failed, a %x c %x\n", a, c);
-    3800:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3800:	e3063be0 	movw	r3, #27616	; 0x6be0
     3804:	e3403000 	movt	r3, #0
     3808:	e5933000 	ldr	r3, [r3]
     380c:	e1a00003 	mov	r0, r3
-    3810:	e30618d8 	movw	r1, #26840	; 0x68d8
+    3810:	e30618fc 	movw	r1, #26876	; 0x68fc
     3814:	e3401000 	movt	r1, #0
     3818:	e51b2010 	ldr	r2, [fp, #-16]
     381c:	e51b3024 	ldr	r3, [fp, #-36]	; 0xffffffdc
-    3820:	eb00051c 	bl	4c98 <printf>
+    3820:	eb000525 	bl	4cbc <printf>
         exit();
     3824:	eb000403 	bl	4838 <exit>
     }
@@ -5447,13 +5447,13 @@ sbrktest(void)
     3848:	e3530000 	cmp	r3, #0
     384c:	aa000007 	bge	3870 <sbrktest+0x3a8>
             printf(stdout, "fork failed\n");
-    3850:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3850:	e3063be0 	movw	r3, #27616	; 0x6be0
     3854:	e3403000 	movt	r3, #0
     3858:	e5933000 	ldr	r3, [r3]
     385c:	e1a00003 	mov	r0, r3
-    3860:	e30517a8 	movw	r1, #22440	; 0x57a8
+    3860:	e30517cc 	movw	r1, #22476	; 0x57cc
     3864:	e3401000 	movt	r1, #0
-    3868:	eb00050a 	bl	4c98 <printf>
+    3868:	eb000513 	bl	4cbc <printf>
             exit();
     386c:	eb0003f1 	bl	4838 <exit>
         }
@@ -5462,16 +5462,16 @@ sbrktest(void)
     3874:	e3530000 	cmp	r3, #0
     3878:	1a00000c 	bne	38b0 <sbrktest+0x3e8>
             printf(stdout, "oops could read %x = %x\n", a, *a);
-    387c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    387c:	e3063be0 	movw	r3, #27616	; 0x6be0
     3880:	e3403000 	movt	r3, #0
     3884:	e5932000 	ldr	r2, [r3]
     3888:	e51b3010 	ldr	r3, [fp, #-16]
     388c:	e5d33000 	ldrb	r3, [r3]
     3890:	e1a00002 	mov	r0, r2
-    3894:	e30618fc 	movw	r1, #26876	; 0x68fc
+    3894:	e3061920 	movw	r1, #26912	; 0x6920
     3898:	e3401000 	movt	r1, #0
     389c:	e51b2010 	ldr	r2, [fp, #-16]
-    38a0:	eb0004fc 	bl	4c98 <printf>
+    38a0:	eb000505 	bl	4cbc <printf>
             kill(ppid);
     38a4:	e51b0034 	ldr	r0, [fp, #-52]	; 0xffffffcc
     38a8:	eb000418 	bl	4910 <kill>
@@ -5509,9 +5509,9 @@ sbrktest(void)
     38ec:	0a000004 	beq	3904 <sbrktest+0x43c>
         printf(1, "pipe() failed\n");
     38f0:	e3a00001 	mov	r0, #1
-    38f4:	e30516e8 	movw	r1, #22248	; 0x56e8
+    38f4:	e305170c 	movw	r1, #22284	; 0x570c
     38f8:	e3401000 	movt	r1, #0
-    38fc:	eb0004e5 	bl	4c98 <printf>
+    38fc:	eb0004ee 	bl	4cbc <printf>
         exit();
     3900:	eb0003cc 	bl	4838 <exit>
     }
@@ -5551,7 +5551,7 @@ sbrktest(void)
             write(fds[1], "x", 1);
     3978:	e51b3038 	ldr	r3, [fp, #-56]	; 0xffffffc8
     397c:	e1a00003 	mov	r0, r3
-    3980:	e3051758 	movw	r1, #22360	; 0x5758
+    3980:	e305177c 	movw	r1, #22396	; 0x577c
     3984:	e3401000 	movt	r1, #0
     3988:	e3a02001 	mov	r2, #1
     398c:	eb0003cd 	bl	48c8 <write>
@@ -5659,13 +5659,13 @@ sbrktest(void)
     3a84:	e3730001 	cmn	r3, #1
     3a88:	1a000007 	bne	3aac <sbrktest+0x5e4>
         printf(stdout, "failed sbrk leaked memory\n");
-    3a8c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3a8c:	e3063be0 	movw	r3, #27616	; 0x6be0
     3a90:	e3403000 	movt	r3, #0
     3a94:	e5933000 	ldr	r3, [r3]
     3a98:	e1a00003 	mov	r0, r3
-    3a9c:	e3061918 	movw	r1, #26904	; 0x6918
+    3a9c:	e306193c 	movw	r1, #26940	; 0x693c
     3aa0:	e3401000 	movt	r1, #0
-    3aa4:	eb00047b 	bl	4c98 <printf>
+    3aa4:	eb000484 	bl	4cbc <printf>
         exit();
     3aa8:	eb000362 	bl	4838 <exit>
     }
@@ -5687,13 +5687,13 @@ sbrktest(void)
     3adc:	eb0003ee 	bl	4a9c <sbrk>
 
     printf(stdout, "sbrk test OK\n");
-    3ae0:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3ae0:	e3063be0 	movw	r3, #27616	; 0x6be0
     3ae4:	e3403000 	movt	r3, #0
     3ae8:	e5933000 	ldr	r3, [r3]
     3aec:	e1a00003 	mov	r0, r3
-    3af0:	e3061934 	movw	r1, #26932	; 0x6934
+    3af0:	e3061958 	movw	r1, #26968	; 0x6958
     3af4:	e3401000 	movt	r1, #0
-    3af8:	eb000466 	bl	4c98 <printf>
+    3af8:	eb00046f 	bl	4cbc <printf>
 }
     3afc:	e24bd008 	sub	sp, fp, #8
     3b00:	e8bd8810 	pop	{r4, fp, pc}
@@ -5724,13 +5724,13 @@ validatetest(void)
     uint p;
 
     printf(stdout, "validate test\n");
-    3b2c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3b2c:	e3063be0 	movw	r3, #27616	; 0x6be0
     3b30:	e3403000 	movt	r3, #0
     3b34:	e5933000 	ldr	r3, [r3]
     3b38:	e1a00003 	mov	r0, r3
-    3b3c:	e3061944 	movw	r1, #26948	; 0x6944
+    3b3c:	e3061968 	movw	r1, #26984	; 0x6968
     3b40:	e3401000 	movt	r1, #0
-    3b44:	eb000453 	bl	4c98 <printf>
+    3b44:	eb00045c 	bl	4cbc <printf>
     hi = 1100*1024;
     3b48:	e3a03a03 	mov	r3, #12288	; 0x3000
     3b4c:	e3403011 	movt	r3, #17
@@ -5769,7 +5769,7 @@ validatetest(void)
         // try to crash the kernel by passing in a bad string pointer
         if(link("nosuchfile", (char*)p) != -1){
     3ba0:	e51b3008 	ldr	r3, [fp, #-8]
-    3ba4:	e3060954 	movw	r0, #26964	; 0x6954
+    3ba4:	e3060978 	movw	r0, #27000	; 0x6978
     3ba8:	e3400000 	movt	r0, #0
     3bac:	e1a01003 	mov	r1, r3
     3bb0:	eb00038c 	bl	49e8 <link>
@@ -5777,13 +5777,13 @@ validatetest(void)
     3bb8:	e3730001 	cmn	r3, #1
     3bbc:	0a000007 	beq	3be0 <validatetest+0xc0>
             printf(stdout, "link should not succeed\n");
-    3bc0:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3bc0:	e3063be0 	movw	r3, #27616	; 0x6be0
     3bc4:	e3403000 	movt	r3, #0
     3bc8:	e5933000 	ldr	r3, [r3]
     3bcc:	e1a00003 	mov	r0, r3
-    3bd0:	e3061960 	movw	r1, #26976	; 0x6960
+    3bd0:	e3061984 	movw	r1, #27012	; 0x6984
     3bd4:	e3401000 	movt	r1, #0
-    3bd8:	eb00042e 	bl	4c98 <printf>
+    3bd8:	eb000437 	bl	4cbc <printf>
             exit();
     3bdc:	eb000315 	bl	4838 <exit>
     uint p;
@@ -5805,13 +5805,13 @@ validatetest(void)
     }
 
     printf(stdout, "validate ok\n");
-    3bfc:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3bfc:	e3063be0 	movw	r3, #27616	; 0x6be0
     3c00:	e3403000 	movt	r3, #0
     3c04:	e5933000 	ldr	r3, [r3]
     3c08:	e1a00003 	mov	r0, r3
-    3c0c:	e306197c 	movw	r1, #27004	; 0x697c
+    3c0c:	e30619a0 	movw	r1, #27040	; 0x69a0
     3c10:	e3401000 	movt	r1, #0
-    3c14:	eb00041f 	bl	4c98 <printf>
+    3c14:	eb000428 	bl	4cbc <printf>
 }
     3c18:	e24bd004 	sub	sp, fp, #4
     3c1c:	e8bd8800 	pop	{fp, pc}
@@ -5829,19 +5829,19 @@ bsstest(void)
     int i;
 
     printf(stdout, "bss test\n");
-    3c2c:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3c2c:	e3063be0 	movw	r3, #27616	; 0x6be0
     3c30:	e3403000 	movt	r3, #0
     3c34:	e5933000 	ldr	r3, [r3]
     3c38:	e1a00003 	mov	r0, r3
-    3c3c:	e306198c 	movw	r1, #27020	; 0x698c
+    3c3c:	e30619b0 	movw	r1, #27056	; 0x69b0
     3c40:	e3401000 	movt	r1, #0
-    3c44:	eb000413 	bl	4c98 <printf>
+    3c44:	eb00041c 	bl	4cbc <printf>
     for(i = 0; i < sizeof(uninit); i++){
     3c48:	e3a03000 	mov	r3, #0
     3c4c:	e50b3008 	str	r3, [fp, #-8]
     3c50:	ea000011 	b	3c9c <bsstest+0x7c>
         if(uninit[i] != '\0'){
-    3c54:	e3063c64 	movw	r3, #27748	; 0x6c64
+    3c54:	e3063c88 	movw	r3, #27784	; 0x6c88
     3c58:	e3403000 	movt	r3, #0
     3c5c:	e51b2008 	ldr	r2, [fp, #-8]
     3c60:	e0833002 	add	r3, r3, r2
@@ -5849,13 +5849,13 @@ bsstest(void)
     3c68:	e3530000 	cmp	r3, #0
     3c6c:	0a000007 	beq	3c90 <bsstest+0x70>
             printf(stdout, "bss test failed\n");
-    3c70:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3c70:	e3063be0 	movw	r3, #27616	; 0x6be0
     3c74:	e3403000 	movt	r3, #0
     3c78:	e5933000 	ldr	r3, [r3]
     3c7c:	e1a00003 	mov	r0, r3
-    3c80:	e3061998 	movw	r1, #27032	; 0x6998
+    3c80:	e30619bc 	movw	r1, #27068	; 0x69bc
     3c84:	e3401000 	movt	r1, #0
-    3c88:	eb000402 	bl	4c98 <printf>
+    3c88:	eb00040b 	bl	4cbc <printf>
             exit();
     3c8c:	eb0002e9 	bl	4838 <exit>
 bsstest(void)
@@ -5877,13 +5877,13 @@ bsstest(void)
         }
     }
     printf(stdout, "bss test ok\n");
-    3cac:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3cac:	e3063be0 	movw	r3, #27616	; 0x6be0
     3cb0:	e3403000 	movt	r3, #0
     3cb4:	e5933000 	ldr	r3, [r3]
     3cb8:	e1a00003 	mov	r0, r3
-    3cbc:	e30619ac 	movw	r1, #27052	; 0x69ac
+    3cbc:	e30619d0 	movw	r1, #27088	; 0x69d0
     3cc0:	e3401000 	movt	r1, #0
-    3cc4:	eb0003f3 	bl	4c98 <printf>
+    3cc4:	eb0003fc 	bl	4cbc <printf>
 }
     3cc8:	e24bd004 	sub	sp, fp, #4
     3ccc:	e8bd8800 	pop	{fp, pc}
@@ -5901,7 +5901,7 @@ bigargtest(void)
     int pid, fd;
 
     unlink("bigarg-ok");
-    3cdc:	e30609bc 	movw	r0, #27068	; 0x69bc
+    3cdc:	e30609e0 	movw	r0, #27104	; 0x69e0
     3ce0:	e3400000 	movt	r0, #0
     3ce4:	eb00032d 	bl	49a0 <unlink>
     pid = fork();
@@ -5918,10 +5918,10 @@ bigargtest(void)
     3d00:	e50b3008 	str	r3, [fp, #-8]
     3d04:	ea000008 	b	3d2c <bigargtest+0x5c>
             args[i] = "bigargs test: failed\n                                                                                                                                                                                                       ";
-    3d08:	e3063bd8 	movw	r3, #27608	; 0x6bd8
+    3d08:	e3063bfc 	movw	r3, #27644	; 0x6bfc
     3d0c:	e3403000 	movt	r3, #0
     3d10:	e51b1008 	ldr	r1, [fp, #-8]
-    3d14:	e30629c8 	movw	r2, #27080	; 0x69c8
+    3d14:	e30629ec 	movw	r2, #27116	; 0x69ec
     3d18:	e3402000 	movt	r2, #0
     3d1c:	e7832101 	str	r2, [r3, r1, lsl #2]
     unlink("bigarg-ok");
@@ -5938,34 +5938,34 @@ bigargtest(void)
     3d34:	dafffff3 	ble	3d08 <bigargtest+0x38>
             args[i] = "bigargs test: failed\n                                                                                                                                                                                                       ";
         args[MAXARG-1] = 0;
-    3d38:	e3063bd8 	movw	r3, #27608	; 0x6bd8
+    3d38:	e3063bfc 	movw	r3, #27644	; 0x6bfc
     3d3c:	e3403000 	movt	r3, #0
     3d40:	e3a02000 	mov	r2, #0
     3d44:	e583207c 	str	r2, [r3, #124]	; 0x7c
         printf(stdout, "bigarg test\n");
-    3d48:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3d48:	e3063be0 	movw	r3, #27616	; 0x6be0
     3d4c:	e3403000 	movt	r3, #0
     3d50:	e5933000 	ldr	r3, [r3]
     3d54:	e1a00003 	mov	r0, r3
-    3d58:	e3061aa8 	movw	r1, #27304	; 0x6aa8
+    3d58:	e3061acc 	movw	r1, #27340	; 0x6acc
     3d5c:	e3401000 	movt	r1, #0
-    3d60:	eb0003cc 	bl	4c98 <printf>
+    3d60:	eb0003d5 	bl	4cbc <printf>
         exec("echo", args);
-    3d64:	e3050370 	movw	r0, #21360	; 0x5370
+    3d64:	e3050394 	movw	r0, #21396	; 0x5394
     3d68:	e3400000 	movt	r0, #0
-    3d6c:	e3061bd8 	movw	r1, #27608	; 0x6bd8
+    3d6c:	e3061bfc 	movw	r1, #27644	; 0x6bfc
     3d70:	e3401000 	movt	r1, #0
     3d74:	eb0002ee 	bl	4934 <exec>
         printf(stdout, "bigarg test ok\n");
-    3d78:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3d78:	e3063be0 	movw	r3, #27616	; 0x6be0
     3d7c:	e3403000 	movt	r3, #0
     3d80:	e5933000 	ldr	r3, [r3]
     3d84:	e1a00003 	mov	r0, r3
-    3d88:	e3061ab8 	movw	r1, #27320	; 0x6ab8
+    3d88:	e3061adc 	movw	r1, #27356	; 0x6adc
     3d8c:	e3401000 	movt	r1, #0
-    3d90:	eb0003c0 	bl	4c98 <printf>
+    3d90:	eb0003c9 	bl	4cbc <printf>
         fd = open("bigarg-ok", O_CREATE);
-    3d94:	e30609bc 	movw	r0, #27068	; 0x69bc
+    3d94:	e30609e0 	movw	r0, #27104	; 0x69e0
     3d98:	e3400000 	movt	r0, #0
     3d9c:	e3a01c02 	mov	r1, #512	; 0x200
     3da0:	eb0002ec 	bl	4958 <open>
@@ -5980,20 +5980,20 @@ bigargtest(void)
     3db8:	e3530000 	cmp	r3, #0
     3dbc:	aa000007 	bge	3de0 <bigargtest+0x110>
         printf(stdout, "bigargtest: fork failed\n");
-    3dc0:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3dc0:	e3063be0 	movw	r3, #27616	; 0x6be0
     3dc4:	e3403000 	movt	r3, #0
     3dc8:	e5933000 	ldr	r3, [r3]
     3dcc:	e1a00003 	mov	r0, r3
-    3dd0:	e3061ac8 	movw	r1, #27336	; 0x6ac8
+    3dd0:	e3061aec 	movw	r1, #27372	; 0x6aec
     3dd4:	e3401000 	movt	r1, #0
-    3dd8:	eb0003ae 	bl	4c98 <printf>
+    3dd8:	eb0003b7 	bl	4cbc <printf>
         exit();
     3ddc:	eb000295 	bl	4838 <exit>
     }
     wait();
     3de0:	eb00029d 	bl	485c <wait>
     fd = open("bigarg-ok", 0);
-    3de4:	e30609bc 	movw	r0, #27068	; 0x69bc
+    3de4:	e30609e0 	movw	r0, #27104	; 0x69e0
     3de8:	e3400000 	movt	r0, #0
     3dec:	e3a01000 	mov	r1, #0
     3df0:	eb0002d8 	bl	4958 <open>
@@ -6003,13 +6003,13 @@ bigargtest(void)
     3dfc:	e3530000 	cmp	r3, #0
     3e00:	aa000007 	bge	3e24 <bigargtest+0x154>
         printf(stdout, "bigarg test failed!\n");
-    3e04:	e3063bbc 	movw	r3, #27580	; 0x6bbc
+    3e04:	e3063be0 	movw	r3, #27616	; 0x6be0
     3e08:	e3403000 	movt	r3, #0
     3e0c:	e5933000 	ldr	r3, [r3]
     3e10:	e1a00003 	mov	r0, r3
-    3e14:	e3061ae4 	movw	r1, #27364	; 0x6ae4
+    3e14:	e3061b08 	movw	r1, #27400	; 0x6b08
     3e18:	e3401000 	movt	r1, #0
-    3e1c:	eb00039d 	bl	4c98 <printf>
+    3e1c:	eb0003a6 	bl	4cbc <printf>
         exit();
     3e20:	eb000284 	bl	4838 <exit>
     }
@@ -6017,7 +6017,7 @@ bigargtest(void)
     3e24:	e51b0010 	ldr	r0, [fp, #-16]
     3e28:	eb0002af 	bl	48ec <close>
     unlink("bigarg-ok");
-    3e2c:	e30609bc 	movw	r0, #27068	; 0x69bc
+    3e2c:	e30609e0 	movw	r0, #27104	; 0x69e0
     3e30:	e3400000 	movt	r0, #0
     3e34:	eb0002d9 	bl	49a0 <unlink>
 }
@@ -6041,9 +6041,9 @@ fsfull()
 
     printf(1, "fsfull test\n");
     3e54:	e3a00001 	mov	r0, #1
-    3e58:	e3061afc 	movw	r1, #27388	; 0x6afc
+    3e58:	e3061b20 	movw	r1, #27424	; 0x6b20
     3e5c:	e3401000 	movt	r1, #0
-    3e60:	eb00038c 	bl	4c98 <printf>
+    3e60:	eb000395 	bl	4cbc <printf>
 
     for(nfiles = 0; ; nfiles++){
     3e64:	e3a03000 	mov	r3, #0
@@ -6128,11 +6128,11 @@ fsfull()
     3f84:	e54b3053 	strb	r3, [fp, #-83]	; 0xffffffad
         printf(1, "writing %s\n", name);
     3f88:	e3a00001 	mov	r0, #1
-    3f8c:	e3061b0c 	movw	r1, #27404	; 0x6b0c
+    3f8c:	e3061b30 	movw	r1, #27440	; 0x6b30
     3f90:	e3401000 	movt	r1, #0
     3f94:	e24b3058 	sub	r3, fp, #88	; 0x58
     3f98:	e1a02003 	mov	r2, r3
-    3f9c:	eb00033d 	bl	4c98 <printf>
+    3f9c:	eb000346 	bl	4cbc <printf>
         int fd = open(name, O_CREATE|O_RDWR);
     3fa0:	e24b3058 	sub	r3, fp, #88	; 0x58
     3fa4:	e1a00003 	mov	r0, r3
@@ -6145,11 +6145,11 @@ fsfull()
     3fbc:	aa000006 	bge	3fdc <fsfull+0x19c>
             printf(1, "open %s failed\n", name);
     3fc0:	e3a00001 	mov	r0, #1
-    3fc4:	e3061b18 	movw	r1, #27416	; 0x6b18
+    3fc4:	e3061b3c 	movw	r1, #27452	; 0x6b3c
     3fc8:	e3401000 	movt	r1, #0
     3fcc:	e24b3058 	sub	r3, fp, #88	; 0x58
     3fd0:	e1a02003 	mov	r2, r3
-    3fd4:	eb00032f 	bl	4c98 <printf>
+    3fd4:	eb000338 	bl	4cbc <printf>
             break;
     3fd8:	ea000023 	b	406c <fsfull+0x22c>
         }
@@ -6159,7 +6159,7 @@ fsfull()
         while(1){
             int cc = write(fd, buf, 512);
     3fe4:	e51b0014 	ldr	r0, [fp, #-20]	; 0xffffffec
-    3fe8:	e3091374 	movw	r1, #37748	; 0x9374
+    3fe8:	e3091398 	movw	r1, #37784	; 0x9398
     3fec:	e3401000 	movt	r1, #0
     3ff0:	e3a02c02 	mov	r2, #512	; 0x200
     3ff4:	eb000233 	bl	48c8 <write>
@@ -6193,10 +6193,10 @@ fsfull()
         }
         printf(1, "wrote %d bytes\n", total);
     4030:	e3a00001 	mov	r0, #1
-    4034:	e3061b28 	movw	r1, #27432	; 0x6b28
+    4034:	e3061b4c 	movw	r1, #27468	; 0x6b4c
     4038:	e3401000 	movt	r1, #0
     403c:	e51b2010 	ldr	r2, [fp, #-16]
-    4040:	eb000314 	bl	4c98 <printf>
+    4040:	eb00031d 	bl	4cbc <printf>
         close(fd);
     4044:	e51b0014 	ldr	r0, [fp, #-20]	; 0xffffffec
     4048:	eb000227 	bl	48ec <close>
@@ -6333,9 +6333,9 @@ fsfull()
 
     printf(1, "fsfull test finished\n");
     41b0:	e3a00001 	mov	r0, #1
-    41b4:	e3061b38 	movw	r1, #27448	; 0x6b38
+    41b4:	e3061b5c 	movw	r1, #27484	; 0x6b5c
     41b8:	e3401000 	movt	r1, #0
-    41bc:	eb0002b5 	bl	4c98 <printf>
+    41bc:	eb0002be 	bl	4cbc <printf>
 }
     41c0:	e24bd004 	sub	sp, fp, #4
     41c4:	e8bd8800 	pop	{fp, pc}
@@ -6349,7 +6349,7 @@ rand()
     41c8:	e52db004 	push	{fp}		; (str fp, [sp, #-4]!)
     41cc:	e28db000 	add	fp, sp, #0
     randstate = randstate * 1664525 + 1013904223;
-    41d0:	e3063bc0 	movw	r3, #27584	; 0x6bc0
+    41d0:	e3063be4 	movw	r3, #27620	; 0x6be4
     41d4:	e3403000 	movt	r3, #0
     41d8:	e5932000 	ldr	r2, [r3]
     41dc:	e306360d 	movw	r3, #26125	; 0x660d
@@ -6358,11 +6358,11 @@ rand()
     41e8:	e30f335f 	movw	r3, #62303	; 0xf35f
     41ec:	e3433c6e 	movt	r3, #15470	; 0x3c6e
     41f0:	e0823003 	add	r3, r2, r3
-    41f4:	e3062bc0 	movw	r2, #27584	; 0x6bc0
+    41f4:	e3062be4 	movw	r2, #27620	; 0x6be4
     41f8:	e3402000 	movt	r2, #0
     41fc:	e5823000 	str	r3, [r2]
     return randstate;
-    4200:	e3063bc0 	movw	r3, #27584	; 0x6bc0
+    4200:	e3063be4 	movw	r3, #27620	; 0x6be4
     4204:	e3403000 	movt	r3, #0
     4208:	e5933000 	ldr	r3, [r3]
 }
@@ -6383,12 +6383,12 @@ main(int argc, char *argv[])
     422c:	e50b100c 	str	r1, [fp, #-12]
     printf(1, "usertests starting\n");
     4230:	e3a00001 	mov	r0, #1
-    4234:	e3061b50 	movw	r1, #27472	; 0x6b50
+    4234:	e3061b74 	movw	r1, #27508	; 0x6b74
     4238:	e3401000 	movt	r1, #0
-    423c:	eb000295 	bl	4c98 <printf>
+    423c:	eb00029e 	bl	4cbc <printf>
 
     if(open("usertests.ran", 0) >= 0){
-    4240:	e3060b64 	movw	r0, #27492	; 0x6b64
+    4240:	e3060b88 	movw	r0, #27528	; 0x6b88
     4244:	e3400000 	movt	r0, #0
     4248:	e3a01000 	mov	r1, #0
     424c:	eb0001c1 	bl	4958 <open>
@@ -6397,14 +6397,14 @@ main(int argc, char *argv[])
     4258:	ba000004 	blt	4270 <main+0x54>
         printf(1, "already ran user tests -- rebuild fs.img\n");
     425c:	e3a00001 	mov	r0, #1
-    4260:	e3061b74 	movw	r1, #27508	; 0x6b74
+    4260:	e3061b98 	movw	r1, #27544	; 0x6b98
     4264:	e3401000 	movt	r1, #0
-    4268:	eb00028a 	bl	4c98 <printf>
+    4268:	eb000293 	bl	4cbc <printf>
         exit();
     426c:	eb000171 	bl	4838 <exit>
     }
     close(open("usertests.ran", O_CREATE));
-    4270:	e3060b64 	movw	r0, #27492	; 0x6b64
+    4270:	e3060b88 	movw	r0, #27528	; 0x6b88
     4274:	e3400000 	movt	r0, #0
     4278:	e3a01c02 	mov	r1, #512	; 0x200
     427c:	eb0001b5 	bl	4958 <open>
@@ -7242,754 +7242,765 @@ memmove(void *vdst, void *vsrc, int n)
     4b00:	e49d4004 	pop	{r4}		; (ldr r4, [sp], #4)
     4b04:	e12fff1e 	bx	lr
 
-00004b08 <putc>:
+00004b08 <kthread_create>:
+    4b08:	e52d4004 	push	{r4}		; (str r4, [sp, #-4]!)
+    4b0c:	e1a04003 	mov	r4, r3
+    4b10:	e1a03002 	mov	r3, r2
+    4b14:	e1a02001 	mov	r2, r1
+    4b18:	e1a01000 	mov	r1, r0
+    4b1c:	e3a00016 	mov	r0, #22
+    4b20:	ef000000 	svc	0x00000000
+    4b24:	e49d4004 	pop	{r4}		; (ldr r4, [sp], #4)
+    4b28:	e12fff1e 	bx	lr
+
+00004b2c <putc>:
 #include "stat.h"
 #include "user.h"
 
 static void
 putc(int fd, char c)
 {
-    4b08:	e92d4800 	push	{fp, lr}
-    4b0c:	e28db004 	add	fp, sp, #4
-    4b10:	e24dd008 	sub	sp, sp, #8
-    4b14:	e50b0008 	str	r0, [fp, #-8]
-    4b18:	e1a03001 	mov	r3, r1
-    4b1c:	e54b3009 	strb	r3, [fp, #-9]
+    4b2c:	e92d4800 	push	{fp, lr}
+    4b30:	e28db004 	add	fp, sp, #4
+    4b34:	e24dd008 	sub	sp, sp, #8
+    4b38:	e50b0008 	str	r0, [fp, #-8]
+    4b3c:	e1a03001 	mov	r3, r1
+    4b40:	e54b3009 	strb	r3, [fp, #-9]
     write(fd, &c, 1);
-    4b20:	e51b0008 	ldr	r0, [fp, #-8]
-    4b24:	e24b3009 	sub	r3, fp, #9
-    4b28:	e1a01003 	mov	r1, r3
-    4b2c:	e3a02001 	mov	r2, #1
-    4b30:	ebffff64 	bl	48c8 <write>
+    4b44:	e51b0008 	ldr	r0, [fp, #-8]
+    4b48:	e24b3009 	sub	r3, fp, #9
+    4b4c:	e1a01003 	mov	r1, r3
+    4b50:	e3a02001 	mov	r2, #1
+    4b54:	ebffff5b 	bl	48c8 <write>
 }
-    4b34:	e24bd004 	sub	sp, fp, #4
-    4b38:	e8bd8800 	pop	{fp, pc}
+    4b58:	e24bd004 	sub	sp, fp, #4
+    4b5c:	e8bd8800 	pop	{fp, pc}
 
-00004b3c <printint>:
+00004b60 <printint>:
 
 static void
 printint(int fd, int xx, int base, int sgn)
 {
-    4b3c:	e92d4800 	push	{fp, lr}
-    4b40:	e28db004 	add	fp, sp, #4
-    4b44:	e24dd030 	sub	sp, sp, #48	; 0x30
-    4b48:	e50b0028 	str	r0, [fp, #-40]	; 0xffffffd8
-    4b4c:	e50b102c 	str	r1, [fp, #-44]	; 0xffffffd4
-    4b50:	e50b2030 	str	r2, [fp, #-48]	; 0xffffffd0
-    4b54:	e50b3034 	str	r3, [fp, #-52]	; 0xffffffcc
+    4b60:	e92d4800 	push	{fp, lr}
+    4b64:	e28db004 	add	fp, sp, #4
+    4b68:	e24dd030 	sub	sp, sp, #48	; 0x30
+    4b6c:	e50b0028 	str	r0, [fp, #-40]	; 0xffffffd8
+    4b70:	e50b102c 	str	r1, [fp, #-44]	; 0xffffffd4
+    4b74:	e50b2030 	str	r2, [fp, #-48]	; 0xffffffd0
+    4b78:	e50b3034 	str	r3, [fp, #-52]	; 0xffffffcc
     static char digits[] = "0123456789ABCDEF";
     char buf[16];
     int i, neg;
     uint x;
     
     neg = 0;
-    4b58:	e3a03000 	mov	r3, #0
-    4b5c:	e50b300c 	str	r3, [fp, #-12]
+    4b7c:	e3a03000 	mov	r3, #0
+    4b80:	e50b300c 	str	r3, [fp, #-12]
     if(sgn && xx < 0){
-    4b60:	e51b3034 	ldr	r3, [fp, #-52]	; 0xffffffcc
-    4b64:	e3530000 	cmp	r3, #0
-    4b68:	0a000008 	beq	4b90 <printint+0x54>
-    4b6c:	e51b302c 	ldr	r3, [fp, #-44]	; 0xffffffd4
-    4b70:	e3530000 	cmp	r3, #0
-    4b74:	aa000005 	bge	4b90 <printint+0x54>
+    4b84:	e51b3034 	ldr	r3, [fp, #-52]	; 0xffffffcc
+    4b88:	e3530000 	cmp	r3, #0
+    4b8c:	0a000008 	beq	4bb4 <printint+0x54>
+    4b90:	e51b302c 	ldr	r3, [fp, #-44]	; 0xffffffd4
+    4b94:	e3530000 	cmp	r3, #0
+    4b98:	aa000005 	bge	4bb4 <printint+0x54>
         neg = 1;
-    4b78:	e3a03001 	mov	r3, #1
-    4b7c:	e50b300c 	str	r3, [fp, #-12]
+    4b9c:	e3a03001 	mov	r3, #1
+    4ba0:	e50b300c 	str	r3, [fp, #-12]
         x = -xx;
-    4b80:	e51b302c 	ldr	r3, [fp, #-44]	; 0xffffffd4
-    4b84:	e2633000 	rsb	r3, r3, #0
-    4b88:	e50b3010 	str	r3, [fp, #-16]
-    4b8c:	ea000001 	b	4b98 <printint+0x5c>
+    4ba4:	e51b302c 	ldr	r3, [fp, #-44]	; 0xffffffd4
+    4ba8:	e2633000 	rsb	r3, r3, #0
+    4bac:	e50b3010 	str	r3, [fp, #-16]
+    4bb0:	ea000001 	b	4bbc <printint+0x5c>
     } else {
         x = xx;
-    4b90:	e51b302c 	ldr	r3, [fp, #-44]	; 0xffffffd4
-    4b94:	e50b3010 	str	r3, [fp, #-16]
+    4bb4:	e51b302c 	ldr	r3, [fp, #-44]	; 0xffffffd4
+    4bb8:	e50b3010 	str	r3, [fp, #-16]
     }
     
     i = 0;
-    4b98:	e3a03000 	mov	r3, #0
-    4b9c:	e50b3008 	str	r3, [fp, #-8]
+    4bbc:	e3a03000 	mov	r3, #0
+    4bc0:	e50b3008 	str	r3, [fp, #-8]
     do{
         buf[i++] = digits[x % base];
-    4ba0:	e51b3030 	ldr	r3, [fp, #-48]	; 0xffffffd0
-    4ba4:	e51b2010 	ldr	r2, [fp, #-16]
-    4ba8:	e1a00002 	mov	r0, r2
-    4bac:	e1a01003 	mov	r1, r3
-    4bb0:	eb0001e5 	bl	534c <__aeabi_uidivmod>
-    4bb4:	e1a03001 	mov	r3, r1
-    4bb8:	e1a02003 	mov	r2, r3
-    4bbc:	e3063bc4 	movw	r3, #27588	; 0x6bc4
-    4bc0:	e3403000 	movt	r3, #0
-    4bc4:	e7d32002 	ldrb	r2, [r3, r2]
-    4bc8:	e3e0001b 	mvn	r0, #27
-    4bcc:	e51b3008 	ldr	r3, [fp, #-8]
-    4bd0:	e24bc004 	sub	ip, fp, #4
-    4bd4:	e08c1003 	add	r1, ip, r3
-    4bd8:	e1a03000 	mov	r3, r0
-    4bdc:	e0813003 	add	r3, r1, r3
-    4be0:	e5c32000 	strb	r2, [r3]
-    4be4:	e51b3008 	ldr	r3, [fp, #-8]
-    4be8:	e2833001 	add	r3, r3, #1
-    4bec:	e50b3008 	str	r3, [fp, #-8]
+    4bc4:	e51b3030 	ldr	r3, [fp, #-48]	; 0xffffffd0
+    4bc8:	e51b2010 	ldr	r2, [fp, #-16]
+    4bcc:	e1a00002 	mov	r0, r2
+    4bd0:	e1a01003 	mov	r1, r3
+    4bd4:	eb0001e5 	bl	5370 <__aeabi_uidivmod>
+    4bd8:	e1a03001 	mov	r3, r1
+    4bdc:	e1a02003 	mov	r2, r3
+    4be0:	e3063be8 	movw	r3, #27624	; 0x6be8
+    4be4:	e3403000 	movt	r3, #0
+    4be8:	e7d32002 	ldrb	r2, [r3, r2]
+    4bec:	e3e0001b 	mvn	r0, #27
+    4bf0:	e51b3008 	ldr	r3, [fp, #-8]
+    4bf4:	e24bc004 	sub	ip, fp, #4
+    4bf8:	e08c1003 	add	r1, ip, r3
+    4bfc:	e1a03000 	mov	r3, r0
+    4c00:	e0813003 	add	r3, r1, r3
+    4c04:	e5c32000 	strb	r2, [r3]
+    4c08:	e51b3008 	ldr	r3, [fp, #-8]
+    4c0c:	e2833001 	add	r3, r3, #1
+    4c10:	e50b3008 	str	r3, [fp, #-8]
     }while((x /= base) != 0);
-    4bf0:	e51b3030 	ldr	r3, [fp, #-48]	; 0xffffffd0
-    4bf4:	e51b0010 	ldr	r0, [fp, #-16]
-    4bf8:	e1a01003 	mov	r1, r3
-    4bfc:	eb000195 	bl	5258 <__aeabi_uidiv>
-    4c00:	e1a03000 	mov	r3, r0
-    4c04:	e50b3010 	str	r3, [fp, #-16]
-    4c08:	e51b3010 	ldr	r3, [fp, #-16]
-    4c0c:	e3530000 	cmp	r3, #0
-    4c10:	1affffe2 	bne	4ba0 <printint+0x64>
+    4c14:	e51b3030 	ldr	r3, [fp, #-48]	; 0xffffffd0
+    4c18:	e51b0010 	ldr	r0, [fp, #-16]
+    4c1c:	e1a01003 	mov	r1, r3
+    4c20:	eb000195 	bl	527c <__aeabi_uidiv>
+    4c24:	e1a03000 	mov	r3, r0
+    4c28:	e50b3010 	str	r3, [fp, #-16]
+    4c2c:	e51b3010 	ldr	r3, [fp, #-16]
+    4c30:	e3530000 	cmp	r3, #0
+    4c34:	1affffe2 	bne	4bc4 <printint+0x64>
     if(neg)
-    4c14:	e51b300c 	ldr	r3, [fp, #-12]
-    4c18:	e3530000 	cmp	r3, #0
-    4c1c:	0a000015 	beq	4c78 <printint+0x13c>
+    4c38:	e51b300c 	ldr	r3, [fp, #-12]
+    4c3c:	e3530000 	cmp	r3, #0
+    4c40:	0a000015 	beq	4c9c <printint+0x13c>
         buf[i++] = '-';
-    4c20:	e3e0101b 	mvn	r1, #27
-    4c24:	e51b3008 	ldr	r3, [fp, #-8]
-    4c28:	e24b0004 	sub	r0, fp, #4
-    4c2c:	e0802003 	add	r2, r0, r3
-    4c30:	e1a03001 	mov	r3, r1
-    4c34:	e0823003 	add	r3, r2, r3
-    4c38:	e3a0202d 	mov	r2, #45	; 0x2d
-    4c3c:	e5c32000 	strb	r2, [r3]
-    4c40:	e51b3008 	ldr	r3, [fp, #-8]
-    4c44:	e2833001 	add	r3, r3, #1
-    4c48:	e50b3008 	str	r3, [fp, #-8]
+    4c44:	e3e0101b 	mvn	r1, #27
+    4c48:	e51b3008 	ldr	r3, [fp, #-8]
+    4c4c:	e24b0004 	sub	r0, fp, #4
+    4c50:	e0802003 	add	r2, r0, r3
+    4c54:	e1a03001 	mov	r3, r1
+    4c58:	e0823003 	add	r3, r2, r3
+    4c5c:	e3a0202d 	mov	r2, #45	; 0x2d
+    4c60:	e5c32000 	strb	r2, [r3]
+    4c64:	e51b3008 	ldr	r3, [fp, #-8]
+    4c68:	e2833001 	add	r3, r3, #1
+    4c6c:	e50b3008 	str	r3, [fp, #-8]
     
     while(--i >= 0)
-    4c4c:	ea000009 	b	4c78 <printint+0x13c>
+    4c70:	ea000009 	b	4c9c <printint+0x13c>
         putc(fd, buf[i]);
-    4c50:	e3e0101b 	mvn	r1, #27
-    4c54:	e51b3008 	ldr	r3, [fp, #-8]
-    4c58:	e24bc004 	sub	ip, fp, #4
-    4c5c:	e08c2003 	add	r2, ip, r3
-    4c60:	e1a03001 	mov	r3, r1
-    4c64:	e0823003 	add	r3, r2, r3
-    4c68:	e5d33000 	ldrb	r3, [r3]
-    4c6c:	e51b0028 	ldr	r0, [fp, #-40]	; 0xffffffd8
-    4c70:	e1a01003 	mov	r1, r3
-    4c74:	ebffffa3 	bl	4b08 <putc>
+    4c74:	e3e0101b 	mvn	r1, #27
+    4c78:	e51b3008 	ldr	r3, [fp, #-8]
+    4c7c:	e24bc004 	sub	ip, fp, #4
+    4c80:	e08c2003 	add	r2, ip, r3
+    4c84:	e1a03001 	mov	r3, r1
+    4c88:	e0823003 	add	r3, r2, r3
+    4c8c:	e5d33000 	ldrb	r3, [r3]
+    4c90:	e51b0028 	ldr	r0, [fp, #-40]	; 0xffffffd8
+    4c94:	e1a01003 	mov	r1, r3
+    4c98:	ebffffa3 	bl	4b2c <putc>
         buf[i++] = digits[x % base];
     }while((x /= base) != 0);
     if(neg)
         buf[i++] = '-';
     
     while(--i >= 0)
-    4c78:	e51b3008 	ldr	r3, [fp, #-8]
-    4c7c:	e2433001 	sub	r3, r3, #1
-    4c80:	e50b3008 	str	r3, [fp, #-8]
-    4c84:	e51b3008 	ldr	r3, [fp, #-8]
-    4c88:	e3530000 	cmp	r3, #0
-    4c8c:	aaffffef 	bge	4c50 <printint+0x114>
+    4c9c:	e51b3008 	ldr	r3, [fp, #-8]
+    4ca0:	e2433001 	sub	r3, r3, #1
+    4ca4:	e50b3008 	str	r3, [fp, #-8]
+    4ca8:	e51b3008 	ldr	r3, [fp, #-8]
+    4cac:	e3530000 	cmp	r3, #0
+    4cb0:	aaffffef 	bge	4c74 <printint+0x114>
         putc(fd, buf[i]);
 }
-    4c90:	e24bd004 	sub	sp, fp, #4
-    4c94:	e8bd8800 	pop	{fp, pc}
+    4cb4:	e24bd004 	sub	sp, fp, #4
+    4cb8:	e8bd8800 	pop	{fp, pc}
 
-00004c98 <printf>:
+00004cbc <printf>:
 
 // Print to the given fd. Only understands %d, %x, %p, %s.
 void
 printf(int fd, char *fmt, ...)
 {
-    4c98:	e92d000e 	push	{r1, r2, r3}
-    4c9c:	e92d4800 	push	{fp, lr}
-    4ca0:	e28db004 	add	fp, sp, #4
-    4ca4:	e24dd024 	sub	sp, sp, #36	; 0x24
-    4ca8:	e50b0024 	str	r0, [fp, #-36]	; 0xffffffdc
+    4cbc:	e92d000e 	push	{r1, r2, r3}
+    4cc0:	e92d4800 	push	{fp, lr}
+    4cc4:	e28db004 	add	fp, sp, #4
+    4cc8:	e24dd024 	sub	sp, sp, #36	; 0x24
+    4ccc:	e50b0024 	str	r0, [fp, #-36]	; 0xffffffdc
     char *s;
     int c, i, state;
     uint *ap;
     
     state = 0;
-    4cac:	e3a03000 	mov	r3, #0
-    4cb0:	e50b3014 	str	r3, [fp, #-20]	; 0xffffffec
+    4cd0:	e3a03000 	mov	r3, #0
+    4cd4:	e50b3014 	str	r3, [fp, #-20]	; 0xffffffec
     ap = (uint*)(void*)&fmt + 1;
-    4cb4:	e28b3008 	add	r3, fp, #8
-    4cb8:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
+    4cd8:	e28b3008 	add	r3, fp, #8
+    4cdc:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
     for(i = 0; fmt[i]; i++){
-    4cbc:	e3a03000 	mov	r3, #0
-    4cc0:	e50b3010 	str	r3, [fp, #-16]
-    4cc4:	ea000077 	b	4ea8 <printf+0x210>
+    4ce0:	e3a03000 	mov	r3, #0
+    4ce4:	e50b3010 	str	r3, [fp, #-16]
+    4ce8:	ea000077 	b	4ecc <printf+0x210>
         c = fmt[i] & 0xff;
-    4cc8:	e59b2004 	ldr	r2, [fp, #4]
-    4ccc:	e51b3010 	ldr	r3, [fp, #-16]
-    4cd0:	e0823003 	add	r3, r2, r3
-    4cd4:	e5d33000 	ldrb	r3, [r3]
-    4cd8:	e50b301c 	str	r3, [fp, #-28]	; 0xffffffe4
+    4cec:	e59b2004 	ldr	r2, [fp, #4]
+    4cf0:	e51b3010 	ldr	r3, [fp, #-16]
+    4cf4:	e0823003 	add	r3, r2, r3
+    4cf8:	e5d33000 	ldrb	r3, [r3]
+    4cfc:	e50b301c 	str	r3, [fp, #-28]	; 0xffffffe4
         if(state == 0){
-    4cdc:	e51b3014 	ldr	r3, [fp, #-20]	; 0xffffffec
-    4ce0:	e3530000 	cmp	r3, #0
-    4ce4:	1a00000b 	bne	4d18 <printf+0x80>
+    4d00:	e51b3014 	ldr	r3, [fp, #-20]	; 0xffffffec
+    4d04:	e3530000 	cmp	r3, #0
+    4d08:	1a00000b 	bne	4d3c <printf+0x80>
             if(c == '%'){
-    4ce8:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
-    4cec:	e3530025 	cmp	r3, #37	; 0x25
-    4cf0:	1a000002 	bne	4d00 <printf+0x68>
+    4d0c:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
+    4d10:	e3530025 	cmp	r3, #37	; 0x25
+    4d14:	1a000002 	bne	4d24 <printf+0x68>
                 state = '%';
-    4cf4:	e3a03025 	mov	r3, #37	; 0x25
-    4cf8:	e50b3014 	str	r3, [fp, #-20]	; 0xffffffec
-    4cfc:	ea000066 	b	4e9c <printf+0x204>
+    4d18:	e3a03025 	mov	r3, #37	; 0x25
+    4d1c:	e50b3014 	str	r3, [fp, #-20]	; 0xffffffec
+    4d20:	ea000066 	b	4ec0 <printf+0x204>
             } else {
                 putc(fd, c);
-    4d00:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
-    4d04:	e6ef3073 	uxtb	r3, r3
-    4d08:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
-    4d0c:	e1a01003 	mov	r1, r3
-    4d10:	ebffff7c 	bl	4b08 <putc>
-    4d14:	ea000060 	b	4e9c <printf+0x204>
+    4d24:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
+    4d28:	e6ef3073 	uxtb	r3, r3
+    4d2c:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
+    4d30:	e1a01003 	mov	r1, r3
+    4d34:	ebffff7c 	bl	4b2c <putc>
+    4d38:	ea000060 	b	4ec0 <printf+0x204>
             }
         } else if(state == '%'){
-    4d18:	e51b3014 	ldr	r3, [fp, #-20]	; 0xffffffec
-    4d1c:	e3530025 	cmp	r3, #37	; 0x25
-    4d20:	1a00005d 	bne	4e9c <printf+0x204>
+    4d3c:	e51b3014 	ldr	r3, [fp, #-20]	; 0xffffffec
+    4d40:	e3530025 	cmp	r3, #37	; 0x25
+    4d44:	1a00005d 	bne	4ec0 <printf+0x204>
             if(c == 'd'){
-    4d24:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
-    4d28:	e3530064 	cmp	r3, #100	; 0x64
-    4d2c:	1a00000a 	bne	4d5c <printf+0xc4>
+    4d48:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
+    4d4c:	e3530064 	cmp	r3, #100	; 0x64
+    4d50:	1a00000a 	bne	4d80 <printf+0xc4>
                 printint(fd, *ap, 10, 1);
-    4d30:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
-    4d34:	e5933000 	ldr	r3, [r3]
-    4d38:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
-    4d3c:	e1a01003 	mov	r1, r3
-    4d40:	e3a0200a 	mov	r2, #10
-    4d44:	e3a03001 	mov	r3, #1
-    4d48:	ebffff7b 	bl	4b3c <printint>
+    4d54:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
+    4d58:	e5933000 	ldr	r3, [r3]
+    4d5c:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
+    4d60:	e1a01003 	mov	r1, r3
+    4d64:	e3a0200a 	mov	r2, #10
+    4d68:	e3a03001 	mov	r3, #1
+    4d6c:	ebffff7b 	bl	4b60 <printint>
                 ap++;
-    4d4c:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
-    4d50:	e2833004 	add	r3, r3, #4
-    4d54:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
-    4d58:	ea00004d 	b	4e94 <printf+0x1fc>
+    4d70:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
+    4d74:	e2833004 	add	r3, r3, #4
+    4d78:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
+    4d7c:	ea00004d 	b	4eb8 <printf+0x1fc>
             } else if(c == 'x' || c == 'p'){
-    4d5c:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
-    4d60:	e3530078 	cmp	r3, #120	; 0x78
-    4d64:	0a000002 	beq	4d74 <printf+0xdc>
-    4d68:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
-    4d6c:	e3530070 	cmp	r3, #112	; 0x70
-    4d70:	1a00000a 	bne	4da0 <printf+0x108>
+    4d80:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
+    4d84:	e3530078 	cmp	r3, #120	; 0x78
+    4d88:	0a000002 	beq	4d98 <printf+0xdc>
+    4d8c:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
+    4d90:	e3530070 	cmp	r3, #112	; 0x70
+    4d94:	1a00000a 	bne	4dc4 <printf+0x108>
                 printint(fd, *ap, 16, 0);
-    4d74:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
-    4d78:	e5933000 	ldr	r3, [r3]
-    4d7c:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
-    4d80:	e1a01003 	mov	r1, r3
-    4d84:	e3a02010 	mov	r2, #16
-    4d88:	e3a03000 	mov	r3, #0
-    4d8c:	ebffff6a 	bl	4b3c <printint>
+    4d98:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
+    4d9c:	e5933000 	ldr	r3, [r3]
+    4da0:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
+    4da4:	e1a01003 	mov	r1, r3
+    4da8:	e3a02010 	mov	r2, #16
+    4dac:	e3a03000 	mov	r3, #0
+    4db0:	ebffff6a 	bl	4b60 <printint>
                 ap++;
-    4d90:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
-    4d94:	e2833004 	add	r3, r3, #4
-    4d98:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
-    4d9c:	ea00003c 	b	4e94 <printf+0x1fc>
+    4db4:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
+    4db8:	e2833004 	add	r3, r3, #4
+    4dbc:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
+    4dc0:	ea00003c 	b	4eb8 <printf+0x1fc>
             } else if(c == 's'){
-    4da0:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
-    4da4:	e3530073 	cmp	r3, #115	; 0x73
-    4da8:	1a00001b 	bne	4e1c <printf+0x184>
+    4dc4:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
+    4dc8:	e3530073 	cmp	r3, #115	; 0x73
+    4dcc:	1a00001b 	bne	4e40 <printf+0x184>
                 s = (char*)*ap;
-    4dac:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
-    4db0:	e5933000 	ldr	r3, [r3]
-    4db4:	e50b300c 	str	r3, [fp, #-12]
-                ap++;
-    4db8:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
-    4dbc:	e2833004 	add	r3, r3, #4
-    4dc0:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
-                if(s == 0)
-    4dc4:	e51b300c 	ldr	r3, [fp, #-12]
-    4dc8:	e3530000 	cmp	r3, #0
-    4dcc:	1a00000c 	bne	4e04 <printf+0x16c>
-                    s = "(null)";
-    4dd0:	e3063ba0 	movw	r3, #27552	; 0x6ba0
-    4dd4:	e3403000 	movt	r3, #0
+    4dd0:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
+    4dd4:	e5933000 	ldr	r3, [r3]
     4dd8:	e50b300c 	str	r3, [fp, #-12]
-                while(*s != 0){
-    4ddc:	ea000008 	b	4e04 <printf+0x16c>
-                    putc(fd, *s);
-    4de0:	e51b300c 	ldr	r3, [fp, #-12]
-    4de4:	e5d33000 	ldrb	r3, [r3]
-    4de8:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
-    4dec:	e1a01003 	mov	r1, r3
-    4df0:	ebffff44 	bl	4b08 <putc>
-                    s++;
-    4df4:	e51b300c 	ldr	r3, [fp, #-12]
-    4df8:	e2833001 	add	r3, r3, #1
+                ap++;
+    4ddc:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
+    4de0:	e2833004 	add	r3, r3, #4
+    4de4:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
+                if(s == 0)
+    4de8:	e51b300c 	ldr	r3, [fp, #-12]
+    4dec:	e3530000 	cmp	r3, #0
+    4df0:	1a00000c 	bne	4e28 <printf+0x16c>
+                    s = "(null)";
+    4df4:	e3063bc4 	movw	r3, #27588	; 0x6bc4
+    4df8:	e3403000 	movt	r3, #0
     4dfc:	e50b300c 	str	r3, [fp, #-12]
-    4e00:	ea000000 	b	4e08 <printf+0x170>
+                while(*s != 0){
+    4e00:	ea000008 	b	4e28 <printf+0x16c>
+                    putc(fd, *s);
+    4e04:	e51b300c 	ldr	r3, [fp, #-12]
+    4e08:	e5d33000 	ldrb	r3, [r3]
+    4e0c:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
+    4e10:	e1a01003 	mov	r1, r3
+    4e14:	ebffff44 	bl	4b2c <putc>
+                    s++;
+    4e18:	e51b300c 	ldr	r3, [fp, #-12]
+    4e1c:	e2833001 	add	r3, r3, #1
+    4e20:	e50b300c 	str	r3, [fp, #-12]
+    4e24:	ea000000 	b	4e2c <printf+0x170>
             } else if(c == 's'){
                 s = (char*)*ap;
                 ap++;
                 if(s == 0)
                     s = "(null)";
                 while(*s != 0){
-    4e04:	e1a00000 	nop			; (mov r0, r0)
-    4e08:	e51b300c 	ldr	r3, [fp, #-12]
-    4e0c:	e5d33000 	ldrb	r3, [r3]
-    4e10:	e3530000 	cmp	r3, #0
-    4e14:	1afffff1 	bne	4de0 <printf+0x148>
-    4e18:	ea00001d 	b	4e94 <printf+0x1fc>
+    4e28:	e1a00000 	nop			; (mov r0, r0)
+    4e2c:	e51b300c 	ldr	r3, [fp, #-12]
+    4e30:	e5d33000 	ldrb	r3, [r3]
+    4e34:	e3530000 	cmp	r3, #0
+    4e38:	1afffff1 	bne	4e04 <printf+0x148>
+    4e3c:	ea00001d 	b	4eb8 <printf+0x1fc>
                     putc(fd, *s);
                     s++;
                 }
             } else if(c == 'c'){
-    4e1c:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
-    4e20:	e3530063 	cmp	r3, #99	; 0x63
-    4e24:	1a000009 	bne	4e50 <printf+0x1b8>
+    4e40:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
+    4e44:	e3530063 	cmp	r3, #99	; 0x63
+    4e48:	1a000009 	bne	4e74 <printf+0x1b8>
                 putc(fd, *ap);
-    4e28:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
-    4e2c:	e5933000 	ldr	r3, [r3]
-    4e30:	e6ef3073 	uxtb	r3, r3
-    4e34:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
-    4e38:	e1a01003 	mov	r1, r3
-    4e3c:	ebffff31 	bl	4b08 <putc>
+    4e4c:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
+    4e50:	e5933000 	ldr	r3, [r3]
+    4e54:	e6ef3073 	uxtb	r3, r3
+    4e58:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
+    4e5c:	e1a01003 	mov	r1, r3
+    4e60:	ebffff31 	bl	4b2c <putc>
                 ap++;
-    4e40:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
-    4e44:	e2833004 	add	r3, r3, #4
-    4e48:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
-    4e4c:	ea000010 	b	4e94 <printf+0x1fc>
+    4e64:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
+    4e68:	e2833004 	add	r3, r3, #4
+    4e6c:	e50b3018 	str	r3, [fp, #-24]	; 0xffffffe8
+    4e70:	ea000010 	b	4eb8 <printf+0x1fc>
             } else if(c == '%'){
-    4e50:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
-    4e54:	e3530025 	cmp	r3, #37	; 0x25
-    4e58:	1a000005 	bne	4e74 <printf+0x1dc>
-                putc(fd, c);
-    4e5c:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
-    4e60:	e6ef3073 	uxtb	r3, r3
-    4e64:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
-    4e68:	e1a01003 	mov	r1, r3
-    4e6c:	ebffff25 	bl	4b08 <putc>
-    4e70:	ea000007 	b	4e94 <printf+0x1fc>
-            } else {
-                // Unknown % sequence.  Print it to draw attention.
-                putc(fd, '%');
-    4e74:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
-    4e78:	e3a01025 	mov	r1, #37	; 0x25
-    4e7c:	ebffff21 	bl	4b08 <putc>
+    4e74:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
+    4e78:	e3530025 	cmp	r3, #37	; 0x25
+    4e7c:	1a000005 	bne	4e98 <printf+0x1dc>
                 putc(fd, c);
     4e80:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
     4e84:	e6ef3073 	uxtb	r3, r3
     4e88:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
     4e8c:	e1a01003 	mov	r1, r3
-    4e90:	ebffff1c 	bl	4b08 <putc>
+    4e90:	ebffff25 	bl	4b2c <putc>
+    4e94:	ea000007 	b	4eb8 <printf+0x1fc>
+            } else {
+                // Unknown % sequence.  Print it to draw attention.
+                putc(fd, '%');
+    4e98:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
+    4e9c:	e3a01025 	mov	r1, #37	; 0x25
+    4ea0:	ebffff21 	bl	4b2c <putc>
+                putc(fd, c);
+    4ea4:	e51b301c 	ldr	r3, [fp, #-28]	; 0xffffffe4
+    4ea8:	e6ef3073 	uxtb	r3, r3
+    4eac:	e51b0024 	ldr	r0, [fp, #-36]	; 0xffffffdc
+    4eb0:	e1a01003 	mov	r1, r3
+    4eb4:	ebffff1c 	bl	4b2c <putc>
             }
             state = 0;
-    4e94:	e3a03000 	mov	r3, #0
-    4e98:	e50b3014 	str	r3, [fp, #-20]	; 0xffffffec
+    4eb8:	e3a03000 	mov	r3, #0
+    4ebc:	e50b3014 	str	r3, [fp, #-20]	; 0xffffffec
     int c, i, state;
     uint *ap;
     
     state = 0;
     ap = (uint*)(void*)&fmt + 1;
     for(i = 0; fmt[i]; i++){
-    4e9c:	e51b3010 	ldr	r3, [fp, #-16]
-    4ea0:	e2833001 	add	r3, r3, #1
-    4ea4:	e50b3010 	str	r3, [fp, #-16]
-    4ea8:	e59b2004 	ldr	r2, [fp, #4]
-    4eac:	e51b3010 	ldr	r3, [fp, #-16]
-    4eb0:	e0823003 	add	r3, r2, r3
-    4eb4:	e5d33000 	ldrb	r3, [r3]
-    4eb8:	e3530000 	cmp	r3, #0
-    4ebc:	1affff81 	bne	4cc8 <printf+0x30>
+    4ec0:	e51b3010 	ldr	r3, [fp, #-16]
+    4ec4:	e2833001 	add	r3, r3, #1
+    4ec8:	e50b3010 	str	r3, [fp, #-16]
+    4ecc:	e59b2004 	ldr	r2, [fp, #4]
+    4ed0:	e51b3010 	ldr	r3, [fp, #-16]
+    4ed4:	e0823003 	add	r3, r2, r3
+    4ed8:	e5d33000 	ldrb	r3, [r3]
+    4edc:	e3530000 	cmp	r3, #0
+    4ee0:	1affff81 	bne	4cec <printf+0x30>
                 putc(fd, c);
             }
             state = 0;
         }
     }
 }
-    4ec0:	e24bd004 	sub	sp, fp, #4
-    4ec4:	e8bd4800 	pop	{fp, lr}
-    4ec8:	e28dd00c 	add	sp, sp, #12
-    4ecc:	e12fff1e 	bx	lr
+    4ee4:	e24bd004 	sub	sp, fp, #4
+    4ee8:	e8bd4800 	pop	{fp, lr}
+    4eec:	e28dd00c 	add	sp, sp, #12
+    4ef0:	e12fff1e 	bx	lr
 
-00004ed0 <free>:
+00004ef4 <free>:
 static Header base;
 static Header *freep;
 
 void
 free(void *ap)
 {
-    4ed0:	e52db004 	push	{fp}		; (str fp, [sp, #-4]!)
-    4ed4:	e28db000 	add	fp, sp, #0
-    4ed8:	e24dd014 	sub	sp, sp, #20
-    4edc:	e50b0010 	str	r0, [fp, #-16]
+    4ef4:	e52db004 	push	{fp}		; (str fp, [sp, #-4]!)
+    4ef8:	e28db000 	add	fp, sp, #0
+    4efc:	e24dd014 	sub	sp, sp, #20
+    4f00:	e50b0010 	str	r0, [fp, #-16]
     Header *bp, *p;
     
     bp = (Header*)ap - 1;
-    4ee0:	e51b3010 	ldr	r3, [fp, #-16]
-    4ee4:	e2433008 	sub	r3, r3, #8
-    4ee8:	e50b300c 	str	r3, [fp, #-12]
+    4f04:	e51b3010 	ldr	r3, [fp, #-16]
+    4f08:	e2433008 	sub	r3, r3, #8
+    4f0c:	e50b300c 	str	r3, [fp, #-12]
     for(p = freep; !(bp > p && bp < p->s.ptr); p = p->s.ptr)
-    4eec:	e3063c60 	movw	r3, #27744	; 0x6c60
-    4ef0:	e3403000 	movt	r3, #0
-    4ef4:	e5933000 	ldr	r3, [r3]
-    4ef8:	e50b3008 	str	r3, [fp, #-8]
-    4efc:	ea000010 	b	4f44 <free+0x74>
+    4f10:	e3063c84 	movw	r3, #27780	; 0x6c84
+    4f14:	e3403000 	movt	r3, #0
+    4f18:	e5933000 	ldr	r3, [r3]
+    4f1c:	e50b3008 	str	r3, [fp, #-8]
+    4f20:	ea000010 	b	4f68 <free+0x74>
         if(p >= p->s.ptr && (bp > p || bp < p->s.ptr))
-    4f00:	e51b3008 	ldr	r3, [fp, #-8]
-    4f04:	e5932000 	ldr	r2, [r3]
-    4f08:	e51b3008 	ldr	r3, [fp, #-8]
-    4f0c:	e1520003 	cmp	r2, r3
-    4f10:	8a000008 	bhi	4f38 <free+0x68>
-    4f14:	e51b200c 	ldr	r2, [fp, #-12]
-    4f18:	e51b3008 	ldr	r3, [fp, #-8]
-    4f1c:	e1520003 	cmp	r2, r3
-    4f20:	8a000010 	bhi	4f68 <free+0x98>
     4f24:	e51b3008 	ldr	r3, [fp, #-8]
     4f28:	e5932000 	ldr	r2, [r3]
-    4f2c:	e51b300c 	ldr	r3, [fp, #-12]
+    4f2c:	e51b3008 	ldr	r3, [fp, #-8]
     4f30:	e1520003 	cmp	r2, r3
-    4f34:	8a00000b 	bhi	4f68 <free+0x98>
+    4f34:	8a000008 	bhi	4f5c <free+0x68>
+    4f38:	e51b200c 	ldr	r2, [fp, #-12]
+    4f3c:	e51b3008 	ldr	r3, [fp, #-8]
+    4f40:	e1520003 	cmp	r2, r3
+    4f44:	8a000010 	bhi	4f8c <free+0x98>
+    4f48:	e51b3008 	ldr	r3, [fp, #-8]
+    4f4c:	e5932000 	ldr	r2, [r3]
+    4f50:	e51b300c 	ldr	r3, [fp, #-12]
+    4f54:	e1520003 	cmp	r2, r3
+    4f58:	8a00000b 	bhi	4f8c <free+0x98>
 free(void *ap)
 {
     Header *bp, *p;
     
     bp = (Header*)ap - 1;
     for(p = freep; !(bp > p && bp < p->s.ptr); p = p->s.ptr)
-    4f38:	e51b3008 	ldr	r3, [fp, #-8]
-    4f3c:	e5933000 	ldr	r3, [r3]
-    4f40:	e50b3008 	str	r3, [fp, #-8]
-    4f44:	e51b200c 	ldr	r2, [fp, #-12]
-    4f48:	e51b3008 	ldr	r3, [fp, #-8]
-    4f4c:	e1520003 	cmp	r2, r3
-    4f50:	9affffea 	bls	4f00 <free+0x30>
-    4f54:	e51b3008 	ldr	r3, [fp, #-8]
-    4f58:	e5932000 	ldr	r2, [r3]
-    4f5c:	e51b300c 	ldr	r3, [fp, #-12]
-    4f60:	e1520003 	cmp	r2, r3
-    4f64:	9affffe5 	bls	4f00 <free+0x30>
+    4f5c:	e51b3008 	ldr	r3, [fp, #-8]
+    4f60:	e5933000 	ldr	r3, [r3]
+    4f64:	e50b3008 	str	r3, [fp, #-8]
+    4f68:	e51b200c 	ldr	r2, [fp, #-12]
+    4f6c:	e51b3008 	ldr	r3, [fp, #-8]
+    4f70:	e1520003 	cmp	r2, r3
+    4f74:	9affffea 	bls	4f24 <free+0x30>
+    4f78:	e51b3008 	ldr	r3, [fp, #-8]
+    4f7c:	e5932000 	ldr	r2, [r3]
+    4f80:	e51b300c 	ldr	r3, [fp, #-12]
+    4f84:	e1520003 	cmp	r2, r3
+    4f88:	9affffe5 	bls	4f24 <free+0x30>
         if(p >= p->s.ptr && (bp > p || bp < p->s.ptr))
             break;
     if(bp + bp->s.size == p->s.ptr){
-    4f68:	e51b300c 	ldr	r3, [fp, #-12]
-    4f6c:	e5933004 	ldr	r3, [r3, #4]
-    4f70:	e1a03183 	lsl	r3, r3, #3
-    4f74:	e51b200c 	ldr	r2, [fp, #-12]
-    4f78:	e0822003 	add	r2, r2, r3
-    4f7c:	e51b3008 	ldr	r3, [fp, #-8]
-    4f80:	e5933000 	ldr	r3, [r3]
-    4f84:	e1520003 	cmp	r2, r3
-    4f88:	1a00000d 	bne	4fc4 <free+0xf4>
-        bp->s.size += p->s.ptr->s.size;
     4f8c:	e51b300c 	ldr	r3, [fp, #-12]
-    4f90:	e5932004 	ldr	r2, [r3, #4]
-    4f94:	e51b3008 	ldr	r3, [fp, #-8]
-    4f98:	e5933000 	ldr	r3, [r3]
-    4f9c:	e5933004 	ldr	r3, [r3, #4]
-    4fa0:	e0822003 	add	r2, r2, r3
-    4fa4:	e51b300c 	ldr	r3, [fp, #-12]
-    4fa8:	e5832004 	str	r2, [r3, #4]
+    4f90:	e5933004 	ldr	r3, [r3, #4]
+    4f94:	e1a03183 	lsl	r3, r3, #3
+    4f98:	e51b200c 	ldr	r2, [fp, #-12]
+    4f9c:	e0822003 	add	r2, r2, r3
+    4fa0:	e51b3008 	ldr	r3, [fp, #-8]
+    4fa4:	e5933000 	ldr	r3, [r3]
+    4fa8:	e1520003 	cmp	r2, r3
+    4fac:	1a00000d 	bne	4fe8 <free+0xf4>
+        bp->s.size += p->s.ptr->s.size;
+    4fb0:	e51b300c 	ldr	r3, [fp, #-12]
+    4fb4:	e5932004 	ldr	r2, [r3, #4]
+    4fb8:	e51b3008 	ldr	r3, [fp, #-8]
+    4fbc:	e5933000 	ldr	r3, [r3]
+    4fc0:	e5933004 	ldr	r3, [r3, #4]
+    4fc4:	e0822003 	add	r2, r2, r3
+    4fc8:	e51b300c 	ldr	r3, [fp, #-12]
+    4fcc:	e5832004 	str	r2, [r3, #4]
         bp->s.ptr = p->s.ptr->s.ptr;
-    4fac:	e51b3008 	ldr	r3, [fp, #-8]
-    4fb0:	e5933000 	ldr	r3, [r3]
-    4fb4:	e5932000 	ldr	r2, [r3]
-    4fb8:	e51b300c 	ldr	r3, [fp, #-12]
-    4fbc:	e5832000 	str	r2, [r3]
-    4fc0:	ea000003 	b	4fd4 <free+0x104>
+    4fd0:	e51b3008 	ldr	r3, [fp, #-8]
+    4fd4:	e5933000 	ldr	r3, [r3]
+    4fd8:	e5932000 	ldr	r2, [r3]
+    4fdc:	e51b300c 	ldr	r3, [fp, #-12]
+    4fe0:	e5832000 	str	r2, [r3]
+    4fe4:	ea000003 	b	4ff8 <free+0x104>
     } else
         bp->s.ptr = p->s.ptr;
-    4fc4:	e51b3008 	ldr	r3, [fp, #-8]
-    4fc8:	e5932000 	ldr	r2, [r3]
-    4fcc:	e51b300c 	ldr	r3, [fp, #-12]
-    4fd0:	e5832000 	str	r2, [r3]
+    4fe8:	e51b3008 	ldr	r3, [fp, #-8]
+    4fec:	e5932000 	ldr	r2, [r3]
+    4ff0:	e51b300c 	ldr	r3, [fp, #-12]
+    4ff4:	e5832000 	str	r2, [r3]
     if(p + p->s.size == bp){
-    4fd4:	e51b3008 	ldr	r3, [fp, #-8]
-    4fd8:	e5933004 	ldr	r3, [r3, #4]
-    4fdc:	e1a03183 	lsl	r3, r3, #3
-    4fe0:	e51b2008 	ldr	r2, [fp, #-8]
-    4fe4:	e0822003 	add	r2, r2, r3
-    4fe8:	e51b300c 	ldr	r3, [fp, #-12]
-    4fec:	e1520003 	cmp	r2, r3
-    4ff0:	1a00000b 	bne	5024 <free+0x154>
+    4ff8:	e51b3008 	ldr	r3, [fp, #-8]
+    4ffc:	e5933004 	ldr	r3, [r3, #4]
+    5000:	e1a03183 	lsl	r3, r3, #3
+    5004:	e51b2008 	ldr	r2, [fp, #-8]
+    5008:	e0822003 	add	r2, r2, r3
+    500c:	e51b300c 	ldr	r3, [fp, #-12]
+    5010:	e1520003 	cmp	r2, r3
+    5014:	1a00000b 	bne	5048 <free+0x154>
         p->s.size += bp->s.size;
-    4ff4:	e51b3008 	ldr	r3, [fp, #-8]
-    4ff8:	e5932004 	ldr	r2, [r3, #4]
-    4ffc:	e51b300c 	ldr	r3, [fp, #-12]
-    5000:	e5933004 	ldr	r3, [r3, #4]
-    5004:	e0822003 	add	r2, r2, r3
-    5008:	e51b3008 	ldr	r3, [fp, #-8]
-    500c:	e5832004 	str	r2, [r3, #4]
-        p->s.ptr = bp->s.ptr;
-    5010:	e51b300c 	ldr	r3, [fp, #-12]
-    5014:	e5932000 	ldr	r2, [r3]
     5018:	e51b3008 	ldr	r3, [fp, #-8]
-    501c:	e5832000 	str	r2, [r3]
-    5020:	ea000002 	b	5030 <free+0x160>
+    501c:	e5932004 	ldr	r2, [r3, #4]
+    5020:	e51b300c 	ldr	r3, [fp, #-12]
+    5024:	e5933004 	ldr	r3, [r3, #4]
+    5028:	e0822003 	add	r2, r2, r3
+    502c:	e51b3008 	ldr	r3, [fp, #-8]
+    5030:	e5832004 	str	r2, [r3, #4]
+        p->s.ptr = bp->s.ptr;
+    5034:	e51b300c 	ldr	r3, [fp, #-12]
+    5038:	e5932000 	ldr	r2, [r3]
+    503c:	e51b3008 	ldr	r3, [fp, #-8]
+    5040:	e5832000 	str	r2, [r3]
+    5044:	ea000002 	b	5054 <free+0x160>
     } else
         p->s.ptr = bp;
-    5024:	e51b3008 	ldr	r3, [fp, #-8]
-    5028:	e51b200c 	ldr	r2, [fp, #-12]
-    502c:	e5832000 	str	r2, [r3]
+    5048:	e51b3008 	ldr	r3, [fp, #-8]
+    504c:	e51b200c 	ldr	r2, [fp, #-12]
+    5050:	e5832000 	str	r2, [r3]
     freep = p;
-    5030:	e3063c60 	movw	r3, #27744	; 0x6c60
-    5034:	e3403000 	movt	r3, #0
-    5038:	e51b2008 	ldr	r2, [fp, #-8]
-    503c:	e5832000 	str	r2, [r3]
+    5054:	e3063c84 	movw	r3, #27780	; 0x6c84
+    5058:	e3403000 	movt	r3, #0
+    505c:	e51b2008 	ldr	r2, [fp, #-8]
+    5060:	e5832000 	str	r2, [r3]
 }
-    5040:	e28bd000 	add	sp, fp, #0
-    5044:	e8bd0800 	pop	{fp}
-    5048:	e12fff1e 	bx	lr
+    5064:	e28bd000 	add	sp, fp, #0
+    5068:	e8bd0800 	pop	{fp}
+    506c:	e12fff1e 	bx	lr
 
-0000504c <morecore>:
+00005070 <morecore>:
 
 static Header*
 morecore(uint nu)
 {
-    504c:	e92d4800 	push	{fp, lr}
-    5050:	e28db004 	add	fp, sp, #4
-    5054:	e24dd010 	sub	sp, sp, #16
-    5058:	e50b0010 	str	r0, [fp, #-16]
+    5070:	e92d4800 	push	{fp, lr}
+    5074:	e28db004 	add	fp, sp, #4
+    5078:	e24dd010 	sub	sp, sp, #16
+    507c:	e50b0010 	str	r0, [fp, #-16]
     char *p;
     Header *hp;
     
     if(nu < 4096)
-    505c:	e51b2010 	ldr	r2, [fp, #-16]
-    5060:	e3003fff 	movw	r3, #4095	; 0xfff
-    5064:	e1520003 	cmp	r2, r3
-    5068:	8a000001 	bhi	5074 <morecore+0x28>
+    5080:	e51b2010 	ldr	r2, [fp, #-16]
+    5084:	e3003fff 	movw	r3, #4095	; 0xfff
+    5088:	e1520003 	cmp	r2, r3
+    508c:	8a000001 	bhi	5098 <morecore+0x28>
         nu = 4096;
-    506c:	e3a03a01 	mov	r3, #4096	; 0x1000
-    5070:	e50b3010 	str	r3, [fp, #-16]
+    5090:	e3a03a01 	mov	r3, #4096	; 0x1000
+    5094:	e50b3010 	str	r3, [fp, #-16]
     p = sbrk(nu * sizeof(Header));
-    5074:	e51b3010 	ldr	r3, [fp, #-16]
-    5078:	e1a03183 	lsl	r3, r3, #3
-    507c:	e1a00003 	mov	r0, r3
-    5080:	ebfffe85 	bl	4a9c <sbrk>
-    5084:	e50b0008 	str	r0, [fp, #-8]
+    5098:	e51b3010 	ldr	r3, [fp, #-16]
+    509c:	e1a03183 	lsl	r3, r3, #3
+    50a0:	e1a00003 	mov	r0, r3
+    50a4:	ebfffe7c 	bl	4a9c <sbrk>
+    50a8:	e50b0008 	str	r0, [fp, #-8]
     if(p == (char*)-1)
-    5088:	e51b3008 	ldr	r3, [fp, #-8]
-    508c:	e3730001 	cmn	r3, #1
-    5090:	1a000001 	bne	509c <morecore+0x50>
+    50ac:	e51b3008 	ldr	r3, [fp, #-8]
+    50b0:	e3730001 	cmn	r3, #1
+    50b4:	1a000001 	bne	50c0 <morecore+0x50>
         return 0;
-    5094:	e3a03000 	mov	r3, #0
-    5098:	ea00000b 	b	50cc <morecore+0x80>
+    50b8:	e3a03000 	mov	r3, #0
+    50bc:	ea00000b 	b	50f0 <morecore+0x80>
     hp = (Header*)p;
-    509c:	e51b3008 	ldr	r3, [fp, #-8]
-    50a0:	e50b300c 	str	r3, [fp, #-12]
+    50c0:	e51b3008 	ldr	r3, [fp, #-8]
+    50c4:	e50b300c 	str	r3, [fp, #-12]
     hp->s.size = nu;
-    50a4:	e51b300c 	ldr	r3, [fp, #-12]
-    50a8:	e51b2010 	ldr	r2, [fp, #-16]
-    50ac:	e5832004 	str	r2, [r3, #4]
+    50c8:	e51b300c 	ldr	r3, [fp, #-12]
+    50cc:	e51b2010 	ldr	r2, [fp, #-16]
+    50d0:	e5832004 	str	r2, [r3, #4]
     free((void*)(hp + 1));
-    50b0:	e51b300c 	ldr	r3, [fp, #-12]
-    50b4:	e2833008 	add	r3, r3, #8
-    50b8:	e1a00003 	mov	r0, r3
-    50bc:	ebffff83 	bl	4ed0 <free>
+    50d4:	e51b300c 	ldr	r3, [fp, #-12]
+    50d8:	e2833008 	add	r3, r3, #8
+    50dc:	e1a00003 	mov	r0, r3
+    50e0:	ebffff83 	bl	4ef4 <free>
     return freep;
-    50c0:	e3063c60 	movw	r3, #27744	; 0x6c60
-    50c4:	e3403000 	movt	r3, #0
-    50c8:	e5933000 	ldr	r3, [r3]
+    50e4:	e3063c84 	movw	r3, #27780	; 0x6c84
+    50e8:	e3403000 	movt	r3, #0
+    50ec:	e5933000 	ldr	r3, [r3]
 }
-    50cc:	e1a00003 	mov	r0, r3
-    50d0:	e24bd004 	sub	sp, fp, #4
-    50d4:	e8bd8800 	pop	{fp, pc}
+    50f0:	e1a00003 	mov	r0, r3
+    50f4:	e24bd004 	sub	sp, fp, #4
+    50f8:	e8bd8800 	pop	{fp, pc}
 
-000050d8 <malloc>:
+000050fc <malloc>:
 
 void*
 malloc(uint nbytes)
 {
-    50d8:	e92d4800 	push	{fp, lr}
-    50dc:	e28db004 	add	fp, sp, #4
-    50e0:	e24dd018 	sub	sp, sp, #24
-    50e4:	e50b0018 	str	r0, [fp, #-24]	; 0xffffffe8
+    50fc:	e92d4800 	push	{fp, lr}
+    5100:	e28db004 	add	fp, sp, #4
+    5104:	e24dd018 	sub	sp, sp, #24
+    5108:	e50b0018 	str	r0, [fp, #-24]	; 0xffffffe8
     Header *p, *prevp;
     uint nunits;
     
     nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
-    50e8:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
-    50ec:	e2833007 	add	r3, r3, #7
-    50f0:	e1a031a3 	lsr	r3, r3, #3
-    50f4:	e2833001 	add	r3, r3, #1
-    50f8:	e50b3010 	str	r3, [fp, #-16]
+    510c:	e51b3018 	ldr	r3, [fp, #-24]	; 0xffffffe8
+    5110:	e2833007 	add	r3, r3, #7
+    5114:	e1a031a3 	lsr	r3, r3, #3
+    5118:	e2833001 	add	r3, r3, #1
+    511c:	e50b3010 	str	r3, [fp, #-16]
     if((prevp = freep) == 0){
-    50fc:	e3063c60 	movw	r3, #27744	; 0x6c60
-    5100:	e3403000 	movt	r3, #0
-    5104:	e5933000 	ldr	r3, [r3]
-    5108:	e50b300c 	str	r3, [fp, #-12]
-    510c:	e51b300c 	ldr	r3, [fp, #-12]
-    5110:	e3530000 	cmp	r3, #0
-    5114:	1a000010 	bne	515c <malloc+0x84>
+    5120:	e3063c84 	movw	r3, #27780	; 0x6c84
+    5124:	e3403000 	movt	r3, #0
+    5128:	e5933000 	ldr	r3, [r3]
+    512c:	e50b300c 	str	r3, [fp, #-12]
+    5130:	e51b300c 	ldr	r3, [fp, #-12]
+    5134:	e3530000 	cmp	r3, #0
+    5138:	1a000010 	bne	5180 <malloc+0x84>
         base.s.ptr = freep = prevp = &base;
-    5118:	e3063c58 	movw	r3, #27736	; 0x6c58
-    511c:	e3403000 	movt	r3, #0
-    5120:	e50b300c 	str	r3, [fp, #-12]
-    5124:	e3063c60 	movw	r3, #27744	; 0x6c60
-    5128:	e3403000 	movt	r3, #0
-    512c:	e51b200c 	ldr	r2, [fp, #-12]
-    5130:	e5832000 	str	r2, [r3]
-    5134:	e3063c60 	movw	r3, #27744	; 0x6c60
-    5138:	e3403000 	movt	r3, #0
-    513c:	e5932000 	ldr	r2, [r3]
-    5140:	e3063c58 	movw	r3, #27736	; 0x6c58
-    5144:	e3403000 	movt	r3, #0
-    5148:	e5832000 	str	r2, [r3]
+    513c:	e3063c7c 	movw	r3, #27772	; 0x6c7c
+    5140:	e3403000 	movt	r3, #0
+    5144:	e50b300c 	str	r3, [fp, #-12]
+    5148:	e3063c84 	movw	r3, #27780	; 0x6c84
+    514c:	e3403000 	movt	r3, #0
+    5150:	e51b200c 	ldr	r2, [fp, #-12]
+    5154:	e5832000 	str	r2, [r3]
+    5158:	e3063c84 	movw	r3, #27780	; 0x6c84
+    515c:	e3403000 	movt	r3, #0
+    5160:	e5932000 	ldr	r2, [r3]
+    5164:	e3063c7c 	movw	r3, #27772	; 0x6c7c
+    5168:	e3403000 	movt	r3, #0
+    516c:	e5832000 	str	r2, [r3]
         base.s.size = 0;
-    514c:	e3063c58 	movw	r3, #27736	; 0x6c58
-    5150:	e3403000 	movt	r3, #0
-    5154:	e3a02000 	mov	r2, #0
-    5158:	e5832004 	str	r2, [r3, #4]
+    5170:	e3063c7c 	movw	r3, #27772	; 0x6c7c
+    5174:	e3403000 	movt	r3, #0
+    5178:	e3a02000 	mov	r2, #0
+    517c:	e5832004 	str	r2, [r3, #4]
     }
     for(p = prevp->s.ptr; ; prevp = p, p = p->s.ptr){
-    515c:	e51b300c 	ldr	r3, [fp, #-12]
-    5160:	e5933000 	ldr	r3, [r3]
-    5164:	e50b3008 	str	r3, [fp, #-8]
+    5180:	e51b300c 	ldr	r3, [fp, #-12]
+    5184:	e5933000 	ldr	r3, [r3]
+    5188:	e50b3008 	str	r3, [fp, #-8]
         if(p->s.size >= nunits){
-    5168:	e51b3008 	ldr	r3, [fp, #-8]
-    516c:	e5932004 	ldr	r2, [r3, #4]
-    5170:	e51b3010 	ldr	r3, [fp, #-16]
-    5174:	e1520003 	cmp	r2, r3
-    5178:	3a00001f 	bcc	51fc <malloc+0x124>
+    518c:	e51b3008 	ldr	r3, [fp, #-8]
+    5190:	e5932004 	ldr	r2, [r3, #4]
+    5194:	e51b3010 	ldr	r3, [fp, #-16]
+    5198:	e1520003 	cmp	r2, r3
+    519c:	3a00001f 	bcc	5220 <malloc+0x124>
             if(p->s.size == nunits)
-    517c:	e51b3008 	ldr	r3, [fp, #-8]
-    5180:	e5932004 	ldr	r2, [r3, #4]
-    5184:	e51b3010 	ldr	r3, [fp, #-16]
-    5188:	e1520003 	cmp	r2, r3
-    518c:	1a000004 	bne	51a4 <malloc+0xcc>
+    51a0:	e51b3008 	ldr	r3, [fp, #-8]
+    51a4:	e5932004 	ldr	r2, [r3, #4]
+    51a8:	e51b3010 	ldr	r3, [fp, #-16]
+    51ac:	e1520003 	cmp	r2, r3
+    51b0:	1a000004 	bne	51c8 <malloc+0xcc>
                 prevp->s.ptr = p->s.ptr;
-    5190:	e51b3008 	ldr	r3, [fp, #-8]
-    5194:	e5932000 	ldr	r2, [r3]
-    5198:	e51b300c 	ldr	r3, [fp, #-12]
-    519c:	e5832000 	str	r2, [r3]
-    51a0:	ea00000e 	b	51e0 <malloc+0x108>
+    51b4:	e51b3008 	ldr	r3, [fp, #-8]
+    51b8:	e5932000 	ldr	r2, [r3]
+    51bc:	e51b300c 	ldr	r3, [fp, #-12]
+    51c0:	e5832000 	str	r2, [r3]
+    51c4:	ea00000e 	b	5204 <malloc+0x108>
             else {
                 p->s.size -= nunits;
-    51a4:	e51b3008 	ldr	r3, [fp, #-8]
-    51a8:	e5932004 	ldr	r2, [r3, #4]
-    51ac:	e51b3010 	ldr	r3, [fp, #-16]
-    51b0:	e0632002 	rsb	r2, r3, r2
-    51b4:	e51b3008 	ldr	r3, [fp, #-8]
-    51b8:	e5832004 	str	r2, [r3, #4]
-                p += p->s.size;
-    51bc:	e51b3008 	ldr	r3, [fp, #-8]
-    51c0:	e5933004 	ldr	r3, [r3, #4]
-    51c4:	e1a03183 	lsl	r3, r3, #3
-    51c8:	e51b2008 	ldr	r2, [fp, #-8]
-    51cc:	e0823003 	add	r3, r2, r3
-    51d0:	e50b3008 	str	r3, [fp, #-8]
-                p->s.size = nunits;
-    51d4:	e51b3008 	ldr	r3, [fp, #-8]
-    51d8:	e51b2010 	ldr	r2, [fp, #-16]
+    51c8:	e51b3008 	ldr	r3, [fp, #-8]
+    51cc:	e5932004 	ldr	r2, [r3, #4]
+    51d0:	e51b3010 	ldr	r3, [fp, #-16]
+    51d4:	e0632002 	rsb	r2, r3, r2
+    51d8:	e51b3008 	ldr	r3, [fp, #-8]
     51dc:	e5832004 	str	r2, [r3, #4]
+                p += p->s.size;
+    51e0:	e51b3008 	ldr	r3, [fp, #-8]
+    51e4:	e5933004 	ldr	r3, [r3, #4]
+    51e8:	e1a03183 	lsl	r3, r3, #3
+    51ec:	e51b2008 	ldr	r2, [fp, #-8]
+    51f0:	e0823003 	add	r3, r2, r3
+    51f4:	e50b3008 	str	r3, [fp, #-8]
+                p->s.size = nunits;
+    51f8:	e51b3008 	ldr	r3, [fp, #-8]
+    51fc:	e51b2010 	ldr	r2, [fp, #-16]
+    5200:	e5832004 	str	r2, [r3, #4]
             }
             freep = prevp;
-    51e0:	e3063c60 	movw	r3, #27744	; 0x6c60
-    51e4:	e3403000 	movt	r3, #0
-    51e8:	e51b200c 	ldr	r2, [fp, #-12]
-    51ec:	e5832000 	str	r2, [r3]
+    5204:	e3063c84 	movw	r3, #27780	; 0x6c84
+    5208:	e3403000 	movt	r3, #0
+    520c:	e51b200c 	ldr	r2, [fp, #-12]
+    5210:	e5832000 	str	r2, [r3]
             return (void*)(p + 1);
-    51f0:	e51b3008 	ldr	r3, [fp, #-8]
-    51f4:	e2833008 	add	r3, r3, #8
-    51f8:	ea000013 	b	524c <malloc+0x174>
+    5214:	e51b3008 	ldr	r3, [fp, #-8]
+    5218:	e2833008 	add	r3, r3, #8
+    521c:	ea000013 	b	5270 <malloc+0x174>
         }
         if(p == freep)
-    51fc:	e3063c60 	movw	r3, #27744	; 0x6c60
-    5200:	e3403000 	movt	r3, #0
-    5204:	e5933000 	ldr	r3, [r3]
-    5208:	e51b2008 	ldr	r2, [fp, #-8]
-    520c:	e1520003 	cmp	r2, r3
-    5210:	1a000007 	bne	5234 <malloc+0x15c>
+    5220:	e3063c84 	movw	r3, #27780	; 0x6c84
+    5224:	e3403000 	movt	r3, #0
+    5228:	e5933000 	ldr	r3, [r3]
+    522c:	e51b2008 	ldr	r2, [fp, #-8]
+    5230:	e1520003 	cmp	r2, r3
+    5234:	1a000007 	bne	5258 <malloc+0x15c>
             if((p = morecore(nunits)) == 0)
-    5214:	e51b0010 	ldr	r0, [fp, #-16]
-    5218:	ebffff8b 	bl	504c <morecore>
-    521c:	e50b0008 	str	r0, [fp, #-8]
-    5220:	e51b3008 	ldr	r3, [fp, #-8]
-    5224:	e3530000 	cmp	r3, #0
-    5228:	1a000001 	bne	5234 <malloc+0x15c>
+    5238:	e51b0010 	ldr	r0, [fp, #-16]
+    523c:	ebffff8b 	bl	5070 <morecore>
+    5240:	e50b0008 	str	r0, [fp, #-8]
+    5244:	e51b3008 	ldr	r3, [fp, #-8]
+    5248:	e3530000 	cmp	r3, #0
+    524c:	1a000001 	bne	5258 <malloc+0x15c>
                 return 0;
-    522c:	e3a03000 	mov	r3, #0
-    5230:	ea000005 	b	524c <malloc+0x174>
+    5250:	e3a03000 	mov	r3, #0
+    5254:	ea000005 	b	5270 <malloc+0x174>
     nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
     if((prevp = freep) == 0){
         base.s.ptr = freep = prevp = &base;
         base.s.size = 0;
     }
     for(p = prevp->s.ptr; ; prevp = p, p = p->s.ptr){
-    5234:	e51b3008 	ldr	r3, [fp, #-8]
-    5238:	e50b300c 	str	r3, [fp, #-12]
-    523c:	e51b3008 	ldr	r3, [fp, #-8]
-    5240:	e5933000 	ldr	r3, [r3]
-    5244:	e50b3008 	str	r3, [fp, #-8]
+    5258:	e51b3008 	ldr	r3, [fp, #-8]
+    525c:	e50b300c 	str	r3, [fp, #-12]
+    5260:	e51b3008 	ldr	r3, [fp, #-8]
+    5264:	e5933000 	ldr	r3, [r3]
+    5268:	e50b3008 	str	r3, [fp, #-8]
             return (void*)(p + 1);
         }
         if(p == freep)
             if((p = morecore(nunits)) == 0)
                 return 0;
     }
-    5248:	eaffffc6 	b	5168 <malloc+0x90>
+    526c:	eaffffc6 	b	518c <malloc+0x90>
 }
-    524c:	e1a00003 	mov	r0, r3
-    5250:	e24bd004 	sub	sp, fp, #4
-    5254:	e8bd8800 	pop	{fp, pc}
+    5270:	e1a00003 	mov	r0, r3
+    5274:	e24bd004 	sub	sp, fp, #4
+    5278:	e8bd8800 	pop	{fp, pc}
 
-00005258 <__aeabi_uidiv>:
-    5258:	e2512001 	subs	r2, r1, #1
-    525c:	012fff1e 	bxeq	lr
-    5260:	3a000036 	bcc	5340 <__aeabi_uidiv+0xe8>
-    5264:	e1500001 	cmp	r0, r1
-    5268:	9a000022 	bls	52f8 <__aeabi_uidiv+0xa0>
-    526c:	e1110002 	tst	r1, r2
-    5270:	0a000023 	beq	5304 <__aeabi_uidiv+0xac>
-    5274:	e311020e 	tst	r1, #-536870912	; 0xe0000000
-    5278:	01a01181 	lsleq	r1, r1, #3
-    527c:	03a03008 	moveq	r3, #8
-    5280:	13a03001 	movne	r3, #1
-    5284:	e3510201 	cmp	r1, #268435456	; 0x10000000
-    5288:	31510000 	cmpcc	r1, r0
-    528c:	31a01201 	lslcc	r1, r1, #4
-    5290:	31a03203 	lslcc	r3, r3, #4
-    5294:	3afffffa 	bcc	5284 <__aeabi_uidiv+0x2c>
-    5298:	e3510102 	cmp	r1, #-2147483648	; 0x80000000
-    529c:	31510000 	cmpcc	r1, r0
-    52a0:	31a01081 	lslcc	r1, r1, #1
-    52a4:	31a03083 	lslcc	r3, r3, #1
-    52a8:	3afffffa 	bcc	5298 <__aeabi_uidiv+0x40>
-    52ac:	e3a02000 	mov	r2, #0
-    52b0:	e1500001 	cmp	r0, r1
-    52b4:	20400001 	subcs	r0, r0, r1
-    52b8:	21822003 	orrcs	r2, r2, r3
-    52bc:	e15000a1 	cmp	r0, r1, lsr #1
-    52c0:	204000a1 	subcs	r0, r0, r1, lsr #1
-    52c4:	218220a3 	orrcs	r2, r2, r3, lsr #1
-    52c8:	e1500121 	cmp	r0, r1, lsr #2
-    52cc:	20400121 	subcs	r0, r0, r1, lsr #2
-    52d0:	21822123 	orrcs	r2, r2, r3, lsr #2
-    52d4:	e15001a1 	cmp	r0, r1, lsr #3
-    52d8:	204001a1 	subcs	r0, r0, r1, lsr #3
-    52dc:	218221a3 	orrcs	r2, r2, r3, lsr #3
-    52e0:	e3500000 	cmp	r0, #0
-    52e4:	11b03223 	lsrsne	r3, r3, #4
-    52e8:	11a01221 	lsrne	r1, r1, #4
-    52ec:	1affffef 	bne	52b0 <__aeabi_uidiv+0x58>
-    52f0:	e1a00002 	mov	r0, r2
-    52f4:	e12fff1e 	bx	lr
-    52f8:	03a00001 	moveq	r0, #1
-    52fc:	13a00000 	movne	r0, #0
-    5300:	e12fff1e 	bx	lr
-    5304:	e3510801 	cmp	r1, #65536	; 0x10000
-    5308:	21a01821 	lsrcs	r1, r1, #16
-    530c:	23a02010 	movcs	r2, #16
-    5310:	33a02000 	movcc	r2, #0
-    5314:	e3510c01 	cmp	r1, #256	; 0x100
-    5318:	21a01421 	lsrcs	r1, r1, #8
-    531c:	22822008 	addcs	r2, r2, #8
-    5320:	e3510010 	cmp	r1, #16
-    5324:	21a01221 	lsrcs	r1, r1, #4
-    5328:	22822004 	addcs	r2, r2, #4
-    532c:	e3510004 	cmp	r1, #4
-    5330:	82822003 	addhi	r2, r2, #3
-    5334:	908220a1 	addls	r2, r2, r1, lsr #1
-    5338:	e1a00230 	lsr	r0, r0, r2
-    533c:	e12fff1e 	bx	lr
-    5340:	e3500000 	cmp	r0, #0
-    5344:	13e00000 	mvnne	r0, #0
-    5348:	ea000007 	b	536c <__aeabi_idiv0>
+0000527c <__aeabi_uidiv>:
+    527c:	e2512001 	subs	r2, r1, #1
+    5280:	012fff1e 	bxeq	lr
+    5284:	3a000036 	bcc	5364 <__aeabi_uidiv+0xe8>
+    5288:	e1500001 	cmp	r0, r1
+    528c:	9a000022 	bls	531c <__aeabi_uidiv+0xa0>
+    5290:	e1110002 	tst	r1, r2
+    5294:	0a000023 	beq	5328 <__aeabi_uidiv+0xac>
+    5298:	e311020e 	tst	r1, #-536870912	; 0xe0000000
+    529c:	01a01181 	lsleq	r1, r1, #3
+    52a0:	03a03008 	moveq	r3, #8
+    52a4:	13a03001 	movne	r3, #1
+    52a8:	e3510201 	cmp	r1, #268435456	; 0x10000000
+    52ac:	31510000 	cmpcc	r1, r0
+    52b0:	31a01201 	lslcc	r1, r1, #4
+    52b4:	31a03203 	lslcc	r3, r3, #4
+    52b8:	3afffffa 	bcc	52a8 <__aeabi_uidiv+0x2c>
+    52bc:	e3510102 	cmp	r1, #-2147483648	; 0x80000000
+    52c0:	31510000 	cmpcc	r1, r0
+    52c4:	31a01081 	lslcc	r1, r1, #1
+    52c8:	31a03083 	lslcc	r3, r3, #1
+    52cc:	3afffffa 	bcc	52bc <__aeabi_uidiv+0x40>
+    52d0:	e3a02000 	mov	r2, #0
+    52d4:	e1500001 	cmp	r0, r1
+    52d8:	20400001 	subcs	r0, r0, r1
+    52dc:	21822003 	orrcs	r2, r2, r3
+    52e0:	e15000a1 	cmp	r0, r1, lsr #1
+    52e4:	204000a1 	subcs	r0, r0, r1, lsr #1
+    52e8:	218220a3 	orrcs	r2, r2, r3, lsr #1
+    52ec:	e1500121 	cmp	r0, r1, lsr #2
+    52f0:	20400121 	subcs	r0, r0, r1, lsr #2
+    52f4:	21822123 	orrcs	r2, r2, r3, lsr #2
+    52f8:	e15001a1 	cmp	r0, r1, lsr #3
+    52fc:	204001a1 	subcs	r0, r0, r1, lsr #3
+    5300:	218221a3 	orrcs	r2, r2, r3, lsr #3
+    5304:	e3500000 	cmp	r0, #0
+    5308:	11b03223 	lsrsne	r3, r3, #4
+    530c:	11a01221 	lsrne	r1, r1, #4
+    5310:	1affffef 	bne	52d4 <__aeabi_uidiv+0x58>
+    5314:	e1a00002 	mov	r0, r2
+    5318:	e12fff1e 	bx	lr
+    531c:	03a00001 	moveq	r0, #1
+    5320:	13a00000 	movne	r0, #0
+    5324:	e12fff1e 	bx	lr
+    5328:	e3510801 	cmp	r1, #65536	; 0x10000
+    532c:	21a01821 	lsrcs	r1, r1, #16
+    5330:	23a02010 	movcs	r2, #16
+    5334:	33a02000 	movcc	r2, #0
+    5338:	e3510c01 	cmp	r1, #256	; 0x100
+    533c:	21a01421 	lsrcs	r1, r1, #8
+    5340:	22822008 	addcs	r2, r2, #8
+    5344:	e3510010 	cmp	r1, #16
+    5348:	21a01221 	lsrcs	r1, r1, #4
+    534c:	22822004 	addcs	r2, r2, #4
+    5350:	e3510004 	cmp	r1, #4
+    5354:	82822003 	addhi	r2, r2, #3
+    5358:	908220a1 	addls	r2, r2, r1, lsr #1
+    535c:	e1a00230 	lsr	r0, r0, r2
+    5360:	e12fff1e 	bx	lr
+    5364:	e3500000 	cmp	r0, #0
+    5368:	13e00000 	mvnne	r0, #0
+    536c:	ea000007 	b	5390 <__aeabi_idiv0>
 
-0000534c <__aeabi_uidivmod>:
-    534c:	e3510000 	cmp	r1, #0
-    5350:	0afffffa 	beq	5340 <__aeabi_uidiv+0xe8>
-    5354:	e92d4003 	push	{r0, r1, lr}
-    5358:	ebffffbe 	bl	5258 <__aeabi_uidiv>
-    535c:	e8bd4006 	pop	{r1, r2, lr}
-    5360:	e0030092 	mul	r3, r2, r0
-    5364:	e0411003 	sub	r1, r1, r3
-    5368:	e12fff1e 	bx	lr
+00005370 <__aeabi_uidivmod>:
+    5370:	e3510000 	cmp	r1, #0
+    5374:	0afffffa 	beq	5364 <__aeabi_uidiv+0xe8>
+    5378:	e92d4003 	push	{r0, r1, lr}
+    537c:	ebffffbe 	bl	527c <__aeabi_uidiv>
+    5380:	e8bd4006 	pop	{r1, r2, lr}
+    5384:	e0030092 	mul	r3, r2, r0
+    5388:	e0411003 	sub	r1, r1, r3
+    538c:	e12fff1e 	bx	lr
 
-0000536c <__aeabi_idiv0>:
-    536c:	e12fff1e 	bx	lr
+00005390 <__aeabi_idiv0>:
+    5390:	e12fff1e 	bx	lr

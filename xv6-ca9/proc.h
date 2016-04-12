@@ -1,6 +1,8 @@
 #ifndef PROC_INCLUDE_
 #define PROC_INCLUDE_
 
+//int kthread_create();
+
 // Per-CPU state, now we only support one CPU
 struct cpu {
     uchar           id;             // index into cpus[] below
@@ -59,6 +61,7 @@ struct proc {
     char*           kstack;         // Bottom of kernel stack for this process
     enum procstate  state;          // Process state
     volatile int    pid;            // Process ID
+    volatile int    tid;            // Thread ID
     struct proc*    parent;         // Parent process
     struct trapframe*   tf;         // Trap frame for current syscall
     struct context* context;        // swtch() here to run process
