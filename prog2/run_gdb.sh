@@ -1,1 +1,0 @@
-arm-linux-gnueabi-gdb kernel/linux-linaro-stable-3.10.62-2014.12/vmlinux

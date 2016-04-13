@@ -1,7 +1,0 @@
-There are two main kernel functions to modify for this programming task: intercepting exceptions and modifying the information reported by procfs. The required modifications are described below.
-
-The features we will implement or add to the kernel will be to track the number of individual page accesses for each page allocated to a process. This will be reported by adding to the existing reporting output of cat /proc/PID/maps. The cat currently only outputs current allocations to each program instance of memory pages by the operating system and the permissions associated with each range of pages.
-
-The second important feature to modify in the kernel would be the handling of faults by the kernel. This is taken care of by the fault.c file, and in particular, the function do_page_fault() handles the exception that occurs when a new page needs to be brought in from disk. We must trigger a page fault every time a page is accessed by keeping the mapped page?s valid bit to zero (as long as the number of accesses to it stay under 10). However, the exception must be intercepted before it reaches the do_page_fault() handler, and the page counter must be incremented at this point.
-
- In order to make sure we are debugging efficiently throughout the course of this assignment, tools as simple as printk(), as well as those as detailed as gdb ported into qemu will be used to inspect the effects of our code changes. Use of breakpoints with gdb and printk will help us understand the flow of the program, as well as monitor values of variables at each line of code.
