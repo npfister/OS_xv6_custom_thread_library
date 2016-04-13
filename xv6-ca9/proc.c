@@ -33,6 +33,7 @@ static struct proc *initproc;
 struct proc *proc;
 
 int nextpid = 1;
+int nexttid = 1;
 extern void forkret(void);
 extern void trapret(void);
 
@@ -532,31 +533,47 @@ void procdump(void)
 // Create a new process copying p as the parent.
 // Sets up stack to return as if from system call.
 // Caller must set state of returned proc to RUNNABLE.
-int kthread_create()//void*(*start_func)(),)//fork(void)
-{
-    cprintf("In kthread_create syscall\n");
-    return 0;
-    /*int i, pid;
-    struct proc *np;
-
+int kthread_create() //void*(*start_func)(), )//fork(void)
+{   
+    cprintf("In kthread_create syscall. \n");
+    //int i;
+    struct proc *np; //new thread
+    int tid = nexttid++;
+    return tid;
+   
     // Allocate process.
     if((np = allocproc()) == 0) {
         return -1;
     }
 
+    /*
     // Copy process state from p.
     if((np->pgdir = copyuvm(proc->pgdir, proc->sz)) == 0){
         free_page(np->kstack);
         np->kstack = 0;
         np->state = UNUSED;
         return -1;
+	}
+    */
+    
+    // Copy process stack from parent
+    if((np->kstack = copy(proc->kstack, proc->sz)) == 0){
+        free_page(np->kstack);
+        np->kstack = 0;
+        np->state = UNUSED;
+        return -1;
     }
-
+    
+    
     np->sz = proc->sz;
     np->parent = proc;
     *np->tf = *proc->tf;
-
-    // Clear r0 so that fork returns 0 in the child.
+    np->tid = nexttid++;
+    np->pid = np->pid - 1;
+    nextpid--;
+    
+    /*
+    // Clear r0 so that the new thread returns 0 in the child.
     np->tf->r0 = 0;
 
     for(i = 0; i < NOFILE; i++) {
@@ -567,9 +584,9 @@ int kthread_create()//void*(*start_func)(),)//fork(void)
 
     np->cwd = idup(proc->cwd);
 
-    pid = np->pid;
     np->state = RUNNABLE;
     safestrcpy(np->name, proc->name, sizeof(proc->name));
 
-    return pid; */
+    return np->tid; 
+    */   
 }
