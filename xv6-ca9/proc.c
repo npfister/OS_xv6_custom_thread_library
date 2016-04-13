@@ -537,16 +537,16 @@ int kthread_create() //void*(*start_func)(), )//fork(void)
 {   
     cprintf("In kthread_create syscall. \n");
     //int i;
-    struct proc *np; //new thread
+    //struct proc *np; //new thread
     int tid = nexttid++;
     return tid;
-   
+    /*
     // Allocate process.
     if((np = allocproc()) == 0) {
         return -1;
     }
 
-    /*
+    
     // Copy process state from p.
     if((np->pgdir = copyuvm(proc->pgdir, proc->sz)) == 0){
         free_page(np->kstack);
@@ -554,7 +554,7 @@ int kthread_create() //void*(*start_func)(), )//fork(void)
         np->state = UNUSED;
         return -1;
 	}
-    */
+    
     
     // Copy process stack from parent
     if((np->kstack = copy(proc->kstack, proc->sz)) == 0){
@@ -571,7 +571,7 @@ int kthread_create() //void*(*start_func)(), )//fork(void)
     np->tid = nexttid++;
     np->pid = np->pid - 1;
     nextpid--;
-    
+    */
     /*
     // Clear r0 so that the new thread returns 0 in the child.
     np->tf->r0 = 0;
