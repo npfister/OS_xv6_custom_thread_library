@@ -22,7 +22,7 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-int kthread_create();
+int kthread_create(int start_func);
 
 // ulib.c
 int stat(char*, struct stat*);

@@ -7,9 +7,10 @@
 #include "proc.h"
 
 int sys_kthread_create(void)
-{
-    kthread_create();
-    return 0;
+{   
+    int start_func;
+    argint(0,&start_func);
+    return kthread_create(start_func);
 }
 
 int sys_fork(void)
