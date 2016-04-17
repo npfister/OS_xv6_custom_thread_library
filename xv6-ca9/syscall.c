@@ -114,6 +114,7 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
+extern int sys_gettid(void);
 extern int sys_kthread_create(void);
 
 static int (*syscalls[])(void) = {
@@ -138,6 +139,7 @@ static int (*syscalls[])(void) = {
         [SYS_link]    sys_link,
         [SYS_mkdir]   sys_mkdir,
         [SYS_close]   sys_close,
+        [SYS_gettid]  sys_gettid,
         [SYS_kthread_create]    sys_kthread_create,
 };
 

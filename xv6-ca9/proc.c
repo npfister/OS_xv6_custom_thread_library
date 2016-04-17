@@ -39,6 +39,9 @@ extern void trapret(void);
 
 static void wakeup1(void *chan);
 
+
+typedef void (*myFooDef)(void);
+
 void pinit(void)
 {
     initlock(&ptable.lock, "ptable");
@@ -533,13 +536,11 @@ void procdump(void)
 // Create a new process copying p as the parent.
 // Sets up stack to return as if from system call.
 // Caller must set state of returned proc to RUNNABLE.
-int kthread_create(int start_func) //void*(*start_func)(), )//fork(void)
+int kthread_create(void *(*start_func)(void) )
 {   
-    cprintf("In kthread_create syscall. start_func=%d\n",start_func);
+    cprintf("In kthread_create syscall. start_func=%d\n", (int) start_func);
     int i;
     struct proc *np; //new thread
-    //int tid = nexttid++;
-    //return tid;
     
     // Allocate process.
     if((np = allocproc()) == 0) {
@@ -548,22 +549,23 @@ int kthread_create(int start_func) //void*(*start_func)(), )//fork(void)
 
     
     // Copy process state from p.
-    /*if((np->pgdir = copyuvm(proc->pgdir, proc->sz)) == 0){
+    if((np->pgdir = copyuvm(proc->pgdir, proc->sz)) == 0){
         free_page(np->kstack);
         np->kstack = 0;
         np->state = UNUSED;
         return -1;
-	}*/
-    np->pgdir = proc->pgdir;//threads share page tables
+	}
+    //np->pgdir = proc->pgdir;//threads share page tables
     
     
     // Copy process stack from parent
+    /*
     if(copyout(proc->pgdir, *np->kstack, proc->kstack, KSTACKSIZE) != 0){
         free_page(np->kstack);
         np->kstack = 0;
         np->state = UNUSED;
         return -1;
-    }
+    }*/
     
     
     np->sz = proc->sz;
@@ -576,9 +578,9 @@ int kthread_create(int start_func) //void*(*start_func)(), )//fork(void)
     
     // Clear r0 so that the new thread returns 0 in the child.
     np->tf->r0 = 0;
-    cprintf("Before np->tf->pc: %d\n",np->tf->pc);
-    np->tf->pc = start_func;
-    cprintf("After  np->tf->pc: %d\n",np->tf->pc);
+    cprintf("Before, np->tf->pc: %d\n",np->tf->pc);
+    np->tf->pc = (int) (*start_func);
+    cprintf("After,  np->tf->pc: %d\n",np->tf->pc);
 
     for(i = 0; i < NOFILE; i++) {
         if(proc->ofile[i]) {

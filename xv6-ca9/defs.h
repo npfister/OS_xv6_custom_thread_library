@@ -138,7 +138,7 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
-int				kthread_create(int start_func);
+int				kthread_create(void* (*foo)());
 
 // swtch.S
 void            swtch(struct context**, struct context*);

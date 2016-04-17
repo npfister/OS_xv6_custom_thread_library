@@ -1,5 +1,6 @@
 struct stat;
 
+typedef void (*myFooDef)(void);
 // system calls
 int fork(void);
 int exit(void) __attribute__((noreturn));
@@ -22,7 +23,8 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-int kthread_create(int start_func);
+int gettid(void);
+int kthread_create(void* (*foo)() );
 
 // ulib.c
 int stat(char*, struct stat*);

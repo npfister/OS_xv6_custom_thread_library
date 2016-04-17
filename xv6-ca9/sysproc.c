@@ -8,9 +8,12 @@
 
 int sys_kthread_create(void)
 {   
-    int start_func;
-    argint(0,&start_func);
-    return kthread_create(start_func);
+    //void *(*start_func)();
+    //argptr(0, (void *)&start_func, sizeof(void*));
+    int pc;
+    argint (0, &pc);
+
+    return kthread_create((void*) pc);
 }
 
 int sys_fork(void)
@@ -43,6 +46,12 @@ int sys_kill(void)
 int sys_getpid(void)
 {
     return proc->pid;
+}
+
+
+int sys_gettid(void)
+{
+    return proc->tid;
 }
 
 int sys_sbrk(void)
