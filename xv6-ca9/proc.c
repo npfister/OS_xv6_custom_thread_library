@@ -284,6 +284,7 @@ int wait(void)
             havekids = 1;
 
             if(p->state == ZOMBIE){
+                cprintf("Found a zombie: pid: %d, tid: %d\n", p->pid, p->tid);
                 // Found one.
                 pid = p->pid;
                 free_page(p->kstack);
@@ -614,34 +615,50 @@ int kthread_join (int thread_id)
 {
     //cprintf("Waiting in kthread_join for tid: %d.\n", thread_id);
 
+
     struct proc *p;
     int havekids, pid;
 
+    if (proc->tid != 0) {//it is a child thread. (Only parent can call join)
+        
+    }
+
+
     acquire(&ptable.lock);
+
+    cprintf("Current proc: pid: %d, tid: %d\n", proc->pid, proc->tid);
 
     for(;;){
         // Scan through table looking for zombie children.
         havekids = 0;
 
         for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-            if(p->parent != proc) {
+           /* if(p->parent != proc) {
+                //cprintf("Parent != proc for pid: %d, tid: %d\n", p->pid, p->tid);
+                continue;
+            }*/
+
+            if (p->pid != proc->pid) {
                 continue;
             }
+
             if(p->tid != thread_id) {
                 continue;
             }
 
             havekids = 1;
 
+            //cprintf ("\nIn join, found a child with tid: %d, state %d\n", p->tid, p->state);
             if(p->state == ZOMBIE){
-                //cprintf ("\nIn join, found a ZOMBIE child with tid: %d=%d\n", 
-                //    p->tid, thread_id);
+                cprintf ("\nIn join, found a ZOMBIE child with tid: %d=%d\n", 
+                    p->tid, thread_id);
             
                 // Found one.
                 pid = p->pid;
                 free_page(p->kstack);
                 p->kstack = 0;
-                freevm(p->pgdir);
+                //freevm(p->pgdir);
+                //p->pgdir = 0;
                 p->state = UNUSED;
                 p->pid = 0;
                 p->parent = 0;
@@ -673,7 +690,14 @@ int kthread_exit (void)
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
         if(p == proc){
             p->killed = 1;
+            p->state = ZOMBIE;
             cprintf ("Killed thread (%d, %d)\n", p->pid, p->tid);
+            
+            release(&ptable.lock);
+            wakeup(p->parent);
+            
+            acquire(&ptable.lock);
+            sched();
             release(&ptable.lock);
             return 0;
         }
