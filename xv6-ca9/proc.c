@@ -39,9 +39,6 @@ extern void trapret(void);
 
 static void wakeup1(void *chan);
 
-
-typedef void (*myFooDef)(void);
-
 void pinit(void)
 {
     initlock(&ptable.lock, "ptable");
@@ -538,10 +535,10 @@ void procdump(void)
 // Caller must set state of returned proc to RUNNABLE.
 int kthread_create(void *(*start_func)(void) )
 {   
-    cprintf("In kthread_create syscall. start_func=%d\n", (int) start_func);
     int i;
     struct proc *np; //new thread
-    
+    //void *stackRet;
+     
     // Allocate process.
     if((np = allocproc()) == 0) {
         return -1;
@@ -555,7 +552,7 @@ int kthread_create(void *(*start_func)(void) )
         np->state = UNUSED;
         return -1;
 	}
-    //np->pgdir = proc->pgdir;//threads share page tables
+    np->pgdir = proc->pgdir;//threads share page tables
     
     
     // Copy process stack from parent
@@ -566,10 +563,23 @@ int kthread_create(void *(*start_func)(void) )
         np->state = UNUSED;
         return -1;
     }*/
-    
-    
+
+    //cprintf ("Stack bottom:     %x, Stack ptr: %x\n", np->kstack, np->tf->sp_usr);
+    //cprintf ("Stack top addr:   %x, stack top data: %x\n", 
+    //    np->kstack+KSTACKSIZE, *(np->kstack+KSTACKSIZE)); 
+    //cprintf ("Stack top-1 addr: %x, stack top-1 data: %x\n",
+    //    np->kstack+KSTACKSIZE-sizeof(void*), *(np->kstack+KSTACKSIZE - sizeof(void*)));
+    //cprintf ("Stack top-2 addr: %x, stack top-2 data: %x\n",
+    //    np->kstack+KSTACKSIZE-2*sizeof(void*), *(np->kstack+KSTACKSIZE - 2*sizeof(void*)));
+
+    // Return value should be set to 0xFFFF FFFF
+    //stackRet = np->kstack + KSTACKSIZE - sizeof(void*);
+    //cprintf ("Current stackRet: %d\n", *(uint *)stackRet);
+    //*(uint *)stackRet = 0xFFFFFFFF;
+    //cprintf ("Current stackRet: %d\n", *(uint *)stackRet);
+
     np->sz = proc->sz;
-    np->parent = proc->parent;//all threads in process have the same parent
+    np->parent = proc;//all threads in process have the same parent
     *np->tf = *proc->tf;
     np->tid = nexttid++;
     np->pid = np->pid - 1;
@@ -578,9 +588,9 @@ int kthread_create(void *(*start_func)(void) )
     
     // Clear r0 so that the new thread returns 0 in the child.
     np->tf->r0 = 0;
-    cprintf("Before, np->tf->pc: %d\n",np->tf->pc);
+    
+    // Thread should resume execution at the specified start_func
     np->tf->pc = (int) (*start_func);
-    cprintf("After,  np->tf->pc: %d\n",np->tf->pc);
 
     for(i = 0; i < NOFILE; i++) {
         if(proc->ofile[i]) {
@@ -593,6 +603,82 @@ int kthread_create(void *(*start_func)(void) )
     np->state = RUNNABLE;
     safestrcpy(np->name, proc->name, sizeof(proc->name));
 
+    cprintf("Created new thread: pid: %d, tid: %d\n", np->pid, np->tid);
     return np->tid; 
       
+}
+
+// Exits a running thread that has a thread ID given by the 
+// input parameter
+int kthread_join (int thread_id) 
+{
+    //cprintf("Waiting in kthread_join for tid: %d.\n", thread_id);
+
+    struct proc *p;
+    int havekids, pid;
+
+    acquire(&ptable.lock);
+
+    for(;;){
+        // Scan through table looking for zombie children.
+        havekids = 0;
+
+        for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+            if(p->parent != proc) {
+                continue;
+            }
+            if(p->tid != thread_id) {
+                continue;
+            }
+
+            havekids = 1;
+
+            if(p->state == ZOMBIE){
+                //cprintf ("\nIn join, found a ZOMBIE child with tid: %d=%d\n", 
+                //    p->tid, thread_id);
+            
+                // Found one.
+                pid = p->pid;
+                free_page(p->kstack);
+                p->kstack = 0;
+                freevm(p->pgdir);
+                p->state = UNUSED;
+                p->pid = 0;
+                p->parent = 0;
+                p->name[0] = 0;
+                p->killed = 0;
+                release(&ptable.lock);
+
+                return pid;
+            }
+        }
+
+        // No point waiting if we don't have any children.
+        if(!havekids || proc->killed){
+            release(&ptable.lock);
+            return -1;
+        }
+
+        // Wait for children to exit.  (See wakeup1 call in proc_exit.)
+        sleep(proc, &ptable.lock);  //DOC: wait-sleep
+    }
+}
+
+//Terminate the current thread
+int kthread_exit (void)
+{
+    struct proc *p;
+    acquire(&ptable.lock);
+
+    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+        if(p == proc){
+            p->killed = 1;
+            cprintf ("Killed thread (%d, %d)\n", p->pid, p->tid);
+            release(&ptable.lock);
+            return 0;
+        }
+    }
+
+    release(&ptable.lock);
+    return -1;
 }

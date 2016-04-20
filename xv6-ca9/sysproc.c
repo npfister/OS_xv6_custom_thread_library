@@ -8,12 +8,24 @@
 
 int sys_kthread_create(void)
 {   
-    //void *(*start_func)();
-    //argptr(0, (void *)&start_func, sizeof(void*));
+    //get pointer for start function
     int pc;
     argint (0, &pc);
 
     return kthread_create((void*) pc);
+}
+
+int sys_kthread_join(void)
+{
+    //get thread ID from arguments
+    int thread_id;
+    argint (0, &thread_id);
+    return kthread_join (thread_id);
+}
+
+int sys_kthread_exit(void)
+{
+    return kthread_exit();
 }
 
 int sys_fork(void)

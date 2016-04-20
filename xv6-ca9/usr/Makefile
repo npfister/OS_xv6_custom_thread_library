@@ -22,7 +22,8 @@ UPROGS=\
 	_usertests\
 	_wc\
 	_zombie\
-	_test\
+	_test_fork\
+	_test_kthread\
 
 
 all: $(FS_IMAGE)
