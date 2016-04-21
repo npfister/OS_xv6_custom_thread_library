@@ -8,7 +8,7 @@ void* foo(void);
 
 void* foo(void){
   counter++;
-  printf(1, "  IN START FUNCTION, pid: %d, tid: %d, counter: %d\n", getpid(), gettid(), counter);  
+  printf(1, "\n  IN START FUNCTION, pid: %d, tid: %d, counter: %d\n", getpid(), gettid(), counter);  
   kthread_exit();
   return NULL;
 }
