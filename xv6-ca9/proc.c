@@ -707,7 +707,7 @@ int kthread_exit (void)
 }
 
 // Atomically release lock and sleep on kthreadchan.
-void kthread_cond_wait(int kthd_cv_chan)
+int kthread_cond_wait(int kthd_cv_chan)
 {
     //show_callstk("sleep");
 
@@ -732,9 +732,10 @@ void kthread_cond_wait(int kthd_cv_chan)
 
     // Reacquire original lock.
     release(&ptable.lock);
+    return 0;
 }
 
-void kthread_cond_signal(int kthd_cv_chan)
+int kthread_cond_signal(int kthd_cv_chan)
 {
     acquire(&ptable.lock);
 
@@ -748,4 +749,5 @@ void kthread_cond_signal(int kthd_cv_chan)
     }
 
     release(&ptable.lock);
+    return 0;
 }
