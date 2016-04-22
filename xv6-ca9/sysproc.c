@@ -33,10 +33,8 @@ int sys_kthread_cond_signal(void)
 int sys_kthread_cond_wait(void)
 {
     int cond_id;
-    int mutex_id;
     argint(0, &cond_id);
-    argint(1, &mutex_id);
-    return kthread_cond_wait(cond_id, mutex_id);
+    return kthread_cond_wait(cond_id);
 }
 
 int sys_kthread_exit(void)

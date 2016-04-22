@@ -142,7 +142,7 @@ int				kthread_create(void* (*foo)());
 int 			kthread_join(int thread_id);
 int 			kthread_exit(void);
 int 			kthread_cond_signal(int);
-int 			kthread_cond_wait (int, int);
+int 			kthread_cond_wait (int);
 
 // swtch.S
 void            swtch(struct context**, struct context*);
