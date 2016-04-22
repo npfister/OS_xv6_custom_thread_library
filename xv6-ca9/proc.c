@@ -705,3 +705,47 @@ int kthread_exit (void)
     release(&ptable.lock);
     return 0;
 }
+
+// Atomically release lock and sleep on kthreadchan.
+void kthread_cond_wait(int kthd_cv_chan)
+{
+    //show_callstk("sleep");
+
+    if(proc == 0) {
+        panic("sleep");
+    }
+
+    acquire(&ptable.lock);
+
+    // Must acquire ptable.lock in order to change p->state and then call
+    // sched. Once we hold ptable.lock, we can be guaranteed that we won't
+    // miss any wakeup (wakeup runs with ptable.lock locked), so it's okay
+    // to release lk.
+    
+    // Go to sleep.
+    proc->kthd_cv_chan = kthd_cv_chan;
+    proc->state = SLEEPING;
+    sched();
+    cprintf("RETURNED FROM SCHED in cond_wait\n");
+    // Tidy up.
+    proc->kthd_cv_chan = 0;
+
+    // Reacquire original lock.
+    release(&ptable.lock);
+}
+
+void kthread_cond_signal(int kthd_cv_chan)
+{
+    acquire(&ptable.lock);
+
+    struct proc *p;
+
+    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+        if(p->state == SLEEPING && p->kthd_cv_chan == kthd_cv_chan && proc->pid == p->pid) {
+            p->state = RUNNABLE;
+            cprintf("found kthread cond_waiter\n");
+        }
+    }
+
+    release(&ptable.lock);
+}

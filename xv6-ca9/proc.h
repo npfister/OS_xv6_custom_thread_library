@@ -65,6 +65,7 @@ struct proc {
     struct trapframe*   tf;         // Trap frame for current syscall
     struct context* context;        // swtch() here to run process
     void*           chan;           // If non-zero, sleeping on chan
+    int             kthd_cv_chan;   // kthread condition variable sleep chan
     int             killed;         // If non-zero, have been killed
     struct file*    ofile[NOFILE];  // Open files
     struct inode*   cwd;            // Current directory
