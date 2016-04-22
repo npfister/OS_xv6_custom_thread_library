@@ -69,7 +69,7 @@ static struct proc* allocproc(void)
     found:
     p->state = EMBRYO;
     p->pid = nextpid++;
-    p->numThreads = 0;
+    //p->numThreads = 0;
     release(&ptable.lock);
 
     // Allocate kernel stack.
@@ -472,6 +472,18 @@ void wakeup(void *chan)
     release(&ptable.lock);
 }
 
+int kthread_cond_signal(int cond_id)
+{
+    cprintf("in cond signal\n");
+    return 0;
+}
+
+int kthread_cond_wait(int cond_id, int mutex_id)
+{
+    cprintf ("in cond wait\n");
+    return 0;
+}
+
 // Kill the process with the given pid. Process won't exit until it returns
 // to user space (see trap in trap.c).
 int kill(int pid)
@@ -571,7 +583,8 @@ int kthread_create(void *(*start_func)(void) )
     np->sz = proc->sz;
     np->parent = proc;//all threads in process have the same parent
     *np->tf = *proc->tf;
-    np->tid = ++proc->numThreads;
+    np->tid = nexttid++;
+    //np->tid = ++proc->numThreads;
     np->pid = np->pid - 1;
     nextpid--;
     

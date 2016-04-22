@@ -24,3 +24,5 @@
 #define SYS_kthread_create  23
 #define SYS_kthread_join 	24
 #define SYS_kthread_exit 	25
+#define SYS_kthread_cond_wait 26
+#define SYS_kthread_cond_signal 27

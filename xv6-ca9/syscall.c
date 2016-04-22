@@ -118,6 +118,8 @@ extern int sys_gettid(void);
 extern int sys_kthread_create(void);
 extern int sys_kthread_join(void);
 extern int sys_kthread_exit(void);
+extern int sys_kthread_cond_signal(int);
+extern int sys_kthread_cond_wait(int, int);
 
 static int (*syscalls[])(void) = {
         [SYS_fork]    sys_fork,
