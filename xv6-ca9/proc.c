@@ -472,18 +472,6 @@ void wakeup(void *chan)
     release(&ptable.lock);
 }
 
-int kthread_cond_signal(int cond_id)
-{
-    cprintf("in cond signal\n");
-    return 0;
-}
-
-int kthread_cond_wait(int cond_id, int mutex_id)
-{
-    cprintf ("in cond wait\n");
-    return 0;
-}
-
 // Kill the process with the given pid. Process won't exit until it returns
 // to user space (see trap in trap.c).
 int kill(int pid)
