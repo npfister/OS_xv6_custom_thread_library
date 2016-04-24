@@ -24,6 +24,7 @@ UPROGS=\
 	_zombie\
 	_test_fork\
 	_test_kthread\
+	_test_cv\
 
 
 all: $(FS_IMAGE)
