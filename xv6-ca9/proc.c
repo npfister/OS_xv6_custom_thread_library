@@ -656,7 +656,6 @@ int kthread_join (int thread_id)
         }
 
         // Wait for children to exit.  (See wakeup1 call in proc_exit.)
-        cprintf ("Main thread going to sleep.\n\n");
         sleep(proc, &ptable.lock);  //DOC: wait-sleep
     }
 }

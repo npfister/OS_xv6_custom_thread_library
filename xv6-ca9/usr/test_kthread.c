@@ -16,21 +16,21 @@ void* foo(void){
 int main (int argc, char *argv[])
 {
   int i;
-  int tids[numThreads];
+  //int tids[numThreads];
   counter = 0;
 
   printf(1, "In main, initially, counter: %d\n", counter);
 
   for (i=0; i<numThreads; i++) {
     if (gettid() == 0) { //just a protection. Remove later once thread_exit implemented.
-      tids[i] = kthread_create(foo); 
+      kthread_create(foo); 
     }
   }
 
   //TIDs of children start at 1, since parent's tid = 0.
-  for (i=0; i<numThreads; i++) {
-      kthread_join(tids[i]);
-  }
+  //for (i=0; i<numThreads; i++) {
+  //    kthread_join(tids[i]);
+  //}
 
   if (gettid() == 0) {
     printf(1, "In main, after threads finished, counter: %d\n", counter);
